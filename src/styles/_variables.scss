@@ -1,0 +1,31 @@
+$primary-hue: 40;
+$primary: hsl($primary-hue, 100%, 50%);
+$primary-dim: hsl($primary-hue, 35%, 68%);
+$primary-transparent: hsla($primary-hue, 2%, 25%, 0.6);
+
+$positive: #1eae35;
+$warning: #f0820f;
+$negative: #e71b18;
+
+$positive-panel: desaturate(darken($positive, 20), 32);
+$warning-panel: desaturate(darken($warning, 20), 32);
+$negative-panel: desaturate(darken($negative, 20), 32);
+
+$buttonColor: white;
+$textColor: #eee;
+$darkText: #555;
+$backdrop: hsl(40, 13, 85%);
+
+$plus: "\f067";
+$minus: "\f068";
+$plus-circle: "\f055";
+$minus-circle: "\f056";
+$wallet: "\f53a";
+$receipt: "\f543";
+$coins: "\f51e";
+
+$categoriesWidth: 55%;
+$rightMenuWidth: calc(45%);
+$cardBorderRadius: 16px;
+$s: 8px;
+$cardShadow: 0 0 $s $s rgba(0, 0, 0, 0.075);

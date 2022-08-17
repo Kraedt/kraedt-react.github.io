@@ -1,0 +1,30 @@
+.loadingSpinner {
+  float: left;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  animation: spin 1s infinite linear;
+  padding: 0.5rem 0;
+
+  &.sm {
+    font-size: 1rem;
+  }
+  &.med {
+    font-size: 3rem;
+  }
+  &.lg {
+    font-size: 5rem;
+  }
+  &.xl {
+    font-size: 7rem;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -1,0 +1,358 @@
+@import "./styles/main.scss";
+
+@font-face {
+  font-family: Leon;
+  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/assets/fonts/Montserrat-Regular.ttf");
+}
+
+html {
+  width: 100vw;
+  overflow-x: hidden; 
+}
+
+body {
+  background-color: #111;
+  color: white;
+  font-family: Montserrat, sans-serif;
+  margin: 0;
+}
+
+.body-content {
+  margin: 0 auto;
+  max-width: 90%;
+  left: -10px; 
+}
+
+select,
+textarea {
+  width: 100%;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  resize: none; 
+}
+
+form input {
+  width: auto;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px; 
+}
+
+form .button {
+  width: auto;
+  float: right; 
+}
+
+.contact-form {
+  padding: 2px; 
+}
+
+.message {
+  color: #FFD603; 
+}
+
+.error {
+  color: red; 
+}
+
+.corner-controls {
+  position: fixed;
+  right: 1.5em;
+  bottom: 1em;
+  font-size: 16px;
+  text-align: right; 
+}
+
+.corner-controls a {
+  padding-top: 10px;
+  display: block; 
+}
+
+ul {
+  list-style: square; 
+}
+
+h1 {
+  font-size: 1.5vmax; 
+}
+
+h2 {
+  font-size: 1.1vmax; 
+}
+
+h3 {
+  font-size: 0.9vmax; 
+}
+
+a {
+  color: #FF9A03;
+  text-decoration: none; 
+}
+
+a:hover,
+a:focus {
+  color: #FFD603;
+  text-decoration: none; 
+}
+
+p {
+  font-size: 0.75vmax; 
+}
+
+.darken-text {
+  color: #AAA; 
+}
+
+.text-center {
+  text-align: center; 
+}
+
+.btn a {
+  vertical-align: middle; 
+}
+
+@media screen and (max-width: 1382px) {
+  p {
+    font-size: 1.2em; 
+}
+  h1 {
+    font-size: 1.8em; 
+}
+  h2 {
+    font-size: 1.6em; 
+}
+  h3 {
+    font-size: 1.4em; 
+}
+  h3 {
+    font-size: 1.2em; } 
+}
+
+@font-face {
+  font-family: Leon;
+  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/assets/fonts/Montserrat-Regular.ttf"); 
+}
+
+@font-face {
+  font-family: Leon;
+  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/assets/fonts/Montserrat-Regular.ttf"); 
+}
+
+
+@font-face {
+  font-family: Leon;
+  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/assets/fonts/Montserrat-Regular.ttf"); 
+}
+
+@font-face {
+  font-family: Leon;
+  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/assets/fonts/Montserrat-Regular.ttf"); 
+}
+
+
+.image-prop {
+  width: 110px;
+  height: 110px;
+  margin: 8px 0; 
+}
+
+.image-prop-small {
+  width: 50px;
+  height: 50px; 
+}
+
+.direct-dl-btn {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent; 
+}
+
+.music-page {
+  width: 100%; 
+}
+
+.music-page td {
+  border-top: 1px inset white;
+  text-align: center; 
+}
+
+.song-page, .song-page td {
+  width: 100%;
+  text-align: center; 
+}
+
+.audio-links {
+  display: inline-block;
+  width: 280px; 
+}
+
+.btn-download {
+  background: #ff9a01;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  width: 150px;
+  height: 40px;
+  border: 2px;
+  border-color: black;
+  border-radius: 8px;
+  border-style: solid;
+  font-family: Leon, sans-serif;
+  font-variant: all-small-caps;
+  font-weight: bold;
+  font-size: 32px; 
+}
+
+.btn-download:hover {
+  background: #333;
+  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+  border-color: #ff9a01; 
+}
+
+.btn-download h1 {
+  margin-top: -4px;
+  vertical-align: middle; 
+}
+
+.mobile-song-info {
+  display: none; 
+}
+
+@media screen and (max-width: 1382px) {
+  .image-prop {
+    width: 300px;
+    height: 300px;
+    margin-top: 40px;
+    margin-bottom: 0; 
+}
+  .song-info {
+    display: none; 
+}
+  .mobile-song-info {
+    display: initial;
+    padding-bottom: 10px; 
+}
+  .audio-links {
+    display: none; 
+}
+  .corner-controls {
+    display: none; 
+}
+  .see-more-music {
+    margin-bottom: 18px; } 
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.9); 
+}
+
+.modal-content {
+  margin: auto auto;
+  width: 80%;
+  border: none;
+  background-color: #0000;
+  text-align: center;
+  box-shadow: none;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%); 
+}
+
+.close {
+  position: fixed;
+  right: 20px;
+  top: 0;
+  color: #e33;
+  opacity: 1;
+  z-index: 100;
+  font-size: 5em;
+  font-weight: bold; 
+}
+
+.close:hover,
+.close:focus {
+  color: #aaa;
+  opacity: 1;
+  text-decoration: none;
+  cursor: pointer; 
+}
+
+.div-center-fixed {
+  width: 303px;
+  margin: 0 auto; 
+}
+
+
+// Existing vvvvvvvv
+
+
+hr {
+  border: 1px solid rgb(56, 34, 68);
+
+}
+
+@keyframes sweep {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  
+}
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  
+}
+
+}
+
+details summary:hover {
+  text-shadow: 0 0 10px hsla($primary-hue, 100%, 50%, 0.25);
+
+}
+
+details[open] summary ~ * {
+  animation: sweep 0.3s ease-in-out;
+
+}
+
+li {
+  list-style: none;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+
+}

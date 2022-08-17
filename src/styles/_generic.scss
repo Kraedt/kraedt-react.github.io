@@ -1,0 +1,51 @@
+@import "./variables";
+
+$descriptors: (
+  "primary": $primary,
+  "positive": $positive,
+  "warning": $warning,
+  "negative": $negative
+);
+@each $name, $desc in $descriptors {
+  .text-#{$name} {
+    color: $desc;
+  }
+}
+
+$unitValues: (
+  "1": 0.25rem,
+  "2": 0.5rem,
+  "3": 0.75rem,
+  "4": 1rem
+);
+$directions: (
+  "": "",
+  "l": "-left",
+  "r": "-right",
+  "t": "-top",
+  "b": "-bottom"
+);
+$types: (
+  "p": "padding",
+  "m": "margin"
+);
+@each $uName, $value in $unitValues {
+  @each $tName, $type in $types {
+    @each $dName, $dir in $directions {
+      .#{$tName}#{$dName}-#{$uName} {
+        #{$type}#{$dir}: $value;
+      }
+      .#{$tName}x-#{$uName} {
+        #{$type}-left: $value;
+        #{$type}-right: $value;
+      }
+      .#{$tName}y-#{$uName} {
+        #{$type}-top: $value;
+        #{$type}-bottom: $value;
+      }
+    }
+    .#{$tName}-0 {
+      #{$type}: 0;
+    }
+  }
+}

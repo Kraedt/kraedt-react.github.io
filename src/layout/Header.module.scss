@@ -1,0 +1,156 @@
+
+.navbar {
+  text-decoration: none;
+  overflow: hidden;
+  margin-bottom: 0;
+  min-height: 60px;
+  border: 0; 
+}
+  
+li {
+  font-size: 1.1em;
+  font-family: Leon, sans-serif; 
+}
+
+ul, li {
+  display: inline;
+  padding: 0 1.5em 0 1.5em; 
+}
+
+li a {
+  display: none; 
+}
+
+.navbarBg {
+  position: absolute;
+  background-color: #292929;
+  width: 100%;
+  height: 60px;
+  z-index: -1; 
+}
+
+.links {
+  display: table;
+  margin: 0 auto;
+  padding-top: 14px;
+}
+
+.text {
+  margin-top: -10px;
+  padding-bottom: 4px;
+}
+
+.sm {
+  padding: 0 0.3em 0.3em 0.3em;
+
+  img {
+    width: 35px;
+    height: 35px;
+    filter: brightness(100) grayscale(100%);
+    -webkit-filter: brightness(100) grayscale(100%); 
+
+    &:hover {
+      filter: brightness(100%) grayscale(0);
+      -webkit-filter: brightness(100%) grayscale(0); 
+    }
+  }
+}
+
+.br {
+  padding-left: 0.8em; 
+}
+
+.icon {
+  display: none !important;
+}
+
+@media screen and (max-width: 1382px) {
+  .links {
+    margin-top: -20px;
+    margin-left: 20px; 
+  }
+  .icon {
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    display: block; 
+  }
+  .responsive {
+    background-color: #292929;
+    height: calc(100% - 50px); 
+  }
+  .responsive a {
+    float: none;
+    display: block; 
+  }
+  .sm a:after {
+    white-space: pre;
+    content: "  -  " attr(title); 
+  } 
+}
+
+.banner {
+  position: relative;
+  background: url("/assets/images/background.jpg") black no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 35vh; 
+}
+
+.header {
+  a {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.4em;
+    color: white;
+  }
+
+  .active,
+  a:active,
+  a:hover,
+  a.focus {
+    color: #FF9A03;
+    background-color: transparent; 
+  }
+}
+
+.header ul {
+  list-style-type: none;
+  font-size: 1.1em; 
+}
+
+.logo {
+  display: inline-block;
+  text-align: center;
+  vertical-align: center;
+  width: 100%;
+  height: 100%; 
+
+  img {
+    max-height: 20vh;
+    max-width: 100%;
+    vertical-align: middle;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; 
+  }
+}
+
+@media screen and (max-width: 1382px) {
+  .banner {
+    background: none;
+    height: 18vh; 
+  }
+  .logo {
+    background: #1C1C1C; 
+  }
+  .logo img {
+    max-width: 80%; 
+  } 
+}

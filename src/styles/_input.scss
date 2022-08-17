@@ -1,0 +1,106 @@
+@import "./variables";
+@import "./generic";
+
+button {
+  background: $buttonColor;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  max-height: 32px;
+  margin: auto 0;
+  &:hover {
+    color: darken($color: $buttonColor, $amount: 20);
+  }
+
+  &.icon {
+    background: none;
+    color: $textColor;
+    border: none;
+    font-size: medium;
+    font-weight: bold;
+    text-shadow: 0 0 4px black;
+    &:hover {
+      color: darken($color: white, $amount: 20);
+    }
+
+    @mixin faTransform($code) {
+      content: $code + " ";
+    }
+
+    $icons: (
+      "plus": $plus,
+      "minus": $minus,
+      "plus-circle": $plus-circle,
+      "minus-circle": $minus-circle,
+      "wallet": $wallet,
+      "receipt": $receipt,
+      "coins": $coins,
+    );
+
+    @each $name, $icon in $icons {
+      &.#{$name}:before {
+        @include faTransform($icon);
+      }
+    }
+
+    @each $name, $desc in $descriptors {
+      &.#{$name}:before {
+        color: $desc;
+      }
+    }
+  }
+
+  &.addGroup {
+    background: none;
+    border: none;
+    color: $textColor;
+    font-size: larger;
+    padding: 0 1.5rem;
+  }
+
+  &.addItem {
+    padding: 1rem 0;
+    font-size: small;
+  }
+}
+
+.textInput {
+  width: 50%;
+  display: inline-flex;
+}
+
+input {
+  background: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: medium;
+  float: left;
+  color: $textColor;
+
+  &::placeholder {
+    color: $textColor;
+  }
+
+  &:focus {
+    background: $backdrop;
+    border: $darkText;
+    color: $darkText;
+    &::placeholder {
+      color: $darkText;
+    }
+  }
+
+  &[data-type="amount"] {
+    text-align: right;
+    display: flex;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

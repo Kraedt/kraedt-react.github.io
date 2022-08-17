@@ -1,0 +1,44 @@
+//import { CategoryList } from '../layout/BudgetPage/CategoryList';
+//import { DefaultMenu } from '../layout/BudgetPage/DefaultMenu';
+//import { TransactionMenu } from '../layout/BudgetPage/TransactionMenu';
+//import { useService } from '../services/service-resolver';
+//import { useObservable } from '../rxjs-functions';
+//import BudgetService from '../services/budget-service';
+//import { ToastPanel } from '../layout/ToastPanel';
+//import { LoadingSpinner } from '../components/LoadingSpinner';
+
+//export const Home = () => {
+//  const budgetService = useService(BudgetService);
+//  const viewMode = useObservable(budgetService.ViewModel);
+//  const month = useObservable(budgetService.Month);
+//  const budget = useObservable(budgetService.CurrentBudget);
+//  const budgetMeta = useObservable(budgetService.CurrentBudgetMetadata);
+//  const { ViewMode: viewModeIntent, CreateBudget: createIntent } = budgetService.Intents;
+//
+//  return (
+//    <div className={`budgetPage ${!!budgetMeta ? '' : 'loading'}`}>
+//      {!!budgetMeta
+//        ? !!budget
+//          ? <>
+//            <CategoryList budget={budget} key={budget._id} />
+//            {viewMode === 'Transactions'
+//              ? <TransactionMenu onClose={() => viewModeIntent.next('None')} />
+//              : <DefaultMenu />
+//            }
+//          </>
+//          : <>
+//            <h3>
+//              A budget for this month does not exist yet.
+//              <button className='ml-2'
+//                onClick={() => createIntent.next(month!)}
+//              >
+//                Copy from previous
+//              </button>
+//            </h3>
+//          </>
+//        : <LoadingSpinner size='xl' />
+//      }
+//      <ToastPanel />
+//    </div >
+//  );
+//}
