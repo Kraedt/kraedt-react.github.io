@@ -8,12 +8,12 @@ import kraedtLogo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
-  let responsiveNav = () => {
-    var x = document.getElementById("nav")!;
-    x.className = x.className === styles.navbar
-      ? styles.navbar + ' ' + styles.responsive
-      : styles.navbar;
-  }
+  //let responsiveNav = () => {
+  //  var x = document.getElementById("nav")!;
+  //  x.className = x.className === styles.navbar
+  //    ? styles.navbar + ' ' + styles.responsive
+  //    : styles.navbar;
+  //}
 
   let page = { url: 'null' }
   const showActive = (urlMatch: string) => page.url === urlMatch ? 'active' : '';

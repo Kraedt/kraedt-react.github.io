@@ -1,7 +1,8 @@
+import { Page } from '../Page';
 import styles from './Home.module.scss'
 
 export const Home = () => (
-  <>
+  <Page title="Kraedt">
     <div className={styles.bioContainer}>
       <div className={styles.bioText}>
         <p>
@@ -98,5 +99,5 @@ export const Home = () => (
         }
       </div>
     </div>
-  </>
+  </Page>
 );

@@ -5,23 +5,25 @@ import { Footer } from './pages/kraedt/Footer';
 import { Home } from './pages/kraedt/Home';
 import { Home as SbbHome } from './pages/sonicbreakbeat/Home';
 import { Music } from './pages/kraedt/Music';
-import { Page } from './pages/Page';
+import { ReactElement } from 'react';
 
-const Kraedt = () => (
+type PageProps = { page: ReactElement }
+
+const Kraedt = ({ page }: PageProps) => (
   <>
     <Header />
     <main className="body-content">
-      <Home />
+      {page}
     </main>
     <Footer />
   </>
 )
 
-const SonicBreakbeat = () => (
+const SonicBreakbeat = ({ page }: PageProps) => (
   <>
     <Header />
     <main className="body-content">
-      <SbbHome />
+      {page}
     </main>
     <Footer />
   </>
@@ -32,11 +34,11 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route>
-          <Route path="/" element={<Kraedt />} />
-          <Route path="/music" element={<Music />} />
+          <Route path="/" element={<Kraedt page={<Home />} />} />
+          <Route path="/music" element={<Kraedt page={<Music />} />} />
         </Route>
         <Route>
-          <Route path="/sonicbreakbeat" element={<SonicBreakbeat />} />
+          <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />
           {//<Route path="/sonicbreakbeat/music" element={<SbbMusic />} />
           }
         </Route>
