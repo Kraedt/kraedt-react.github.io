@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: Leon;
-  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
+  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf");
 }
 
 @font-face {
@@ -12,7 +12,7 @@
 
 html {
   width: 100vw;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 body {
@@ -25,7 +25,7 @@ body {
 .body-content {
   margin: 0 auto;
   max-width: 90%;
-  left: -10px; 
+  left: -10px;
 }
 
 select,
@@ -33,30 +33,30 @@ textarea {
   width: 100%;
   font-family: Montserrat, sans-serif;
   font-size: 14px;
-  resize: none; 
+  resize: none;
 }
 
 form input {
   width: auto;
   font-family: Montserrat, sans-serif;
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 form .button {
   width: auto;
-  float: right; 
+  float: right;
 }
 
 .contact-form {
-  padding: 2px; 
+  padding: 2px;
 }
 
 .message {
-  color: #FFD603; 
+  color: #ffd603;
 }
 
 .error {
-  color: red; 
+  color: red;
 }
 
 .corner-controls {
@@ -64,151 +64,111 @@ form .button {
   right: 1.5em;
   bottom: 1em;
   font-size: 16px;
-  text-align: right; 
+  text-align: right;
 }
 
 .corner-controls a {
   padding-top: 10px;
-  display: block; 
+  display: block;
 }
 
 ul {
-  list-style: square; 
+  list-style: square;
 }
 
 h1 {
-  font-size: 1.5vmax; 
+  font-size: 1.5vmax;
 }
 
 h2 {
-  font-size: 1.1vmax; 
+  font-size: 1.1vmax;
 }
 
 h3 {
-  font-size: 0.9vmax; 
+  font-size: 0.9vmax;
 }
 
 a {
-  color: #FF9A03;
-  text-decoration: none; 
+  color: #ff9a03;
+  text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #FFD603;
-  text-decoration: none; 
+  color: #ffd603;
+  text-decoration: none;
 }
 
 p {
-  font-size: 0.75vmax; 
+  font-size: 0.75vmax;
 }
 
 .darken-text {
-  color: #AAA; 
+  color: #aaa;
 }
 
 .text-center {
-  text-align: center; 
+  text-align: center;
 }
 
 .btn a {
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 1382px) {
   p {
-    font-size: 1.2em; 
-}
+    font-size: 1.2em;
+  }
   h1 {
-    font-size: 1.8em; 
-}
+    font-size: 1.8em;
+  }
   h2 {
-    font-size: 1.6em; 
-}
+    font-size: 1.6em;
+  }
   h3 {
-    font-size: 1.4em; 
-}
+    font-size: 1.4em;
+  }
   h3 {
-    font-size: 1.2em; } 
+    font-size: 1.2em;
+  }
 }
-
-@font-face {
-  font-family: Leon;
-  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url("/assets/fonts/Montserrat-Regular.ttf"); 
-}
-
-@font-face {
-  font-family: Leon;
-  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url("/assets/fonts/Montserrat-Regular.ttf"); 
-}
-
-
-@font-face {
-  font-family: Leon;
-  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url("/assets/fonts/Montserrat-Regular.ttf"); 
-}
-
-@font-face {
-  font-family: Leon;
-  src: url("/assets/fonts/Leon-Regular_TRIAL.ttf"); 
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url("/assets/fonts/Montserrat-Regular.ttf"); 
-}
-
 
 .image-prop {
   width: 110px;
   height: 110px;
-  margin: 8px 0; 
+  margin: 8px 0;
 }
 
 .image-prop-small {
   width: 50px;
-  height: 50px; 
+  height: 50px;
 }
 
 .direct-dl-btn {
   border: 0;
   padding: 0;
   margin: 0;
-  background: transparent; 
+  background: transparent;
 }
 
 .music-page {
-  width: 100%; 
+  width: 100%;
 }
 
 .music-page td {
   border-top: 1px inset white;
-  text-align: center; 
+  text-align: center;
 }
 
-.song-page, .song-page td {
+.song-page,
+.song-page td {
   width: 100%;
-  text-align: center; 
+  text-align: center;
 }
 
 .audio-links {
   display: inline-block;
-  width: 280px; 
+  width: 280px;
 }
 
 .btn-download {
@@ -224,22 +184,22 @@ p {
   font-family: Leon, sans-serif;
   font-variant: all-small-caps;
   font-weight: bold;
-  font-size: 32px; 
+  font-size: 32px;
 }
 
 .btn-download:hover {
   background: #333;
   text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
-  border-color: #ff9a01; 
+  border-color: #ff9a01;
 }
 
 .btn-download h1 {
   margin-top: -4px;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 
 .mobile-song-info {
-  display: none; 
+  display: none;
 }
 
 @media screen and (max-width: 1382px) {
@@ -247,23 +207,24 @@ p {
     width: 300px;
     height: 300px;
     margin-top: 40px;
-    margin-bottom: 0; 
-}
+    margin-bottom: 0;
+  }
   .song-info {
-    display: none; 
-}
+    display: none;
+  }
   .mobile-song-info {
     display: initial;
-    padding-bottom: 10px; 
-}
+    padding-bottom: 10px;
+  }
   .audio-links {
-    display: none; 
-}
+    display: none;
+  }
   .corner-controls {
-    display: none; 
-}
+    display: none;
+  }
   .see-more-music {
-    margin-bottom: 18px; } 
+    margin-bottom: 18px;
+  }
 }
 
 .modal {
@@ -275,7 +236,7 @@ p {
   height: 100%;
   overflow: hidden;
   border: none;
-  background-color: rgba(0, 0, 0, 0.9); 
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .modal-content {
@@ -287,7 +248,7 @@ p {
   box-shadow: none;
   top: 50%;
   -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%); 
+  transform: translate(0, -50%);
 }
 
 .close {
@@ -298,7 +259,7 @@ p {
   opacity: 1;
   z-index: 100;
   font-size: 5em;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 .close:hover,
@@ -306,53 +267,43 @@ p {
   color: #aaa;
   opacity: 1;
   text-decoration: none;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .div-center-fixed {
   width: 303px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
-
 
 // Existing vvvvvvvv
 
-
 hr {
   border: 1px solid rgb(56, 34, 68);
-
 }
 
 @keyframes sweep {
   0% {
     opacity: 0;
     transform: translateY(-50%);
-  
-}
+  }
   100% {
     opacity: 1;
     transform: translateY(0);
-  
-}
-
+  }
 }
 
 details summary:hover {
   text-shadow: 0 0 10px hsla($primary-hue, 100%, 50%, 0.25);
-
 }
 
 details[open] summary ~ * {
   animation: sweep 0.3s ease-in-out;
-
 }
 
 li {
   list-style: none;
-
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-
 }
