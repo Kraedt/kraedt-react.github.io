@@ -1,4 +1,4 @@
-@import "../styles/variables";
+@import "../../styles/variables";
 
 //.footer {
 //  background: $primary-transparent;
@@ -23,21 +23,22 @@ footer {
   font-family: Montserrat, sans-serif;
   font-style: italic;
   text-align: center;
-  color: white; 
+  color: white;
 }
 
 footer a,
 footer a:visited {
-  color: #FF9A03; 
+  color: #ff9a03;
 }
 
 footer a:hover,
 footer a:focus {
-  color: #FFD603;
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; 
+  color: #ffd603;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
 
 @media screen and (max-width: 1382px) {
   footer {
-    display: none; } 
+    display: none;
+  }
 }

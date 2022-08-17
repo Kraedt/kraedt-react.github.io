@@ -39,3 +39,7 @@ export const evaluateMath = (eq: string) => {
 export const convertToFloat = (value: number, decimals: number) => {
   return Number(value.toFixed(decimals));
 }
+
+export const isNullOrWhitespace = (str?: string) => {
+  return str === undefined || str.trimStart().trimEnd() === "";
+}
