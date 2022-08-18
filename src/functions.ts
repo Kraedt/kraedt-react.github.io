@@ -43,7 +43,7 @@ export const convertToFloat = (value: number, decimals: number) => {
 }
 
 export const isNullOrWhitespace = (str?: string) => {
-  return str === undefined || str.trimStart().trimEnd() === "";
+  return str === undefined || str === null || str.trimStart().trimEnd() === "";
 }
 
 export const goToTop = () => {
