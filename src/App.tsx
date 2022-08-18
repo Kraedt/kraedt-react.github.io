@@ -6,6 +6,7 @@ import { Home } from './pages/kraedt/Home';
 import { Home as SbbHome } from './pages/sonicbreakbeat/Home';
 import { Music } from './pages/kraedt/Music';
 import { ReactElement } from 'react';
+import { SongPage } from './pages/kraedt/SongPage';
 
 type PageProps = { page: ReactElement }
 
@@ -36,6 +37,7 @@ const App = () => {
         <Route>
           <Route path="/" element={<Kraedt page={<Home />} />} />
           <Route path="/music" element={<Kraedt page={<Music />} />} />
+          <Route path="/music/song/:songId" element={<Kraedt page={<SongPage />} />} />
         </Route>
         <Route>
           <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />

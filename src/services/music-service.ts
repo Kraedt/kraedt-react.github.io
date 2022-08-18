@@ -1,7 +1,7 @@
 import * as Rx from 'rxjs';
 import * as Rxo from 'rxjs/operators';
 import { Service } from './service-resolver';
-import { ajaxGet, ajaxPost, ajaxPostJson } from '../rxjs-functions';
+import { ajaxGet } from '../rxjs-functions';
 import { Song } from '../types/types';
 
 //const monthIntent = new Rx.Subject<string>();
