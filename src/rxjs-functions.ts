@@ -31,7 +31,7 @@ export const catchAndToastError = () => (obs: Rx.Observable<any>) => obs.pipe(
 );
 
 export const ajaxGet = <T,>(uri: string) => (obs: Rx.Observable<any>) => obs.pipe(
-  Rxo.mergeMap(_ => ajax.get<T>(apiUri(uri, _))),
+  Rxo.mergeMap(_ => ajax<T>({ method: "GET", url: apiUri(uri, _), crossDomain: true })),
   Rxo.pluck('response'),
   catchAndToastError(),
 )

@@ -1,7 +1,7 @@
 import * as math from 'mathjs';
 import * as datefns from 'date-fns';
 
-const baseUri = 'https://localhost:5001/api/';
+const baseApiUri = 'https://localhost:5001/';
 
 export const intlNumberFormat = (value: number) => new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(value);
 export const intlAmountFormat = (value: number) => {
@@ -18,11 +18,13 @@ export const clamp = (num: number, min: number, max: number) => {
 }
 
 export const queryString = (params: any) => {
-  return '?' + Object.keys(params).map(k => k + '=' + params[k]).join('&');
+  return !!params
+    ? '?' + Object.keys(params).map(k => k + '=' + params[k]).join('&')
+    : '';
 }
 
 export const apiUri = (uri: string, params?: any) => {
-  return baseUri + uri + (params ? queryString(params) : '');
+  return baseApiUri + uri + (params ? queryString(params) : '');
 }
 
 export const evaluateMath = (eq: string) => {
@@ -42,4 +44,8 @@ export const convertToFloat = (value: number, decimals: number) => {
 
 export const isNullOrWhitespace = (str?: string) => {
   return str === undefined || str.trimStart().trimEnd() === "";
+}
+
+export const goToTop = () => {
+  window.scrollTo(0, 0);
 }
