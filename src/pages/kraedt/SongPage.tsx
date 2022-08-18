@@ -18,7 +18,7 @@ export const SongPage = () => {
   return (
     <Page title={`${song.artist} - ${song.title}`}>
       <h2 className="see-more-music"><Link to="/music">See More Music</Link></h2>
-      <table className="song-song">
+      <table className="song-page">
         <tbody>
           {/* Image */}
           <tr>
@@ -40,10 +40,7 @@ export const SongPage = () => {
 
           <tr>
             <td>
-              {/*
-            {% if song.buy-able %}
-            */}
-              <h3 className="darken-text">Buy the song:</h3>
+              {song.buyable ? <h3 className="darken-text">Buy the song:</h3> : null}
               {/*
             {% include ext-link.jekyll url=song.itunes title='iTunes' img='itunes' %}
             {% include ext-link.jekyll url=song.beatport title='Beatport' img='beatport' %}
@@ -83,16 +80,14 @@ export const SongPage = () => {
 
           {/* Download button */}
 
-          {//% if song.downloadable %}
-          }
-          <tr>
-            <td>
-              <button className="btn btn-lg btn-warning">DOWNLOAD</button>
-              <br />
-            </td>
-          </tr>
-          {//% endif %}
-          }
+          {song.downloadable ? (
+            <tr>
+              <td>
+                <button className="btn btn-lg btn-warning">DOWNLOAD</button>
+                <br />
+              </td>
+            </tr>
+          ) : null}
 
           {/* Album link */}
           {/*% for album in site.songs %}
@@ -109,7 +104,7 @@ export const SongPage = () => {
           {//% endfor %}
           }
 
-          {/* License ifno */}
+          {/* License info */}
 
           <tr>
             <td>
@@ -126,6 +121,6 @@ export const SongPage = () => {
           </tr>
         </tbody>
       </table>
-    </Page >
+    </Page>
   )
 }

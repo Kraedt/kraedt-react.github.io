@@ -19,7 +19,7 @@ export interface Song {
   licenseId: number;
 }
 
-export const getSongIdentifier = (song: Song) => song?.title?.toLowerCase();
+export const getSongIdentifier = (song?: Song) => song?.title?.toLowerCase();
 //export const getSongIdentifier = (song: Song) => `${song.artist}-${song.title}`;
 
 const licenses = [

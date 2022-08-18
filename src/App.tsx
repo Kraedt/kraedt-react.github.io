@@ -9,6 +9,7 @@ import { SongPage } from './pages/kraedt/SongPage';
 import { Page404 } from './pages/kraedt/Page404';
 import { Home as SbbHome } from './pages/sonicbreakbeat/HomePage';
 import { Page404 as SbbPage404 } from './pages/sonicbreakbeat/Page404';
+import { OldSongRedirect } from './pages/kraedt/OldSongRedirect';
 
 type PageProps = { page: ReactElement }
 
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/" element={<Kraedt page={<HomePage />} />} />
           <Route path="/music" element={<Kraedt page={<MusicPage />} />} />
           <Route path="/music/song/:songId" element={<Kraedt page={<SongPage />} />} />
+          <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
         </Route>
         <Route>
           <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />
