@@ -1,5 +1,5 @@
 import { Page } from '../Page';
-import styles from './Home.module.scss'
+import styles from './HomePage.module.scss'
 
 export const Home = () => (
   <Page title="Sonic Breakbeat">

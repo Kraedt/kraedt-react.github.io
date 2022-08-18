@@ -3,7 +3,7 @@ import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { getMusicItemImage, getSongIdentifier, Song } from "../../types/types"
+import { getMusicItemImage, getSongIdentifier } from "../../types/types"
 import { Page } from "../Page";
 
 export const SongPage = () => {

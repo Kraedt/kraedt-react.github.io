@@ -6,7 +6,7 @@ import { useService } from "../../services/service-resolver";
 import { DirectDownloadImage, externalLink, getLicenseIcon, getMusicItemImage, getSongIdentifier } from "../../types/types";
 import { Page } from "../Page";
 
-export const Music = () => {
+export const MusicPage = () => {
   const musicService = useService(MusicService);
   const songs = useObservable(musicService.Songs);
 

@@ -1,7 +1,7 @@
 import { Page } from '../Page';
-import styles from './Home.module.scss'
+import styles from './HomePage.module.scss'
 
-export const Home = () => (
+export const HomePage = () => (
   <Page title="Kraedt">
     <div className={styles.bioContainer}>
       <div className={styles.bioText}>
