@@ -20,7 +20,6 @@ export interface Song {
 }
 
 export const getSongIdentifier = (song?: Song) => song?.title?.toLowerCase();
-//export const getSongIdentifier = (song: Song) => `${song.artist}-${song.title}`;
 
 const licenses = [
   {
@@ -45,14 +44,14 @@ const licenses = [
     "id": 4,
     "name": "Wolf Beats CC",
     "desc": "This track was released under Creative Commons (or similar) and can be used in any content where credit is given.",
-    "info-url": "http://www.wolfbeatsmedia.com/copyright.html",
+    "infoUrl": "http://www.wolfbeatsmedia.com/copyright.html",
     "level": 1
   },
   {
     "id": 5,
     "name": "THN License",
     "desc": "This track was released under a potentially non-content-producer-friendly license, but may be safe to use in content under certain circumstances.",
-    "info-url": "http://tryhardninja.com/MusicUsageTerms",
+    "infoUrl": "http://tryhardninja.com/MusicUsageTerms",
     "level": 2
   },
   {
@@ -85,7 +84,7 @@ const licenseIcons = [
 ]
 
 const songImages = importSongImages() as any;
-const linkImages = importLinkImages() as any;
+export const linkImages = importLinkImages() as any;
 
 export const getLicense = (licenseId: number) => {
   return licenses.find(x => x.id === licenseId)!;
@@ -99,6 +98,7 @@ export const getLicenseIcon = (licenseId: number) => {
 
 export const NoImage = noImage;
 export const DirectDownloadImage = linkImages["direct.png"].default;
+export const YoutubeLinkImage = linkImages["youtube.png"].default;
 
 export const externalLink = (title: string, url: string, img: string) => url ? <a href={`${url}`} title={`${title}`} target={"_blank"} rel='noreferrer' > <img src={linkImages[img]?.default} alt='img' /> </a> : '';
 export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl]?.default ?? NoImage);

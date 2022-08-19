@@ -3,7 +3,7 @@ import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, externalLink, getMusicItemImage, getSongIdentifier, ItunesLink } from "../../types/types"
+import { AmazonLink, BeatportLink, getLicense, getMusicItemImage, getSongIdentifier, ItunesLink, YoutubeLinkImage } from "../../types/types"
 import { Page } from "../Page";
 import { Page404 } from "./Page404";
 
@@ -18,6 +18,8 @@ export const SongPage = () => {
 
   if (!isNullOrWhitespace(songId) && song === undefined)
     return <Page404 />;
+
+  const license = getLicense(song.licenseId);
 
   return (
     <Page title={`${song.artist} - ${song.title}`}>
@@ -48,22 +50,13 @@ export const SongPage = () => {
               {ItunesLink(song.itunesUrl)}
               {BeatportLink(song.beatportUrl)}
               {AmazonLink(song.amazonUrl)}
-              {/*
-            {% include ext-link.jekyll url=song.itunes title='iTunes' img='itunes' %}
-            {% include ext-link.jekyll url=song.beatport title='Beatport' img='beatport' %}
-            {% include ext-link.jekyll url=song.amazon title='iTunes' img='amazon' %}
-            {% endif %}
-            {% if song.spotify or song.yt-id %}
-            <h3 className="darken-text">Stream:</h3>
-            {% if song.yt-id %}
-            <a href="javascript:void(0)" onclick="toggleYoutubeEmbed()"><img src="/assets/images/links/youtube.png" /></a>
-            {% endif %}
-            {% if song.spotify %}
-            {% include ext-link.jekyll url=song.spotify title='Spotify' img='spotify' %}
-            {% endif %}
-            <br />
-            {% endif %}
-          */}
+              {(song.spotifyUrl || song.youtubeId) && (
+                <>
+                  <h3 className="darken-text">Stream:</h3>
+                  <a href="javascript:void(0)" onClick={() => { }}><img src={YoutubeLinkImage} alt='youtube' /></a>
+                  {/* todo: spotify embed */}
+                </>
+              )}
             </td>
           </tr>
 
@@ -71,16 +64,16 @@ export const SongPage = () => {
 
           <tr>
             <td>
-              {//{% if song.yt-id != nil %}
-              }
-              <div id="youtube-embed" style={{ display: 'none' }}>
-                <br />
-                <br />
-                {//% include song-embed.jekyll yt-id=song.yt-id %}
-                }
-                <br />
-                <br />
-              </div>
+              {song.youtubeId && (
+                <div id="youtube-embed" style={{ display: 'none' }}>
+                  <br />
+                  <br />
+                  {//% include song-embed.jekyll yt-id=song.yt-id %}
+                  }
+                  <br />
+                  <br />
+                </div>
+              )}
               <br />
             </td>
           </tr>
@@ -116,14 +109,8 @@ export const SongPage = () => {
           <tr>
             <td>
               <h3 className="darken-text">License Information:</h3>
-              {/*
-            {% include license-icon.jekyll licenseId=song.license songId=song.id size="fa-2x" %}
-            {% assign license-info = site.data.license | where:'id',song.license %}
-            <p>{{ license- info[0].desc}}</p>
-            {% if license-info[0].info-url != nil %}
-            <a href="{{ license-info[0].info-url }}" target="_blank">More Info</a>
-            {% endif %}
-      */}
+              <p>{license.desc}</p>
+              {license.infoUrl && <a href={license.infoUrl} target="_blank" rel='noreferrer'>More Info</a>}
             </td>
           </tr>
         </tbody>

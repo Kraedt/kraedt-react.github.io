@@ -1,24 +1,24 @@
-
 .navbar {
   text-decoration: none;
   overflow: hidden;
   margin-bottom: 0;
   min-height: 60px;
-  border: 0; 
-}
-  
-li {
-  font-size: 1.1em;
-  font-family: Leon, sans-serif; 
+  border: 0;
 }
 
-ul, li {
+li {
+  font-size: 1.1em;
+  font-family: Leon, sans-serif;
+}
+
+ul,
+li {
   display: inline;
-  padding: 0 1.5em 0 1.5em; 
+  padding: 0 1.5em 0 1.5em;
 }
 
 li a {
-  display: none; 
+  display: none;
 }
 
 .navbarBg {
@@ -26,7 +26,7 @@ li a {
   background-color: #292929;
   width: 100%;
   height: 60px;
-  z-index: -1; 
+  z-index: -1;
 }
 
 .links {
@@ -47,17 +47,17 @@ li a {
     width: 35px;
     height: 35px;
     filter: brightness(100) grayscale(100%);
-    -webkit-filter: brightness(100) grayscale(100%); 
+    -webkit-filter: brightness(100) grayscale(100%);
 
     &:hover {
       filter: brightness(100%) grayscale(0);
-      -webkit-filter: brightness(100%) grayscale(0); 
+      -webkit-filter: brightness(100%) grayscale(0);
     }
   }
 }
 
 .br {
-  padding-left: 0.8em; 
+  padding-left: 0.8em;
 }
 
 .icon {
@@ -67,26 +67,26 @@ li a {
 @media screen and (max-width: 1382px) {
   .links {
     margin-top: -20px;
-    margin-left: 20px; 
+    margin-left: 20px;
   }
   .icon {
     position: absolute;
     top: 14px;
     right: 22px;
-    display: block; 
+    display: block;
   }
   .responsive {
     background-color: #292929;
-    height: calc(100% - 50px); 
+    height: calc(100% - 50px);
   }
   .responsive a {
     float: none;
-    display: block; 
+    display: block;
   }
   .sm a:after {
     white-space: pre;
-    content: "  -  " attr(title); 
-  } 
+    content: "  -  " attr(title);
+  }
 }
 
 .banner {
@@ -95,7 +95,7 @@ li a {
   background-size: cover;
   background-position: center center;
   width: 100%;
-  height: 35vh; 
+  height: 35vh;
 }
 
 .header {
@@ -110,14 +110,15 @@ li a {
   a:active,
   a:hover,
   a.focus {
-    color: #FF9A03;
-    background-color: transparent; 
+    color: #ff9a03;
+    background-color: transparent;
   }
-}
 
-.header ul {
-  list-style-type: none;
-  font-size: 1.1em; 
+  ul {
+    list-style-type: none;
+    font-size: 1em;
+    margin-top: -2px;
+  }
 }
 
 .logo {
@@ -125,7 +126,7 @@ li a {
   text-align: center;
   vertical-align: center;
   width: 100%;
-  height: 100%; 
+  height: 100%;
 
   img {
     max-height: 20vh;
@@ -138,19 +139,19 @@ li a {
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto; 
+    margin: auto;
   }
 }
 
 @media screen and (max-width: 1382px) {
   .banner {
     background: none;
-    height: 18vh; 
+    height: 18vh;
   }
   .logo {
-    background: #1C1C1C; 
+    background: #1c1c1c;
   }
   .logo img {
-    max-width: 80%; 
-  } 
+    max-width: 80%;
+  }
 }
