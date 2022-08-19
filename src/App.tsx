@@ -10,6 +10,7 @@ import { Page404 } from './pages/kraedt/Page404';
 import { Home as SbbHome } from './pages/sonicbreakbeat/HomePage';
 import { Page404 as SbbPage404 } from './pages/sonicbreakbeat/Page404';
 import { OldSongRedirect } from './pages/kraedt/OldSongRedirect';
+import { Dashboard } from './pages/admin/Dashboard';
 
 type PageProps = { page: ReactElement }
 
@@ -33,6 +34,12 @@ const SonicBreakbeat = ({ page }: PageProps) => (
   </>
 )
 
+const Admin = ({ page }: PageProps) => (
+  <>
+    {page}
+  </>
+)
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -51,6 +58,9 @@ const App = () => {
           }
           <Route path="/sonicbreakbeat/music/*" element={<SonicBreakbeat page={<SbbPage404 />} />} />
           <Route path="/sonicbreakbeat/*" element={<Navigate to='/sonicbreakbeat/' />} />
+        </Route>
+        <Route>
+          <Route path="/admin" element={<Admin page={<Dashboard />} />} />
         </Route>
         <Route path="*" element={<Navigate to='/' />} />
       </Routes>
