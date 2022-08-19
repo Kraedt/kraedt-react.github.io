@@ -3,12 +3,17 @@ import { goToTop } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { DirectDownloadImage, externalLink, getLicenseIcon, getMusicItemImage, getSongIdentifier } from "../../types/types";
+import { AmazonLink, BeatportLink, DirectDownloadLink, getLicense, getLicenseIcon, getMusicItemImage, getSongIdentifier, ItunesLink } from "../../types/types";
 import { Page } from "../Page";
+import * as ld from 'lodash';
 
-export const MusicPage = () => {
+export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
   const musicService = useService(MusicService);
-  const songs = useObservable(musicService.Songs);
+  const allSongs = ld.reverse(useObservable(musicService.Songs) || []);
+
+  const songs = safeOnly
+    ? allSongs?.filter(x => getLicense(x.licenseId).level === 1)
+    : allSongs;
 
   return (
     <Page title="Kraedt - Music">
@@ -17,11 +22,8 @@ export const MusicPage = () => {
       <div className="w-100">
         <a href="/albums" >See all albums</a>
 
-        {// todo: filter safe
-          //<a className="pull-right fa-lg" href="/music">Show all music</a>
-          //else
-          //<a className="pull-right fa-lg" href="/music-creator-friendly">Show only Content-Creator-Friendly music</a>
-        }
+        <Link className="pull-right fa-lg" to="/music">Show all music</Link>
+        <Link className="pull-right fa-lg" to="/music-creator-friendly">Show only Content-Creator-Friendly music</Link>
         <br />
       </div>
 
@@ -56,11 +58,10 @@ export const MusicPage = () => {
               <td className="song-info">{song.genre}</td>
               <td>
                 <div className="audio-links">
-                  {song.downloadable ? <button className="direct-dl-btn" onClick={() => { }}><img src={DirectDownloadImage} alt="direct" /></button> : null}
-                  {externalLink('Spotify', song.spotifyUrl, 'spotify.png')}
-                  {externalLink('iTunes', song.itunesUrl, 'itunes.png')}
-                  {externalLink('Beatport', song.beatportUrl, 'beatport.png')}
-                  {externalLink('Amazon', song.amazonUrl, 'amazon.png')}
+                  {DirectDownloadLink(song.id, song.downloadable)}
+                  {ItunesLink(song.itunesUrl)}
+                  {BeatportLink(song.beatportUrl)}
+                  {AmazonLink(song.amazonUrl)}
                 </div>
               </td>
             </tr>

@@ -11,6 +11,7 @@ export const OldSongRedirect = () => {
   const { oldId } = useParams();
   const newId = getSongIdentifier(songs?.find(s => s?.id === Number(oldId)));
 
-  return songs === undefined ? <p className="w-100 text-center">Redirecting...</p> : <Navigate to={`/music/song/${newId}`} replace />;
-
+  return songs === undefined
+    ? <p className="w-100 text-center">Redirecting...</p>
+    : <Navigate to={`/music/song/${newId}`} replace />;
 }

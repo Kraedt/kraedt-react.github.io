@@ -3,17 +3,21 @@ import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { getMusicItemImage, getSongIdentifier } from "../../types/types"
+import { AmazonLink, BeatportLink, externalLink, getMusicItemImage, getSongIdentifier, ItunesLink } from "../../types/types"
 import { Page } from "../Page";
+import { Page404 } from "./Page404";
 
 export const SongPage = () => {
   const { songId } = useParams();
   const musicService = useService(MusicService);
   const songs = useObservable(musicService.Songs);
-  let song = songs?.find(s => getSongIdentifier(s) === songId)
+  const song = songs?.find(s => getSongIdentifier(s) === songId)!
 
-  if (isNullOrWhitespace(songId) || song === undefined)
+  if (!songs)
     return null;
+
+  if (!isNullOrWhitespace(songId) && song === undefined)
+    return <Page404 />;
 
   return (
     <Page title={`${song.artist} - ${song.title}`}>
@@ -40,7 +44,10 @@ export const SongPage = () => {
 
           <tr>
             <td>
-              {song.buyable ? <h3 className="darken-text">Buy the song:</h3> : null}
+              {song.buyable && <h3 className="darken-text">Buy the song:</h3>}
+              {ItunesLink(song.itunesUrl)}
+              {BeatportLink(song.beatportUrl)}
+              {AmazonLink(song.amazonUrl)}
               {/*
             {% include ext-link.jekyll url=song.itunes title='iTunes' img='itunes' %}
             {% include ext-link.jekyll url=song.beatport title='Beatport' img='beatport' %}

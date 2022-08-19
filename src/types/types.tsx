@@ -87,8 +87,12 @@ const licenseIcons = [
 const songImages = importSongImages() as any;
 const linkImages = importLinkImages() as any;
 
+export const getLicense = (licenseId: number) => {
+  return licenses.find(x => x.id === licenseId)!;
+}
+
 export const getLicenseIcon = (licenseId: number) => {
-  let license = licenses.find(x => x.id === licenseId)!;
+  let license = getLicense(licenseId);
   let icon = licenseIcons.find(x => x.level === license.level)!;
   return <i className={`${icon.class} fa-lg `} title={license.desc} />
 }
@@ -98,3 +102,9 @@ export const DirectDownloadImage = linkImages["direct.png"].default;
 
 export const externalLink = (title: string, url: string, img: string) => url ? <a href={`${url}`} title={`${title}`} target={"_blank"} rel='noreferrer' > <img src={linkImages[img]?.default} alt='img' /> </a> : '';
 export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl]?.default ?? NoImage);
+
+export const DirectDownloadLink = (songId: number, downloadable: boolean) => downloadable && <button className="direct-dl-btn" onClick={() => { }}><img src={DirectDownloadImage} alt="direct" /></button>
+export const SpotifyLink = (url: string) => externalLink('Spotify', url, 'spotify.png')
+export const ItunesLink = (url: string) => externalLink('iTunes', url, 'itunes.png')
+export const BeatportLink = (url: string) => externalLink('Beatport', url, 'beatport.png')
+export const AmazonLink = (url: string) => externalLink('Amazon', url, 'amazon.png')

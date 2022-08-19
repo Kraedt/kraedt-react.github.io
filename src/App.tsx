@@ -1,5 +1,5 @@
 import './App.scss'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Header } from './pages/kraedt/Header';
 import { Footer } from './pages/kraedt/Footer';
 import { HomePage } from './pages/kraedt/HomePage';
@@ -39,17 +39,20 @@ const App = () => {
       <Routes>
         <Route>
           <Route path="/" element={<Kraedt page={<HomePage />} />} />
-          <Route path="/music" element={<Kraedt page={<MusicPage />} />} />
+          <Route path="/music" element={<Kraedt page={<MusicPage safeOnly={false} />} />} />
+          <Route path="/music-creator-friendly" element={<Kraedt page={<MusicPage safeOnly={true} />} />} />
           <Route path="/music/song/:songId" element={<Kraedt page={<SongPage />} />} />
           <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
+          <Route path="/music*" element={<Kraedt page={<Page404 />} />} />
         </Route>
         <Route>
           <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />
           {//<Route path="/sonicbreakbeat/music" element={<SbbMusic />} />
           }
-          <Route path="/sonicbreakbeat/*" element={<SonicBreakbeat page={<SbbPage404 />} />} />
+          <Route path="/sonicbreakbeat/music/*" element={<SonicBreakbeat page={<SbbPage404 />} />} />
+          <Route path="/sonicbreakbeat/*" element={<Navigate to='/sonicbreakbeat/' />} />
         </Route>
-        <Route path="*" element={<Kraedt page={<Page404 />} />} />
+        <Route path="*" element={<Navigate to='/' />} />
       </Routes>
     </BrowserRouter >
   );
