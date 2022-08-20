@@ -3,22 +3,21 @@
 }
 
 .songList {
-  width: 75%;
+  width: 77%;
   font-size: 0.7rem;
   text-align: left;
-  border: 1px solid #000;
-
-  colgroup col {
-    width: 10px;
-  }
+  border: 1px solid #333;
 
   td {
-    //border: 1px solid #000;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  tr:nth-child(even) {
+    background: #181818;
   }
 }
 
@@ -28,15 +27,39 @@
   width: 20vw;
   padding: 0.7rem;
   border: 1px solid #333;
-  border-radius: 10px;
 
   input {
     background: white;
     float: initial;
-    margin: 0 1rem;
+    margin: 0.3rem 1rem;
     font-size: 0.7rem;
-    width: calc(100% - 3rem);
-    height: 18px;
+    width: 100%;
+    margin-left: 0;
+    height: 20px;
+    display: block;
+    color: black;
+
+    &[type="checkbox"] {
+      width: 20px;
+      margin-left: 5px;
+      display: initial;
+      height: 16px;
+    }
+  }
+
+  .cornerButton {
+    float: right;
+  }
+}
+
+.modeSelector {
+  padding: 1em 0;
+  button {
+    margin-right: 0.5em;
+  }
+  .activeMode {
+    background: #333;
+    color: white;
   }
 }
 

@@ -2,7 +2,7 @@ import { Page } from '../Page';
 import styles from './HomePage.module.scss'
 
 export const HomePage = () => (
-  <Page title="Kraedt">
+  <Page title="Kraedt - Home">
     <div className={styles.bioContainer}>
       <div className={styles.bioText}>
         <p>

@@ -5,9 +5,11 @@ import spotifyIcon from '../../assets/images/spotify_icon.png';
 import beatportIcon from '../../assets/images/beatport_icon.png';
 import twitterIcon from '../../assets/images/twitter_icon.png';
 import kraedtLogo from '../../assets/images/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Header = () => {
+  const url = useLocation().pathname;
+
   //let responsiveNav = () => {
   //  var x = document.getElementById("nav")!;
   //  x.className = x.className === styles.navbar
@@ -15,9 +17,8 @@ export const Header = () => {
   //    : styles.navbar;
   //}
 
-  let page = { url: 'null' }
-  const showActive = (urlMatch: string) => page.url === urlMatch ? 'active' : '';
-  const showActiveContains = (urlMatch: string) => page.url.includes(urlMatch) ? 'active' : '';
+  const showActive = (urlMatch: string) => url === urlMatch ? styles.active : '';
+  const showActiveContains = (urlMatch: string) => url.includes(urlMatch) ? styles.active : '';
 
   const ListLinkIcon = ({ url, img, title, alt }: { url: string, img: string, title: string, alt: string }) => (
     <li className={styles.sm}>
@@ -31,13 +32,14 @@ export const Header = () => {
     <li className={styles.text}><Link to={url} className={className}>{text}</Link></li>
   )
 
+  console.log(url)
   return (
     <div className={styles.header}>
       <div className={styles.navbarBg}></div>
       <div className={styles.navbar} id="nav">
         <ul className={styles.links}>
           <ListLink url="/" className={showActive('/')} text="HOME" />
-          <ListLink url="/music" className={showActiveContains('/music/')} text="MUSIC" />
+          <ListLink url="/music" className={showActiveContains('/music')} text="MUSIC" />
           <ListLink url="/merch" className={showActive('/merch/')} text="MERCH" />
           <ListLink url="/contact" className={showActive('/contact/')} text="CONTACT" />
           <li className={styles.br} />

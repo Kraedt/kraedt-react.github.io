@@ -4,18 +4,18 @@ import { importLinkImages, importSongImages } from "../helpers";
 
 export interface Song {
   id: number;
-  downloadUrl: string;
   title: string;
   artist: string;
   genre: string;
-  imageUrl: string;
-  buyable: boolean;
-  downloadable: boolean;
-  youtubeId: string;
-  itunesUrl: string;
-  beatportUrl: string;
-  amazonUrl: string;
-  spotifyUrl: string;
+  imageUrl?: string;
+  buyable?: boolean;
+  downloadable?: boolean;
+  downloadUrl?: string;
+  youtubeId?: string;
+  itunesUrl?: string;
+  beatportUrl?: string;
+  amazonUrl?: string;
+  spotifyUrl?: string;
   licenseId: number;
 }
 
@@ -100,11 +100,11 @@ export const NoImage = noImage;
 export const DirectDownloadImage = linkImages["direct.png"].default;
 export const YoutubeLinkImage = linkImages["youtube.png"].default;
 
-export const externalLink = (title: string, url: string, img: string) => url ? <a href={`${url}`} title={`${title}`} target={"_blank"} rel='noreferrer' > <img src={linkImages[img]?.default} alt='img' /> </a> : '';
+export const externalLink = (title: string, url?: string, img?: string) => url ? <a href={`${url}`} title={`${title}`} target={"_blank"} rel='noreferrer' > <img src={linkImages[img ?? '']?.default} alt='img' /> </a> : '';
 export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl]?.default ?? NoImage);
 
-export const DirectDownloadLink = (songId: number, downloadable: boolean) => downloadable && <button className="direct-dl-btn" onClick={() => { }}><img src={DirectDownloadImage} alt="direct" /></button>
-export const SpotifyLink = (url: string) => externalLink('Spotify', url, 'spotify.png')
-export const ItunesLink = (url: string) => externalLink('iTunes', url, 'itunes.png')
-export const BeatportLink = (url: string) => externalLink('Beatport', url, 'beatport.png')
-export const AmazonLink = (url: string) => externalLink('Amazon', url, 'amazon.png')
+export const DirectDownloadLink = (songId: number, downloadable?: boolean) => downloadable && <button className="direct-dl-btn" onClick={() => { }}><img src={DirectDownloadImage} alt="direct" /></button>
+export const SpotifyLink = (url?: string) => externalLink('Spotify', url, 'spotify.png')
+export const ItunesLink = (url?: string) => externalLink('iTunes', url, 'itunes.png')
+export const BeatportLink = (url?: string) => externalLink('Beatport', url, 'beatport.png')
+export const AmazonLink = (url?: string) => externalLink('Amazon', url, 'amazon.png')

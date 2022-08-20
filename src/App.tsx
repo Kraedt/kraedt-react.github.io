@@ -11,6 +11,10 @@ import { Home as SbbHome } from './pages/sonicbreakbeat/HomePage';
 import { Page404 as SbbPage404 } from './pages/sonicbreakbeat/Page404';
 import { OldSongRedirect } from './pages/kraedt/OldSongRedirect';
 import { Dashboard } from './pages/admin/Dashboard';
+import { useService } from './services/service-resolver';
+import MusicService from './services/music-service';
+import { useObservable } from './rxjs-functions';
+import { Page } from './pages/Page';
 
 type PageProps = { page: ReactElement }
 
@@ -40,14 +44,24 @@ const Admin = ({ page }: PageProps) => (
   </>
 )
 
+const MusicError = () => (
+  <Page title="Kraedt - Error :(">
+    <h2 className="text-center">There was a problem retreiving data. Try coming back later.</h2>
+  </Page>
+)
+
 const App = () => {
+  const musicService = useService(MusicService);
+  const songs = useObservable(musicService.Songs);
+  const showMusicError = songs === undefined || songs.length === 0;
+
   return (
     <BrowserRouter>
       <Routes>
         <Route>
           <Route path="/" element={<Kraedt page={<HomePage />} />} />
-          <Route path="/music" element={<Kraedt page={<MusicPage safeOnly={false} />} />} />
-          <Route path="/music-creator-friendly" element={<Kraedt page={<MusicPage safeOnly={true} />} />} />
+          <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={false} />} />} />
+          <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={true} />} />} />
           <Route path="/music/song/:songId" element={<Kraedt page={<SongPage />} />} />
           <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
           <Route path="/music*" element={<Kraedt page={<Page404 />} />} />

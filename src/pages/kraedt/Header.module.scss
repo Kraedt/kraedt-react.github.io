@@ -104,14 +104,13 @@ li a {
     vertical-align: middle;
     font-size: 1.4em;
     color: white;
-  }
-
-  .active,
-  a:active,
-  a:hover,
-  a.focus {
-    color: #ff9a03;
-    background-color: transparent;
+    &.active,
+    &:active,
+    &:hover,
+    &.focus {
+      color: #ff9a03;
+      background-color: transparent;
+    }
   }
 
   ul {
