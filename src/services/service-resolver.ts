@@ -1,4 +1,5 @@
 import MusicService from "./music-service";
+import AdminService from "./admin-service";
 import ToastService from "./toast-service";
 
 export interface Service {
@@ -7,6 +8,7 @@ export interface Service {
 
 export default class ServiceResolverImpl {
   MusicService = new MusicService();
+  AdminService = new AdminService();
   ToastService = new ToastService();
 }
 

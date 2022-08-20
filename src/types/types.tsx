@@ -96,6 +96,10 @@ export const getLicenseIcon = (licenseId: number) => {
   return <i className={`${icon.class} fa-lg `} title={license.desc} />
 }
 
+export const getLicenseToolTip = () => {
+  return licenses.reduce((l, r) => l + `* ${r.id} ${r.name} (level ${r.level}${!!r.infoUrl ? ', has info' : ''}) - ${r.desc}\r\n\r\n`, '')
+}
+
 export const NoImage = noImage;
 export const DirectDownloadImage = linkImages["direct.png"].default;
 export const YoutubeLinkImage = linkImages["youtube.png"].default;

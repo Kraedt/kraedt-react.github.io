@@ -47,6 +47,10 @@
     }
   }
 
+  button {
+    margin-top: 5px;
+  }
+
   .cornerButton {
     float: right;
   }
@@ -58,7 +62,7 @@
     margin-right: 0.5em;
   }
   .activeMode {
-    background: #333;
+    background: #555;
     color: white;
   }
 }

@@ -37,11 +37,11 @@ export const ajaxGet = <T,>(uri: string) => (obs: Rx.Observable<any>) => obs.pip
 )
 
 export const ajaxPost = (uri: string) => (obs: Rx.Observable<any>) => obs.pipe(
-  Rxo.mergeMap(_ => ajax.post(apiUri(uri, _))),
+  Rxo.mergeMap(_ => ajax({ method: "POST", url: apiUri(uri, _), crossDomain: true })),
   catchAndToastError(),
 )
 
 export const ajaxPostJson = (uri: string) => (obs: Rx.Observable<any>) => obs.pipe(
-  Rxo.mergeMap(_ => ajax.post(apiUri(uri), _, { "content-type": "application/json" })),
+  Rxo.mergeMap(_ => ajax({ method: "POST", url: apiUri(uri), body: _, headers: { "content-type": "application/json" }, crossDomain: true })),
   catchAndToastError(),
 )

@@ -4,7 +4,8 @@ import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
 import { Page } from '../Page';
 import { useEffect, useState } from 'react';
-import { Song } from '../../types/types';
+import { getLicenseToolTip, Song } from '../../types/types';
+import AdminService from '../../services/admin-service';
 
 interface ControlProps<T> {
   label: string;
@@ -35,7 +36,7 @@ const defaultSong: Song = {
   licenseId: 0
 }
 
-const AddEditSong = ({ editSong, onCancel }: { editSong?: Song, onCancel?: () => void }) => {
+const AddEditSong = ({ editSong, onCancel, onSubmit }: { onSubmit: (song: Song) => void, editSong?: Song, onCancel?: () => void }) => {
   const [state, setState] = useState<Partial<Song>>(editSong ?? defaultSong);
   const edit = editSong !== undefined;
   const {
@@ -76,8 +77,10 @@ const AddEditSong = ({ editSong, onCancel }: { editSong?: Song, onCancel?: () =>
       <TextBasedControl label='Beatport Url' value={beatportUrl} onChange={(v) => { setState({ ...state, beatportUrl: v }) }} />
       <TextBasedControl label='Amazon Url' value={amazonUrl} onChange={(v) => { setState({ ...state, amazonUrl: v }) }} />
       <TextBasedControl label='Spotify Url' value={spotifyUrl} onChange={(v) => { setState({ ...state, spotifyUrl: v }) }} />
-      <TextBasedControl label='License Id' value={licenseId} onChange={(v) => { setState({ ...state, licenseId: v }) }} />
-      <button>Submit</button>
+      <span title={getLicenseToolTip()}>
+        <TextBasedControl label='License Id' value={licenseId} onChange={(v) => { setState({ ...state, licenseId: v }) }} />
+      </span>
+      <button onClick={() => onSubmit({ ...defaultSong, ...state })}>Submit</button>
     </div>
   )
 }
@@ -85,11 +88,16 @@ const AddEditSong = ({ editSong, onCancel }: { editSong?: Song, onCancel?: () =>
 type ViewMode = 'songs' | 'albums';
 
 const SongsList = ({ songs }: { songs: Song[] }) => {
+  const adminService = useService(AdminService);
+  const addSongIntent = adminService.Intents.AddSong;
   const [editSong, setEditSong] = useState<Song | undefined>();
   return (
     <>
       <div className={styles.create}>
-        <AddEditSong editSong={editSong} onCancel={() => setEditSong(undefined)} />
+        <AddEditSong
+          editSong={editSong}
+          onSubmit={(s) => addSongIntent.next(s)}
+          onCancel={() => setEditSong(undefined)} />
       </div>
       <h3>Songs</h3>
       <table className={styles.songList}>
@@ -129,7 +137,11 @@ const SongsList = ({ songs }: { songs: Song[] }) => {
               <td>{song.licenseId}</td>
               <td>
                 <button onClick={() => setEditSong(song)}>Edit</button>
-                <button onClick={() => { }}>Delete</button>
+                <button onClick={() => {
+                  const p = prompt(`Are you sure you want to delete ${song.artist} - ${song.title}? Type 'DELETE' to confirm.`)
+                  if (p === 'DELETE')
+                    console.log('deleted')
+                }}>Delete</button>
               </td>
             </tr>
           ))}
