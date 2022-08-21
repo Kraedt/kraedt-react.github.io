@@ -17,14 +17,15 @@ export const clamp = (num: number, min: number, max: number) => {
   return Math.min(Math.max(num, min), max)
 }
 
-export const queryString = (params: any) => {
+export const objQueryString = (params: any) => {
   return !!params
     ? '?' + Object.keys(params).map(k => k + '=' + params[k]).join('&')
     : '';
 }
 
 export const apiUri = (uri: string, params?: any) => {
-  return baseApiUri + uri + (params ? queryString(params) : '');
+  var qs = typeof params === 'object' ? objQueryString(params) : `/${params}`;
+  return baseApiUri + uri + (params ? qs : '');
 }
 
 export const evaluateMath = (eq: string) => {

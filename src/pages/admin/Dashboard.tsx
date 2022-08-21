@@ -6,6 +6,7 @@ import { Page } from '../Page';
 import { useEffect, useState } from 'react';
 import { getLicenseToolTip, Song } from '../../types/types';
 import AdminService from '../../services/admin-service';
+import { ToastPanel } from '../../layout/ToastPanel';
 
 interface ControlProps<T> {
   label: string;
@@ -62,7 +63,6 @@ const AddEditSong = ({ editSong, onCancel, onSubmit }: { onSubmit: (song: Song) 
     <div className={styles.panel}>
       <button className='icon-button float-right' onClick={() => { onCancel?.(); setState(defaultSong) }}><i className={'fa fa-times'} /></button>
       <h4>{edit ? 'Edit' : 'Add'} Song{edit && ` (${artist} - ${title})`}</h4>
-      <TextBasedControl label='Id' value={id} onChange={(v) => setState({ ...state, id: v })} />
       <TextBasedControl label='Title' value={title} onChange={(v) => { setState({ ...state, title: v }) }} />
       <TextBasedControl label='Artist' value={artist} onChange={(v) => { setState({ ...state, artist: v }) }} />
       <TextBasedControl label='Genre' value={genre} onChange={(v) => { setState({ ...state, genre: v }) }} />
@@ -71,14 +71,14 @@ const AddEditSong = ({ editSong, onCancel, onSubmit }: { onSubmit: (song: Song) 
       <br />
       <CheckboxControl label='Downloadable' type='checkbox' value={downloadable} onChange={(v) => { setState({ ...state, downloadable: v }) }} />
       <br />
-      <TextBasedControl label='Download Url' value={downloadUrl} onChange={(v) => { setState({ ...state, downloadUrl: v }) }} />
+      <TextBasedControl label='Download Url *' value={downloadUrl} onChange={(v) => { setState({ ...state, downloadUrl: v }) }} />
       <TextBasedControl label='Youtube Id' value={youtubeId} onChange={(v) => { setState({ ...state, youtubeId: v }) }} />
       <TextBasedControl label='Itunes Url' value={itunesUrl} onChange={(v) => { setState({ ...state, itunesUrl: v }) }} />
       <TextBasedControl label='Beatport Url' value={beatportUrl} onChange={(v) => { setState({ ...state, beatportUrl: v }) }} />
       <TextBasedControl label='Amazon Url' value={amazonUrl} onChange={(v) => { setState({ ...state, amazonUrl: v }) }} />
       <TextBasedControl label='Spotify Url' value={spotifyUrl} onChange={(v) => { setState({ ...state, spotifyUrl: v }) }} />
       <span title={getLicenseToolTip()}>
-        <TextBasedControl label='License Id' value={licenseId} onChange={(v) => { setState({ ...state, licenseId: v }) }} />
+        <TextBasedControl label='License Id *' value={licenseId} onChange={(v) => { setState({ ...state, licenseId: v }) }} />
       </span>
       <button onClick={() => onSubmit({ ...defaultSong, ...state })}>Submit</button>
     </div>
@@ -89,14 +89,14 @@ type ViewMode = 'songs' | 'albums';
 
 const SongsList = ({ songs }: { songs: Song[] }) => {
   const adminService = useService(AdminService);
-  const addSongIntent = adminService.Intents.AddSong;
   const [editSong, setEditSong] = useState<Song | undefined>();
+  const edit = editSong !== undefined;
   return (
     <>
       <div className={styles.create}>
         <AddEditSong
           editSong={editSong}
-          onSubmit={(s) => addSongIntent.next(s)}
+          onSubmit={(s) => edit ? adminService.Intents.EditSong.next(s) : adminService.Intents.AddSong.next(s)}
           onCancel={() => setEditSong(undefined)} />
       </div>
       <h3>Songs</h3>
@@ -140,7 +140,7 @@ const SongsList = ({ songs }: { songs: Song[] }) => {
                 <button onClick={() => {
                   const p = prompt(`Are you sure you want to delete ${song.artist} - ${song.title}? Type 'DELETE' to confirm.`)
                   if (p === 'DELETE')
-                    console.log('deleted')
+                    adminService.Intents.DeleteSong.next(song.id)
                 }}>Delete</button>
               </td>
             </tr>
@@ -181,6 +181,7 @@ export const Dashboard = () => {
           <button className={viewMode === 'albums' ? styles.activeMode : ''} onClick={() => setViewMode('albums')}>Albums</button>
         </div>
         {renderView(viewMode)}
+        <ToastPanel />
       </div>
     </Page >
   )

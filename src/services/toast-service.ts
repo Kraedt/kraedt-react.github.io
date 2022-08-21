@@ -14,7 +14,7 @@ export default class ToastService implements Service {
       message: x,
       expireTime: datefns.addSeconds(new Date(), 1)
     })),
-    Rxo.combineLatestWith(Rx.interval(1000)),
+    Rxo.combineLatestWith(Rx.interval(5000).pipe(Rxo.startWith({}))),
     Rxo.map(x => x[0]),
     Rxo.scan((a, c) => {
       let filtered = a.filter(x => x.expireTime > new Date());

@@ -10,6 +10,10 @@ export default class ServiceResolverImpl {
   MusicService = new MusicService();
   AdminService = new AdminService();
   ToastService = new ToastService();
+
+  constructor() {
+    this.AdminService.musicService = this.MusicService;
+  }
 }
 
 export const useService = <T extends Service>(ctor: { new(): T }) => {

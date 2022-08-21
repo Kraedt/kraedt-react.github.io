@@ -23,25 +23,35 @@ export const useObservable = <T,>(observable: Rx.Observable<T>) => {
 
 export const unpluck = (val: string) => (obs: Rx.Observable<any>) => obs.pipe(Rxo.map(x => ({ [val]: x })))
 
-export const catchAndToastError = () => (obs: Rx.Observable<any>) => obs.pipe(
+const catchAndLogAjaxError = () => (obs: Rx.Observable<any>) => obs.pipe(
   Rxo.catchError((err, caught) => {
-    ErrorsIntent.next(err.message);
+    console.log(err)
     return caught;
   })
 );
 
-export const ajaxGet = <T,>(uri: string) => (obs: Rx.Observable<any>) => obs.pipe(
+const catchAndToastErrorResponse = () => <T>(obs: Rx.Observable<T>) => obs.pipe(
+  Rxo.tap((r: any) => {
+    if (r?.response?.error !== undefined)
+      ErrorsIntent.next(r.response.error)
+  }),
+);
+
+export const ajaxGet = <T>(uri: string) => (obs: Rx.Observable<T>) => obs.pipe(
   Rxo.mergeMap(_ => ajax<T>({ method: "GET", url: apiUri(uri, _), crossDomain: true })),
+  catchAndToastErrorResponse(),
   Rxo.pluck('response'),
-  catchAndToastError(),
+  catchAndLogAjaxError(),
 )
 
-export const ajaxPost = (uri: string) => (obs: Rx.Observable<any>) => obs.pipe(
-  Rxo.mergeMap(_ => ajax({ method: "POST", url: apiUri(uri, _), crossDomain: true })),
-  catchAndToastError(),
+export const ajaxPost = (uri: string) => <T>(obs: Rx.Observable<T>) => obs.pipe(
+  Rxo.mergeMap(_ => ajax<T>({ method: "POST", url: apiUri(uri, _), crossDomain: true })),
+  catchAndLogAjaxError(),
+  catchAndToastErrorResponse()
 )
 
-export const ajaxPostJson = (uri: string) => (obs: Rx.Observable<any>) => obs.pipe(
-  Rxo.mergeMap(_ => ajax({ method: "POST", url: apiUri(uri), body: _, headers: { "content-type": "application/json" }, crossDomain: true })),
-  catchAndToastError(),
+export const ajaxPostJson = (uri: string) => <T>(obs: Rx.Observable<T>) => obs.pipe(
+  Rxo.mergeMap(_ => ajax<T>({ method: "POST", url: apiUri(uri), body: _, headers: { "content-type": "application/json" }, crossDomain: true })),
+  catchAndLogAjaxError(),
+  catchAndToastErrorResponse()
 )
