@@ -1,61 +1,68 @@
-
 .bioContainer {
   display: -ms-flexbox;
   display: flex;
-  padding-top: 16px; 
+  padding-top: 16px;
 }
 
 .bioText {
   width: 50%;
-  margin-right: 7px; 
+  margin-right: 7px;
 }
 
 .spotifyBlurb {
   -ms-flex: 1;
-      flex: 1;
-  margin-left: 7px; 
+  flex: 1;
+  margin-left: 7px;
 }
 
 .verticalDivider {
   border-left: 2px solid rgba(200, 200, 200, 0.3);
   margin-left: 2px;
-  margin-right: 4px; 
+  margin-right: 4px;
 }
 
-.albumCarousel {
+.trackSpotlight {
   width: 300px;
   height: 300px;
-  left: 50%;
-  margin-left: -150px; 
+  margin: auto;
+  cursor: pointer;
+  * {
+    max-height: initial;
+    padding: 0;
+  }
+  a {
+    position: initial;
+  }
 }
 
 .interviewContainer h1,
 .interviewContainer h2,
 .interviewContainer h3 {
-  color: #AAAAAA; 
+  color: #aaaaaa;
 }
 
 @media screen and (max-width: 1382px) {
   .bioContainer {
-    display: block; 
-}
-    .bioContainer p {
-      font-size: 1.2em; 
-}
-    .bioContainer h3 {
-      font-size: 1.4em; 
-}
+    display: block;
+  }
+  .bioContainer p {
+    font-size: 1.2em;
+  }
+  .bioContainer h3 {
+    font-size: 1.4em;
+  }
   .verticalDivider {
     border-left: 0;
     margin-left: 0;
     margin-right: 0;
     margin-top: 80px;
-    border-top: 2px solid rgba(200, 200, 200, 0.3); 
-}
+    border-top: 2px solid rgba(200, 200, 200, 0.3);
+  }
   .bioText {
-    width: 100%; 
-}
+    width: 100%;
+  }
   .spotifyBlurb {
     margin-top: 20px;
-    margin-bottom: 20px; } 
+    margin-bottom: 20px;
+  }
 }
