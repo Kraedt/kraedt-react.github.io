@@ -13,6 +13,8 @@ const addAlbumIntent = new Rx.Subject<Album>();
 const editAlbumIntent = new Rx.Subject<Album>();
 const deleteAlbumIntent = new Rx.Subject<number>();
 
+const editSpotlightIntent = new Rx.Subject<string>();
+
 export default class AdminService implements Service {
   musicService?: MusicService;
 
@@ -44,6 +46,12 @@ export default class AdminService implements Service {
       ajaxPost('reactAdmin/deleteAlbum'),
       Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
     ).subscribe();
+
+    editSpotlightIntent.pipe(
+      Rxo.map(_ => ({ spotlight: _ })),
+      ajaxPost('reactAdmin/editSpotlight'),
+      Rxo.tap(() => this.musicService?.Intents.ReloadSpotlight.next({}))
+    ).subscribe();
   }
 
   Intents = {
@@ -54,5 +62,7 @@ export default class AdminService implements Service {
     AddAlbum: addAlbumIntent,
     EditAlbum: editAlbumIntent,
     DeleteAlbum: deleteAlbumIntent,
+
+    EditSpotlight: editSpotlightIntent,
   }
 }

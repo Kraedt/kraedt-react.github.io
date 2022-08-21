@@ -32,6 +32,10 @@ export interface Album {
   spotifyUrl?: string;
 }
 
+export interface Spotlight {
+  songIds: string;
+}
+
 export const getSongIdentifier = (song?: Song) => song?.title?.toLowerCase();
 
 const licenses = [

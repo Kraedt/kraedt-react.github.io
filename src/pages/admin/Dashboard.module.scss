@@ -22,14 +22,17 @@
 }
 
 .panel {
-  position: fixed;
-  right: 10px;
-  top: 10px;
   font-size: 0.7rem;
   background: #555;
   width: 20vw;
   padding: 0.7rem;
   border: 1px solid #333;
+
+  .floatWindow {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+  }
 
   input {
     background: white;

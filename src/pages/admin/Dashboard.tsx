@@ -4,7 +4,7 @@ import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
 import { Page } from '../Page';
 import { useEffect, useState } from 'react';
-import { Album, getLicenseToolTip, Song } from '../../types/types';
+import { Album, getLicenseToolTip, Song, Spotlight } from '../../types/types';
 import AdminService from '../../services/admin-service';
 import { ToastPanel } from '../../layout/ToastPanel';
 
@@ -79,7 +79,7 @@ const AddEditSong = ({ editSong, onCancel, onSubmit }: { onSubmit: (song: Song) 
       <span title={getLicenseToolTip()}>
         <TextBasedControl label='License Id *' value={licenseId} onChange={(v) => { setState({ ...state, licenseId: v }) }} />
       </span>
-      <button onClick={() => onSubmit({ ...defaultSong, ...state })}>Submit</button>
+      <button onClick={() => onSubmit({ ...defaultSong, ...state })}>Save</button>
     </div>
   )
 }
@@ -177,6 +177,9 @@ const AddEditAlbum = ({ editAlbum, onCancel, onSubmit }: { onSubmit: (album: Alb
       <h4>{edit ? 'Edit' : 'Add'} Album{edit && ` (${title})`}</h4>
       <TextBasedControl label='Title' value={title} onChange={(v) => { setState({ ...state, title: v }) }} />
       <TextBasedControl label='Image Url' value={imageUrl} onChange={(v) => { setState({ ...state, imageUrl: v }) }} />
+      <span title='Json array ([] syntax)'>
+        <TextBasedControl label='Song IDs' value={songs} onChange={(v) => { setState({ ...state, songs: v }) }} />
+      </span>
       <CheckboxControl label='Buyable' type='checkbox' value={buyable} onChange={(v) => { setState({ ...state, buyable: v }) }} />
       <br />
       <CheckboxControl label='Downloadable' type='checkbox' value={downloadable} onChange={(v) => { setState({ ...state, downloadable: v }) }} />
@@ -185,7 +188,7 @@ const AddEditAlbum = ({ editAlbum, onCancel, onSubmit }: { onSubmit: (album: Alb
       <TextBasedControl label='Beatport Url' value={beatportUrl} onChange={(v) => { setState({ ...state, beatportUrl: v }) }} />
       <TextBasedControl label='Amazon Url' value={amazonUrl} onChange={(v) => { setState({ ...state, amazonUrl: v }) }} />
       <TextBasedControl label='Spotify Url' value={spotifyUrl} onChange={(v) => { setState({ ...state, spotifyUrl: v }) }} />
-      <button onClick={() => onSubmit({ ...defaultAlbum, ...state })}>Submit</button>
+      <button onClick={() => onSubmit({ ...defaultAlbum, ...state })}>Save</button>
     </div>
   )
 }
@@ -208,6 +211,7 @@ const AlbumsList = ({ albums }: { albums: Album[] }) => {
           <tr>
             <th>Id</th>
             <th>Title</th>
+            <th>Song IDs</th>
             <th>D+</th>
             <th>B+</th>
             <th>Image Url</th>
@@ -221,6 +225,7 @@ const AlbumsList = ({ albums }: { albums: Album[] }) => {
             <tr key={album.id}>
               <td>{album.id}</td>
               <td>{album.title}</td>
+              <td>{album.songs}</td>
               <td>{album.downloadable && 'x'}</td>
               <td>{album.buyable && 'x'}</td>
               <td>{album.imageUrl}</td>
@@ -244,13 +249,16 @@ const AlbumsList = ({ albums }: { albums: Album[] }) => {
   )
 }
 
-const Spotlight = () => {
+const SpotlightPage = ({ spotlight, onSubmit }: { spotlight?: Spotlight, onSubmit: (songIds: string) => void }) => {
+  const [state, setState] = useState(spotlight?.songIds ?? '');
   return (
-    <>
+    <div className={`${styles.panel} ${styles.floatWindow}`}>
       <h3>Spotlight</h3>
-      <table className={styles.list}>
-      </table>
-    </>
+      <span title='Json array ([] syntax)'>
+        <TextBasedControl label='Song IDs' value={state} onChange={(v) => { setState(v) }} />
+      </span>
+      <button onClick={() => onSubmit(state)}>Save</button>
+    </div>
   )
 }
 
@@ -258,15 +266,20 @@ type ViewMode = 'songs' | 'albums' | 'spotlight';
 
 export const Dashboard = () => {
   const musicService = useService(MusicService);
+  const adminService = useService(AdminService);
   const songs = useObservable(musicService.Songs) || [];
   const albums = useObservable(musicService.Albums) || [];
+  const spotlight = useObservable(musicService.Spotlight);
   const [viewMode, setViewMode] = useState<ViewMode>('songs');
 
   const renderView = (viewMode: ViewMode) => {
     switch (viewMode) {
       case 'songs': return <SongsList songs={songs} />
       case 'albums': return <AlbumsList albums={albums} />
-      case 'spotlight': return <Spotlight />
+      case 'spotlight': return <SpotlightPage
+        spotlight={spotlight}
+        onSubmit={(s) => adminService.Intents.EditSpotlight.next(s)}
+      />
     }
   }
 
