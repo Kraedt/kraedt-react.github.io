@@ -15,6 +15,7 @@ import { useService } from './services/service-resolver';
 import MusicService from './services/music-service';
 import { useObservable } from './rxjs-functions';
 import { Page } from './pages/Page';
+import { AlbumsPage } from './pages/kraedt/AlbumsPage';
 
 type PageProps = { page: ReactElement }
 
@@ -53,7 +54,8 @@ const MusicError = () => (
 const App = () => {
   const musicService = useService(MusicService);
   const songs = useObservable(musicService.Songs);
-  const showMusicError = songs === undefined || songs.length === 0;
+  const albums = useObservable(musicService.Songs);
+  const showMusicError = songs?.length === 0 && albums?.length === 0;
 
   return (
     <BrowserRouter>
@@ -62,6 +64,7 @@ const App = () => {
           <Route path="/" element={<Kraedt page={<HomePage />} />} />
           <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={false} />} />} />
           <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={true} />} />} />
+          <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage />} />} />
           <Route path="/music/song/:songId" element={<Kraedt page={<SongPage />} />} />
           <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
           <Route path="/music*" element={<Kraedt page={<Page404 />} />} />

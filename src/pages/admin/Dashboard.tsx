@@ -133,7 +133,7 @@ const SongsList = ({ songs }: { songs: Song[] }) => {
               <td>{song.spotifyUrl}</td>
               <td>{song.licenseId}</td>
               <td>
-                <button onClick={() => setEditSong(song)}>Edit</button>
+                <button onClick={() => setEditSong(song)} className={editSong?.id === song.id ? styles.selectedEdit : ''}>Edit</button>
                 <button onClick={() => {
                   const p = prompt(`Are you sure you want to delete ${song.artist} - ${song.title}? Type 'DELETE' to confirm.`)
                   if (p === 'DELETE')
@@ -234,7 +234,7 @@ const AlbumsList = ({ albums }: { albums: Album[] }) => {
               <td>{album.amazonUrl}</td>
               <td>{album.spotifyUrl}</td>
               <td>
-                <button onClick={() => setEditAlbum(album)}>Edit</button>
+                <button onClick={() => setEditAlbum(album)} className={editAlbum?.id === album.id ? styles.selectedEdit : ''}>Edit</button>
                 <button onClick={() => {
                   const p = prompt(`Are you sure you want to delete ${album.title}? Type 'DELETE' to confirm.`)
                   if (p === 'DELETE')

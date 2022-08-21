@@ -3,7 +3,7 @@ import { goToTop } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, DirectDownloadLink, getLicense, getLicenseIcon, getMusicItemImage, getSongIdentifier, ItunesLink } from "../../types/types";
+import { AmazonLink, BeatportLink, DirectDownloadLink, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, getSongIdentifier, ItunesLink } from "../../types/types";
 import { Page } from "../Page";
 import * as ld from 'lodash';
 
@@ -20,7 +20,7 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
       <h2>Music</h2>
 
       <div className="w-100">
-        <a href="/albums" >See all albums</a>
+        <Link to="/albums" >See all albums</Link>
 
         {safeOnly
           ? <Link className="float-right fa-lg" to="/music">Show all music</Link>
@@ -38,21 +38,20 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
         <tbody>
 
           {songs?.map(song => {
-            const songIdentifier = getSongIdentifier(song);
+            const songPageName = getMusicPageName(song);
             const licenseIcon = getLicenseIcon(song.licenseId);
             return (
               <tr key={song.id}>
                 <td>
-                  <Link to={`song/${songIdentifier}`}><img className="image-prop" src={getMusicItemImage(song)} alt={song.title} /></Link>
+                  <Link to={`song/${songPageName}`}><img className="image-prop" src={getMusicItemImage(song)} alt={song.title} /></Link>
 
                   <div className="mobile-song-info">
-                    <h2><Link to={`song/${songIdentifier}`}>{song.title}</Link>{licenseIcon}</h2>
+                    <h2><Link to={`song/${songPageName}`}>{song.title}</Link>{licenseIcon}</h2>
                     <p>{song.artist}</p>
                   </div>
                 </td>
                 <td className="song-info">
-                  <Link to={`song/${songIdentifier}`}>{song.title}</Link>
-                  {licenseIcon}
+                  <Link to={`song/${songPageName}`}>{song.title}</Link>&nbsp;{licenseIcon}
                 </td>
                 <td className="song-info">{song.artist}</td>
                 <td className="song-info">{song.genre}</td>

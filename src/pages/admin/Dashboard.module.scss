@@ -19,6 +19,10 @@
   tr:nth-child(even) {
     background: #181818;
   }
+
+  .selectedEdit {
+    background: orange;
+  }
 }
 
 .panel {

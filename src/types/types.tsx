@@ -37,6 +37,7 @@ export interface Spotlight {
 }
 
 export const getSongIdentifier = (song?: Song) => song?.title?.toLowerCase();
+export const getMusicPageName = (item?: Song | Album) => item?.title.toLowerCase().replaceAll(' ', '-');
 
 const licenses = [
   {
