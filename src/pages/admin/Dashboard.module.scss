@@ -2,7 +2,7 @@
   margin: 0 2rem;
 }
 
-.songList {
+.list {
   width: 77%;
   font-size: 0.7rem;
   text-align: left;
@@ -22,6 +22,9 @@
 }
 
 .panel {
+  position: fixed;
+  right: 10px;
+  top: 10px;
   font-size: 0.7rem;
   background: #555;
   width: 20vw;

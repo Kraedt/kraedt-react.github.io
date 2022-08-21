@@ -19,6 +19,19 @@ export interface Song {
   licenseId: number;
 }
 
+export interface Album {
+  id: number;
+  title: string;
+  songs: string;
+  imageUrl?: string;
+  buyable?: boolean;
+  downloadable?: boolean;
+  itunesUrl?: string;
+  beatportUrl?: string;
+  amazonUrl?: string;
+  spotifyUrl?: string;
+}
+
 export const getSongIdentifier = (song?: Song) => song?.title?.toLowerCase();
 
 const licenses = [

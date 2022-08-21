@@ -4,7 +4,7 @@ import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
 import { Page } from '../Page';
 import { useEffect, useState } from 'react';
-import { getLicenseToolTip, Song } from '../../types/types';
+import { Album, getLicenseToolTip, Song } from '../../types/types';
 import AdminService from '../../services/admin-service';
 import { ToastPanel } from '../../layout/ToastPanel';
 
@@ -41,7 +41,6 @@ const AddEditSong = ({ editSong, onCancel, onSubmit }: { onSubmit: (song: Song) 
   const [state, setState] = useState<Partial<Song>>(editSong ?? defaultSong);
   const edit = editSong !== undefined;
   const {
-    id,
     title,
     artist,
     genre,
@@ -85,8 +84,6 @@ const AddEditSong = ({ editSong, onCancel, onSubmit }: { onSubmit: (song: Song) 
   )
 }
 
-type ViewMode = 'songs' | 'albums';
-
 const SongsList = ({ songs }: { songs: Song[] }) => {
   const adminService = useService(AdminService);
   const [editSong, setEditSong] = useState<Song | undefined>();
@@ -100,7 +97,7 @@ const SongsList = ({ songs }: { songs: Song[] }) => {
           onCancel={() => setEditSong(undefined)} />
       </div>
       <h3>Songs</h3>
-      <table className={styles.songList}>
+      <table className={styles.list}>
         <tbody>
           <tr>
             <th>Id</th>
@@ -151,25 +148,125 @@ const SongsList = ({ songs }: { songs: Song[] }) => {
   )
 }
 
-const AlbumsList = () => {
+const defaultAlbum: Album = {
+  id: 0,
+  title: '',
+  songs: ''
+}
+
+const AddEditAlbum = ({ editAlbum, onCancel, onSubmit }: { onSubmit: (album: Album) => void, editAlbum?: Album, onCancel?: () => void }) => {
+  const [state, setState] = useState<Partial<Album>>(editAlbum ?? defaultAlbum);
+  const edit = editAlbum !== undefined;
+  const {
+    title,
+    songs,
+    imageUrl,
+    buyable,
+    downloadable,
+    itunesUrl,
+    beatportUrl,
+    amazonUrl,
+    spotifyUrl,
+  } = state;
+
+  useEffect(() => setState(editAlbum ?? defaultAlbum), [editAlbum])
+
+  return (
+    <div className={styles.panel}>
+      <button className='icon-button float-right' onClick={() => { onCancel?.(); setState(defaultAlbum) }}><i className={'fa fa-times'} /></button>
+      <h4>{edit ? 'Edit' : 'Add'} Album{edit && ` (${title})`}</h4>
+      <TextBasedControl label='Title' value={title} onChange={(v) => { setState({ ...state, title: v }) }} />
+      <TextBasedControl label='Image Url' value={imageUrl} onChange={(v) => { setState({ ...state, imageUrl: v }) }} />
+      <CheckboxControl label='Buyable' type='checkbox' value={buyable} onChange={(v) => { setState({ ...state, buyable: v }) }} />
+      <br />
+      <CheckboxControl label='Downloadable' type='checkbox' value={downloadable} onChange={(v) => { setState({ ...state, downloadable: v }) }} />
+      <br />
+      <TextBasedControl label='Itunes Url' value={itunesUrl} onChange={(v) => { setState({ ...state, itunesUrl: v }) }} />
+      <TextBasedControl label='Beatport Url' value={beatportUrl} onChange={(v) => { setState({ ...state, beatportUrl: v }) }} />
+      <TextBasedControl label='Amazon Url' value={amazonUrl} onChange={(v) => { setState({ ...state, amazonUrl: v }) }} />
+      <TextBasedControl label='Spotify Url' value={spotifyUrl} onChange={(v) => { setState({ ...state, spotifyUrl: v }) }} />
+      <button onClick={() => onSubmit({ ...defaultAlbum, ...state })}>Submit</button>
+    </div>
+  )
+}
+
+const AlbumsList = ({ albums }: { albums: Album[] }) => {
+  const adminService = useService(AdminService);
+  const [editAlbum, setEditAlbum] = useState<Album | undefined>();
+  const edit = editAlbum !== undefined;
   return (
     <>
+      <div className={styles.create}>
+        <AddEditAlbum
+          editAlbum={editAlbum}
+          onSubmit={(a) => edit ? adminService.Intents.EditAlbum.next(a) : adminService.Intents.AddAlbum.next(a)}
+          onCancel={() => setEditAlbum(undefined)} />
+      </div>
       <h3>Albums</h3>
-      <table className={styles.songList}>
+      <table className={styles.list}>
+        <tbody>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>D+</th>
+            <th>B+</th>
+            <th>Image Url</th>
+            <th>Itunes Url</th>
+            <th>Beatport Url</th>
+            <th>Amazon Url</th>
+            <th>Spotify Url</th>
+            <th>Actions</th>
+          </tr>
+          {albums.map(album => (
+            <tr key={album.id}>
+              <td>{album.id}</td>
+              <td>{album.title}</td>
+              <td>{album.downloadable && 'x'}</td>
+              <td>{album.buyable && 'x'}</td>
+              <td>{album.imageUrl}</td>
+              <td>{album.itunesUrl}</td>
+              <td>{album.beatportUrl}</td>
+              <td>{album.amazonUrl}</td>
+              <td>{album.spotifyUrl}</td>
+              <td>
+                <button onClick={() => setEditAlbum(album)}>Edit</button>
+                <button onClick={() => {
+                  const p = prompt(`Are you sure you want to delete ${album.title}? Type 'DELETE' to confirm.`)
+                  if (p === 'DELETE')
+                    adminService.Intents.DeleteAlbum.next(album.id)
+                }}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </>
   )
 }
 
+const Spotlight = () => {
+  return (
+    <>
+      <h3>Spotlight</h3>
+      <table className={styles.list}>
+      </table>
+    </>
+  )
+}
+
+type ViewMode = 'songs' | 'albums' | 'spotlight';
+
 export const Dashboard = () => {
   const musicService = useService(MusicService);
   const songs = useObservable(musicService.Songs) || [];
+  const albums = useObservable(musicService.Albums) || [];
   const [viewMode, setViewMode] = useState<ViewMode>('songs');
 
   const renderView = (viewMode: ViewMode) => {
     switch (viewMode) {
       case 'songs': return <SongsList songs={songs} />
-      case 'albums': return <AlbumsList />
+      case 'albums': return <AlbumsList albums={albums} />
+      case 'spotlight': return <Spotlight />
     }
   }
 
@@ -179,6 +276,7 @@ export const Dashboard = () => {
         <div className={styles.modeSelector}>
           <button className={viewMode === 'songs' ? styles.activeMode : ''} onClick={() => setViewMode('songs')}>Songs</button>
           <button className={viewMode === 'albums' ? styles.activeMode : ''} onClick={() => setViewMode('albums')}>Albums</button>
+          <button className={viewMode === 'spotlight' ? styles.activeMode : ''} onClick={() => setViewMode('spotlight')}>Spotlight</button>
         </div>
         {renderView(viewMode)}
         <ToastPanel />
