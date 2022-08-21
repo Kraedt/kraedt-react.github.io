@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/kraedt-react.github.io/static/css/main.796db64f.chunk.css",
-    "main.js": "/kraedt-react.github.io/static/js/main.6b049253.chunk.js",
-    "main.js.map": "/kraedt-react.github.io/static/js/main.6b049253.chunk.js.map",
-    "runtime-main.js": "/kraedt-react.github.io/static/js/runtime-main.740504bd.js",
-    "runtime-main.js.map": "/kraedt-react.github.io/static/js/runtime-main.740504bd.js.map",
-    "static/js/2.4129959e.chunk.js": "/kraedt-react.github.io/static/js/2.4129959e.chunk.js",
-    "static/js/2.4129959e.chunk.js.map": "/kraedt-react.github.io/static/js/2.4129959e.chunk.js.map",
-    "static/js/3.280ec424.chunk.js": "/kraedt-react.github.io/static/js/3.280ec424.chunk.js",
-    "static/js/3.280ec424.chunk.js.map": "/kraedt-react.github.io/static/js/3.280ec424.chunk.js.map",
+    "main.css": "/kraedt-react.github.io/static/css/main.a71c05e0.chunk.css",
+    "main.js": "/kraedt-react.github.io/static/js/main.5418fd18.chunk.js",
+    "main.js.map": "/kraedt-react.github.io/static/js/main.5418fd18.chunk.js.map",
+    "runtime-main.js": "/kraedt-react.github.io/static/js/runtime-main.e9c30279.js",
+    "runtime-main.js.map": "/kraedt-react.github.io/static/js/runtime-main.e9c30279.js.map",
+    "static/css/2.ed1298f3.chunk.css": "/kraedt-react.github.io/static/css/2.ed1298f3.chunk.css",
+    "static/js/2.80dbc5db.chunk.js": "/kraedt-react.github.io/static/js/2.80dbc5db.chunk.js",
+    "static/js/2.80dbc5db.chunk.js.map": "/kraedt-react.github.io/static/js/2.80dbc5db.chunk.js.map",
+    "static/js/3.43b1efa6.chunk.js": "/kraedt-react.github.io/static/js/3.43b1efa6.chunk.js",
+    "static/js/3.43b1efa6.chunk.js.map": "/kraedt-react.github.io/static/js/3.43b1efa6.chunk.js.map",
     "index.html": "/kraedt-react.github.io/index.html",
-    "static/css/main.796db64f.chunk.css.map": "/kraedt-react.github.io/static/css/main.796db64f.chunk.css.map",
-    "static/js/2.4129959e.chunk.js.LICENSE.txt": "/kraedt-react.github.io/static/js/2.4129959e.chunk.js.LICENSE.txt",
+    "static/css/2.ed1298f3.chunk.css.map": "/kraedt-react.github.io/static/css/2.ed1298f3.chunk.css.map",
+    "static/css/main.a71c05e0.chunk.css.map": "/kraedt-react.github.io/static/css/main.a71c05e0.chunk.css.map",
+    "static/js/2.80dbc5db.chunk.js.LICENSE.txt": "/kraedt-react.github.io/static/js/2.80dbc5db.chunk.js.LICENSE.txt",
     "static/media/Crate.jpg": "/kraedt-react.github.io/static/media/Crate.dbcf6cc6.jpg",
     "static/media/App.scss": "/kraedt-react.github.io/static/media/Montserrat-Regular.7c8ccfe4.ttf",
     "static/media/amazon.png": "/kraedt-react.github.io/static/media/amazon.ce2e330a.png",
@@ -30,9 +32,10 @@
     "static/media/youtube_icon.8c31cf28.png": "/kraedt-react.github.io/static/media/youtube_icon.8c31cf28.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.740504bd.js",
-    "static/js/2.4129959e.chunk.js",
-    "static/css/main.796db64f.chunk.css",
-    "static/js/main.6b049253.chunk.js"
+    "static/js/runtime-main.e9c30279.js",
+    "static/css/2.ed1298f3.chunk.css",
+    "static/js/2.80dbc5db.chunk.js",
+    "static/css/main.a71c05e0.chunk.css",
+    "static/js/main.5418fd18.chunk.js"
   ]
 }
