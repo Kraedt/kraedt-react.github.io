@@ -1,0 +1,14 @@
+.contactForm {
+  button {
+    color: black;
+    font-size: 1rem;
+    background: #ff9a03;
+    &:hover {
+      background: #ffd603;
+    }
+  }
+
+  small {
+    display: block;
+  }
+}

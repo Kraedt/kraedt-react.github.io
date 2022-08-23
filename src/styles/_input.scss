@@ -71,36 +71,22 @@ button {
 }
 
 input {
-  background: none;
-  border: none;
-  border-radius: 5px;
   padding: 0.5rem;
   width: 100%;
   box-sizing: border-box;
   font-size: medium;
   float: left;
-  color: $textColor;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none !important;
 
   &::placeholder {
-    color: $textColor;
+    color: black;
   }
+}
 
-  &:focus {
-    background: $backdrop;
-    border: $darkText;
-    color: $darkText;
-    &::placeholder {
-      color: $darkText;
-    }
-  }
-
-  &[data-type="amount"] {
-    text-align: right;
-    display: flex;
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  }
+textarea {
+  outline: none !important;
+  border-radius: 5px;
 }

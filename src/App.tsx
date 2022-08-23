@@ -18,7 +18,8 @@ import { Page } from './pages/Page';
 import { AlbumsPage } from './pages/kraedt/AlbumsPage';
 import { AlbumPage } from './pages/kraedt/AlbumPage';
 import { Club1506Interview } from './pages/kraedt/Club1506Interview';
-import { Merch } from './pages/Merch';
+import { Merch } from './pages/kraedt/Merch';
+import { Contact } from './pages/kraedt/Contact';
 
 type PageProps = { page: ReactElement }
 
@@ -67,6 +68,7 @@ const App = () => {
           <Route path="/" element={<Kraedt page={<HomePage />} />} />
           <Route path="/club1506-interview" element={<Kraedt page={<Club1506Interview />} />} />
           <Route path="/merch" element={<Kraedt page={<Merch />} />} />
+          <Route path="/contact" element={<Kraedt page={<Contact />} />} />
           <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={false} />} />} />
           <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={true} />} />} />
           <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage />} />} />
