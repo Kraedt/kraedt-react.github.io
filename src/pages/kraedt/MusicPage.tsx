@@ -1,11 +1,11 @@
 import { Link, } from "react-router-dom";
-import { goToTop } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
 import { AmazonLink, BeatportLink, DirectDownloadLink, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink } from "../../types/types";
 import { Page } from "../Page";
 import * as ld from 'lodash';
+import { GoToTopButton } from "../../layout/GoToTopButton";
 
 export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
   const musicService = useService(MusicService);
@@ -25,11 +25,7 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
           : <Link className="float-right fa-lg" to="/music-creator-friendly">Show only Content-Creator-Friendly music</Link>}
         <br />
       </div>
-      <div className="corner-controls">
-        <button onClick={() => goToTop()}>
-          <i className="fas fa-arrow-up fa-2x" />
-        </button>
-      </div>
+      <GoToTopButton />
       <table id="music-table" className="music-page">
         <tbody>
           {songs?.map(song => {

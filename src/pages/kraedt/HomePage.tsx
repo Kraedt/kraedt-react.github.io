@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Carousel from '../../components/Carousel';
 import { useObservable } from '../../rxjs-functions';
 import MusicService from '../../services/music-service';
