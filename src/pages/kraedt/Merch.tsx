@@ -1,3 +1,4 @@
+import { Page } from '../Page';
 import styles from './Merch.module.scss';
 
 export const Merch = () => {
@@ -8,11 +9,11 @@ export const Merch = () => {
   document.body.appendChild(script);
 
   return (
-    <>
+    <Page title="Kraedt">
       <br />
       <div id="kraedt-merch" className={styles.merch}>
-        <a href="//shop.spreadshirt.com/kraedt-merch">kraedt</a>
+        <a href="https://shop.spreadshirt.com/kraedt-merch">kraedt</a>
       </div>
-    </>
+    </Page>
   )
 }

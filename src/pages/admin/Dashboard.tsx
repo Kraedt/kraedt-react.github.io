@@ -59,7 +59,7 @@ const AddEditSong = ({ editSong, onCancel, onSubmit }: { onSubmit: (song: Song) 
   useEffect(() => setState(editSong ?? defaultSong), [editSong])
 
   return (
-    <div className={styles.panel}>
+    <div className={`${styles.panel} ${styles.floatWindow}`}>
       <button className='icon-button float-right' onClick={() => { onCancel?.(); setState(defaultSong) }}><i className={'fa fa-times'} /></button>
       <h4>{edit ? 'Edit' : 'Add'} Song{edit && ` (${artist} - ${title})`}</h4>
       <TextBasedControl label='Title' value={title} onChange={(v) => { setState({ ...state, title: v }) }} />
@@ -172,7 +172,7 @@ const AddEditAlbum = ({ editAlbum, onCancel, onSubmit }: { onSubmit: (album: Alb
   useEffect(() => setState(editAlbum ?? defaultAlbum), [editAlbum])
 
   return (
-    <div className={styles.panel}>
+    <div className={`${styles.panel} ${styles.floatWindow}`}>
       <button className='icon-button float-right' onClick={() => { onCancel?.(); setState(defaultAlbum) }}><i className={'fa fa-times'} /></button>
       <h4>{edit ? 'Edit' : 'Add'} Album{edit && ` (${title})`}</h4>
       <TextBasedControl label='Title' value={title} onChange={(v) => { setState({ ...state, title: v }) }} />
@@ -252,13 +252,13 @@ const AlbumsList = ({ albums }: { albums: Album[] }) => {
 const SpotlightPage = ({ spotlight, onSubmit }: { spotlight?: Spotlight, onSubmit: (songIds: string) => void }) => {
   const [state, setState] = useState(spotlight?.songIds ?? '');
   return (
-    <div className={`${styles.panel} ${styles.floatWindow}`}>
+    <div className={styles.panel}>
       <h3>Spotlight</h3>
       <span title='Json array ([] syntax)'>
         <TextBasedControl label='Song IDs' value={state} onChange={(v) => { setState(v) }} />
       </span>
       <button onClick={() => onSubmit(state)}>Save</button>
-    </div>
+    </div >
   )
 }
 

@@ -46,9 +46,9 @@ export const Header = () => {
           <ListLinkIcon url="http://soundcloud.com/kraedt" img={soundcloudIcon} title="Soundcloud" alt="soundcloud" />
           <ListLinkIcon url="http://youtube.com/kraedt" img={youtubeIcon} title="YouTube" alt="youtube" />
           <ListLinkIcon url="https://open.spotify.com/artist/0YbhxZi9PSVTmB4UMkM5Jw" img={spotifyIcon} title="Spotify" alt="spotify" />
-          <ListLinkIcon url="https://pro.beatport.com/artist/kraedt/429462" img={beatportIcon} title="Beatport" alt="beatport" />
+          <ListLinkIcon url="https://beatport.com/artist/kraedt/429462" img={beatportIcon} title="Beatport" alt="beatport" />
           <ListLinkIcon url="http://twitter.com/kraedt" img={twitterIcon} title="Twitter" alt="twitter" />
-          {/* todo: make button - <a href="javascript:void(0);" className={styles.icon} onClick={() => responsiveNav()}>&#9776;</a> */}
+          {/* todo: make mobile button - <a href="javascript:void(0);" className={styles.icon} onClick={() => responsiveNav()}>&#9776;</a> */}
         </ul>
       </div>
       <div className={styles.banner}>

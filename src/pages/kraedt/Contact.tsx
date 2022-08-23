@@ -1,3 +1,4 @@
+import { Page } from '../Page';
 import styles from './Contact.module.scss';
 
 export const Contact = () => {
@@ -47,7 +48,7 @@ export const Contact = () => {
     //        //    cs.attr("class", "error");
     //    }
     //</script>
-    <>
+    <Page title="Kraedt - Contact">
       <h2>Contact</h2>
       <p id="contact-status"></p>
       <div className={styles.contactForm}>
@@ -63,7 +64,6 @@ export const Contact = () => {
       <br />
       <h2>Form not working? Email me directly at:</h2>
       <h3>kraedt@gmail.com</h3>
-    </>
-
+    </Page>
   )
 }
