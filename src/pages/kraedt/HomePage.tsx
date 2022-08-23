@@ -24,7 +24,7 @@ export const HomePage = () => {
             friendly licenses.
           </p>
 
-          <h3 className="text-center">Check out this <a href="/club1506-interview">interview I did with Club1506</a>!</h3>
+          <h3 className="text-center">Check out this <Link to="/club1506-interview">interview I did with Club1506</Link>!</h3>
 
           <h3 className="text-center">Track Spotlight:</h3>
           <div className={styles.trackSpotlight}>

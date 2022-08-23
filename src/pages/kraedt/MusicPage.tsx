@@ -18,25 +18,20 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
   return (
     <Page title="Kraedt - Music">
       <h2>Music</h2>
-
       <div className="w-100">
         <Link to="/albums" >See all albums</Link>
-
         {safeOnly
           ? <Link className="float-right fa-lg" to="/music">Show all music</Link>
           : <Link className="float-right fa-lg" to="/music-creator-friendly">Show only Content-Creator-Friendly music</Link>}
         <br />
       </div>
-
       <div className="corner-controls">
         <button onClick={() => goToTop()}>
           <i className="fas fa-arrow-up fa-2x" />
         </button>
       </div>
-
       <table id="music-table" className="music-page">
         <tbody>
-
           {songs?.map(song => {
             const songPageName = getMusicPageName(song);
             const licenseIcon = getLicenseIcon(song.licenseId);
