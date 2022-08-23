@@ -89,7 +89,7 @@ const licenses = [
 const licenseIcons = [
   {
     "level": 1,
-    "class": "fa fa-check-circle text-success"
+    "class": "fa fa-check-circle text-positive"
   },
   {
     "level": 2,
@@ -97,7 +97,7 @@ const licenseIcons = [
   },
   {
     "level": 3,
-    "class": "fa fa-skull-crossbones text-danger"
+    "class": "fa fa-skull-crossbones text-negative"
   }
 ]
 
