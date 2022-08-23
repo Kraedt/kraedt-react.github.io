@@ -29,16 +29,16 @@ export const AlbumsPage = () => {
         </colgroup>
         <tbody>
           {albums?.map(album => {
-            const albumSongPage = getMusicPageName(album);
+            const albumPageName = getMusicPageName(album);
             return (
               <tr>
                 <td>
-                  <Link to={`music/album/${albumSongPage}`}><img className="image-prop" src={getMusicItemImage(album)} alt='img' /></Link>
+                  <Link to={`music/album/${albumPageName}`}><img className="image-prop" src={getMusicItemImage(album)} alt='img' /></Link>
                   <div className="mobile-song-info">
-                    <h2><Link to={`music/album/${albumSongPage}`}>${album.title}</Link></h2>
+                    <h2><Link to={`music/album/${albumPageName}`}>${album.title}</Link></h2>
                   </div>
                 </td>
-                <td className="song-info"><h4><a href={`music/album/${albumSongPage}`}>{album.title}</a></h4></td>
+                <td className="song-info"><h4><a href={`music/album/${albumPageName}`}>{album.title}</a></h4></td>
               </tr>
             )
           })}

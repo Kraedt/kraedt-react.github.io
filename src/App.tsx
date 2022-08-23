@@ -16,6 +16,7 @@ import MusicService from './services/music-service';
 import { useObservable } from './rxjs-functions';
 import { Page } from './pages/Page';
 import { AlbumsPage } from './pages/kraedt/AlbumsPage';
+import { AlbumPage } from './pages/kraedt/AlbumPage';
 
 type PageProps = { page: ReactElement }
 
@@ -64,9 +65,10 @@ const App = () => {
           <Route path="/" element={<Kraedt page={<HomePage />} />} />
           <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={false} />} />} />
           <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={true} />} />} />
-          <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage />} />} />
-          <Route path="/music/song/:songId" element={<Kraedt page={<SongPage />} />} />
+          <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage />} />} />
           <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
+          <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage />} />} />
+          <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage />} />} />
           <Route path="/music*" element={<Kraedt page={<Page404 />} />} />
         </Route>
         <Route>
