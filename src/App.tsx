@@ -20,6 +20,8 @@ import { AlbumPage } from './pages/kraedt/AlbumPage';
 import { Club1506Interview } from './pages/kraedt/Club1506Interview';
 import { Merch } from './pages/kraedt/Merch';
 import { Contact } from './pages/kraedt/Contact';
+import InteractService from './services/interact-service';
+import { CaptchaPopup } from './components/CaptchaPopup';
 
 type PageProps = { page: ReactElement }
 
@@ -57,39 +59,46 @@ const MusicError = () => (
 
 const App = () => {
   const musicService = useService(MusicService);
+  const interactService = useService(InteractService);
+
   const songs = useObservable(musicService.Songs);
   const albums = useObservable(musicService.Songs);
   const showMusicError = songs?.length === 0 && albums?.length === 0;
 
+  const showCaptchaPop = useObservable(interactService.ShowCaptchaPopup);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route>
-          <Route path="/" element={<Kraedt page={<HomePage />} />} />
-          <Route path="/club1506-interview" element={<Kraedt page={<Club1506Interview />} />} />
-          <Route path="/merch" element={<Kraedt page={<Merch />} />} />
-          <Route path="/contact" element={<Kraedt page={<Contact />} />} />
-          <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={false} />} />} />
-          <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={true} />} />} />
-          <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage />} />} />
-          <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
-          <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage />} />} />
-          <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage />} />} />
-          <Route path="/music*" element={<Kraedt page={<Page404 />} />} />
-        </Route>
-        <Route>
-          <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />
-          {//<Route path="/sonicbreakbeat/music" element={<SbbMusic />} />
-          }
-          <Route path="/sonicbreakbeat/music/*" element={<SonicBreakbeat page={<SbbPage404 />} />} />
-          <Route path="/sonicbreakbeat/*" element={<Navigate to='/sonicbreakbeat/' />} />
-        </Route>
-        <Route>
-          <Route path="/admin" element={<Admin page={<Dashboard />} />} />
-        </Route>
-        <Route path="*" element={<Navigate to='/' />} />
-      </Routes>
-    </BrowserRouter >
+    <>
+      {showCaptchaPop && <CaptchaPopup />}
+      <BrowserRouter>
+        <Routes>
+          <Route>
+            <Route path="/" element={<Kraedt page={<HomePage />} />} />
+            <Route path="/club1506-interview" element={<Kraedt page={<Club1506Interview />} />} />
+            <Route path="/merch" element={<Kraedt page={<Merch />} />} />
+            <Route path="/contact" element={<Kraedt page={<Contact />} />} />
+            <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={false} />} />} />
+            <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={true} />} />} />
+            <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage />} />} />
+            <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
+            <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage />} />} />
+            <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage />} />} />
+            <Route path="/music*" element={<Kraedt page={<Page404 />} />} />
+          </Route>
+          <Route>
+            <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />
+            {//<Route path="/sonicbreakbeat/music" element={<SbbMusic />} />
+            }
+            <Route path="/sonicbreakbeat/music/*" element={<SonicBreakbeat page={<SbbPage404 />} />} />
+            <Route path="/sonicbreakbeat/*" element={<Navigate to='/sonicbreakbeat/' />} />
+          </Route>
+          <Route>
+            <Route path="/admin" element={<Admin page={<Dashboard />} />} />
+          </Route>
+          <Route path="*" element={<Navigate to='/' />} />
+        </Routes>
+      </BrowserRouter >
+    </>
   );
 }
 
