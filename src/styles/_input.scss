@@ -74,12 +74,13 @@ input {
   padding: 0.5rem;
   width: 100%;
   box-sizing: border-box;
-  font-size: medium;
   float: left;
   color: black;
   border: 1px solid black;
   border-radius: 5px;
   outline: none !important;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
 
   &::placeholder {
     color: black;

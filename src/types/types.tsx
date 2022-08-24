@@ -36,6 +36,12 @@ export interface Spotlight {
   songIds: string;
 }
 
+export interface ContactMessage {
+  clientId: string;
+  name: string;
+  message: string;
+}
+
 export const getSongIdentifier = (song?: Song) => song?.title?.toLowerCase();
 export const getMusicPageName = (item?: Song | Album) => item?.title.toLowerCase().replaceAll(' ', '-');
 

@@ -31,7 +31,7 @@ export const AlbumsPage = () => {
           {albums?.map(album => {
             const albumPageName = getMusicPageName(album);
             return (
-              <tr>
+              <tr key={album.id}>
                 <td>
                   <Link to={`music/album/${albumPageName}`}><img className="image-prop" src={getMusicItemImage(album)} alt='img' /></Link>
                   <div className="mobile-song-info">

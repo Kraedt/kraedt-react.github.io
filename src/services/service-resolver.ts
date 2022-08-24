@@ -1,6 +1,7 @@
 import MusicService from "./music-service";
 import AdminService from "./admin-service";
 import ToastService from "./toast-service";
+import InteractService from "./interact-service";
 
 export interface Service {
   Intents: any;
@@ -10,6 +11,7 @@ export default class ServiceResolverImpl {
   MusicService = new MusicService();
   AdminService = new AdminService();
   ToastService = new ToastService();
+  InteractService = new InteractService();
 
   constructor() {
     this.AdminService.musicService = this.MusicService;

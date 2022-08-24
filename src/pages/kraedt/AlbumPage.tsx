@@ -28,36 +28,38 @@ export const AlbumPage = () => {
     <Page title={`Kraedt - ${album.title}`}>
       <h2><a href="/music">See More Music</a></h2>
       <table id="album-table" className="song-page">
-        <tr><td><h3>Album / EP</h3></td></tr>
-        <tr>
-          <td><img src={getMusicItemImage(album)} alt='album' /></td>
-        </tr>
-        <tr>
-          <td>
-            <h2>{album.title}</h2>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {album.buyable && <h3 className="darken-text">Buy:</h3>}
-            {ItunesLink(album.itunesUrl)}
-            {BeatportLink(album.beatportUrl)}
-            {AmazonLink(album.amazonUrl)}
-            {album.spotifyUrl && <h3 className="darken-text">Stream:</h3>}
-            {SpotifyLink(album.spotifyUrl)}
-          </td>
-        </tr>
-        {
-          songs?.map(s => (
-            <tr>
-              <td>
-                <h3><Link to={`/music/song/${getMusicPageName(s)}`} className="inline-a">{s.title}</Link>&nbsp;{getLicenseIcon(s.licenseId)}</h3>
-                <button className="btn btn-lg btn-warning" onClick={() => { }}>DOWNLOAD</button>
-              </td>
-            </tr>
-          ))
-        }
-        <tr><td><br /></td></tr>
+        <tbody>
+          <tr><td><h3>Album / EP</h3></td></tr>
+          <tr>
+            <td><img src={getMusicItemImage(album)} alt='album' /></td>
+          </tr>
+          <tr>
+            <td>
+              <h2>{album.title}</h2>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {album.buyable && <h3 className="darken-text">Buy:</h3>}
+              {ItunesLink(album.itunesUrl)}
+              {BeatportLink(album.beatportUrl)}
+              {AmazonLink(album.amazonUrl)}
+              {album.spotifyUrl && <h3 className="darken-text">Stream:</h3>}
+              {SpotifyLink(album.spotifyUrl)}
+            </td>
+          </tr>
+          {
+            songs?.map(s => (
+              <tr key={s.id}>
+                <td>
+                  <h3><Link to={`/music/song/${getMusicPageName(s)}`} className="inline-a">{s.title}</Link>&nbsp;{getLicenseIcon(s.licenseId)}</h3>
+                  <button className="btn btn-lg btn-warning" onClick={() => { }}>DOWNLOAD</button>
+                </td>
+              </tr>
+            ))
+          }
+          <tr><td><br /></td></tr>
+        </tbody>
       </table>
     </Page>
   )

@@ -32,7 +32,6 @@ export const Header = () => {
     <li className={styles.text}><Link to={url} className={className}>{text}</Link></li>
   )
 
-  console.log(url)
   return (
     <div className={styles.header}>
       <div className={styles.navbarBg}></div>
@@ -40,8 +39,8 @@ export const Header = () => {
         <ul className={styles.links}>
           <ListLink url="/" className={showActive('/')} text="HOME" />
           <ListLink url="/music" className={showActiveContains('/music')} text="MUSIC" />
-          <ListLink url="/merch" className={showActive('/merch/')} text="MERCH" />
-          <ListLink url="/contact" className={showActive('/contact/')} text="CONTACT" />
+          <ListLink url="/merch" className={showActive('/merch')} text="MERCH" />
+          <ListLink url="/contact" className={showActive('/contact')} text="CONTACT" />
           <li className={styles.br} />
           <ListLinkIcon url="http://soundcloud.com/kraedt" img={soundcloudIcon} title="Soundcloud" alt="soundcloud" />
           <ListLinkIcon url="http://youtube.com/kraedt" img={youtubeIcon} title="YouTube" alt="youtube" />

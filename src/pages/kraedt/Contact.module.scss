@@ -1,4 +1,8 @@
 .contactForm {
+  padding: 2px;
+  input {
+    width: 300px;
+  }
   button {
     color: black;
     font-size: 1rem;
@@ -6,6 +10,7 @@
     &:hover {
       background: #ffd603;
     }
+    margin-top: 5px;
   }
 
   small {

@@ -30,7 +30,7 @@ export const HomePage = () => {
           <div className={styles.trackSpotlight}>
             <Carousel onClickItem={idx => nav(`/music/song/${songs?.find(s => s.id === spotlight[idx])?.title.toLowerCase()}`)}>
               {spotlight.map(x => songs?.find(s => s.id === x)).map(s => (
-                <div>
+                <div key={s?.id}>
                   <img src={!!s ? getMusicItemImage(s) : ''} alt={s?.title} />
                 </div>
               ))

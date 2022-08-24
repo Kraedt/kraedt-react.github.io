@@ -45,29 +45,6 @@ textarea {
   resize: none;
 }
 
-form input {
-  width: auto;
-  font-family: Montserrat, sans-serif;
-  font-size: 14px;
-}
-
-form .button {
-  width: auto;
-  float: right;
-}
-
-.contact-form {
-  padding: 2px;
-}
-
-.message {
-  color: #ffd603;
-}
-
-.error {
-  color: red;
-}
-
 @mixin icon-button {
   background: none;
   border: none;
