@@ -1,22 +1,34 @@
 import * as Rx from 'rxjs';
 import * as Rxo from 'rxjs/operators';
 import { Service } from './service-resolver';
-import { ajaxPostJson } from '../rxjs-functions';
+import { ajaxPost, ajaxPostJson, mapCaptchaFailure } from '../rxjs-functions';
 import { ContactMessage } from '../types/types';
 
-const showCaptchaPopup = new Rx.BehaviorSubject<boolean>(true);
+const showCaptchaPopup = new Rx.BehaviorSubject<boolean>(false);
+const captchaVerify = new Rx.Subject<{ clientId: string, captchaResponse: string }>();
+const sendContact = new Rx.Subject<ContactMessage>();
 
 export default class InteractService implements Service {
   ShowCaptchaPopup: Rx.Observable<boolean> = showCaptchaPopup;
+  ContactResponse: Rx.Observable<boolean> = sendContact.pipe(
+    ajaxPostJson('contact/send'),
+    mapCaptchaFailure(() => showCaptchaPopup.next(true)),
+  )
 
   constructor() {
-    this.Intents.SendContact.pipe(
-      ajaxPostJson('contact/send'),
+    this.ContactResponse.subscribe();
+    captchaVerify.pipe(
+      ajaxPost('captcha/verify'),
+      Rxo.tap(() => {
+        sessionStorage.setItem("captchaVerified", "true");
+        showCaptchaPopup.next(false)
+      }),
     ).subscribe();
   }
 
   Intents = {
     ShowCaptchaPopup: showCaptchaPopup,
-    SendContact: new Rx.Subject<ContactMessage>(),
+    CaptchaVerify: captchaVerify,
+    SendContact: sendContact,
   }
 }

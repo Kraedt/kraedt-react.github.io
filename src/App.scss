@@ -229,7 +229,7 @@ p {
 
 .modal {
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   left: 0;
   top: 0;
   width: 100%;
@@ -247,7 +247,12 @@ p {
   text-align: center;
   box-shadow: none;
   position: absolute;
-  top: 50%;
+  top: 25%;
+}
+
+.captcha {
+  position: absolute;
+  left: calc(50% - (304px / 2));
 }
 
 .close {

@@ -37,6 +37,16 @@ const catchAndToastErrorResponse = () => <T>(obs: Rx.Observable<T>) => obs.pipe(
   }),
 );
 
+export const mapCaptchaFailure = (onCaptchaFailure: () => void) => <T>(obs: Rx.Observable<T>) => obs.pipe(
+  Rxo.map((r: any) => {
+    const failure = r?.response?.captchaFailure === true;
+    if (failure)
+      onCaptchaFailure?.();
+
+    return failure ? undefined : r;
+  }),
+)
+
 export const ajaxGet = <T>(uri: string) => (obs: Rx.Observable<T>) => obs.pipe(
   Rxo.mergeMap(_ => ajax<T>({ method: "GET", url: apiUri(uri, _), crossDomain: true })),
   catchAndToastErrorResponse(),

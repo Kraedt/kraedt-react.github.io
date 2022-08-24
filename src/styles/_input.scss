@@ -9,6 +9,12 @@ button {
   cursor: pointer;
   max-height: 32px;
   margin: auto 0;
+
+  &[data-disabled="true"] {
+    user-select: none;
+    pointer-events: none;
+    background: gray !important;
+  }
   &:hover {
     color: darken($color: $buttonColor, $amount: 20);
   }

@@ -22,6 +22,7 @@ import { Merch } from './pages/kraedt/Merch';
 import { Contact } from './pages/kraedt/Contact';
 import InteractService from './services/interact-service';
 import { CaptchaPopup } from './components/CaptchaPopup';
+import { ToastPanel } from './layout/ToastPanel';
 
 type PageProps = { page: ReactElement }
 
@@ -69,6 +70,7 @@ const App = () => {
 
   return (
     <>
+      <ToastPanel />
       {showCaptchaPop && <CaptchaPopup />}
       <BrowserRouter>
         <Routes>
