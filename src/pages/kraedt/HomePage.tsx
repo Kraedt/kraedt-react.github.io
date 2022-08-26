@@ -13,7 +13,6 @@ export const HomePage = () => {
   const spotlight = JSON.parse(useObservable(musicService.Spotlight)?.songIds || '[]') as number[];
   const nav = useNavigate();
   const spotlightSongs = spotlight.map(x => songs?.find(s => s.id === x));
-  console.log(spotlightSongs)
 
   return (
     <Page title="Kraedt - Home">
