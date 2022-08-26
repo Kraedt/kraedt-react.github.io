@@ -12,6 +12,8 @@ export const HomePage = () => {
   const songs = useObservable(musicService.Songs);
   const spotlight = JSON.parse(useObservable(musicService.Spotlight)?.songIds || '[]') as number[];
   const nav = useNavigate();
+  const spotlightSongs = spotlight.map(x => songs?.find(s => s.id === x));
+  console.log(spotlightSongs)
 
   return (
     <Page title="Kraedt - Home">
@@ -29,7 +31,7 @@ export const HomePage = () => {
           <h3 className="text-center">Track Spotlight:</h3>
           <div className={styles.trackSpotlight}>
             <Carousel onClickItem={idx => nav(`/music/song/${songs?.find(s => s.id === spotlight[idx])?.title.toLowerCase()}`)}>
-              {spotlight.map(x => songs?.find(s => s.id === x)).map(s => (
+              {spotlightSongs.map(s => (
                 <div key={s?.id}>
                   <img src={!!s ? getMusicItemImage(s) : ''} alt={s?.title} />
                 </div>

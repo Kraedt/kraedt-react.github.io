@@ -125,11 +125,14 @@ export const getLicenseToolTip = () => {
 }
 
 export const NoImage = noImage;
-export const DirectDownloadImage = linkImages["direct.png"].default;
-export const YoutubeLinkImage = linkImages["youtube.png"].default;
+export const DirectDownloadImage = linkImages["direct.png"];
+export const YoutubeLinkImage = linkImages["youtube.png"];
 
-export const externalLink = (title: string, url?: string, img?: string) => url ? <a href={`${url}`} title={`${title}`} target={"_blank"} rel='noreferrer' > <img src={linkImages[img ?? '']?.default} alt='img' /> </a> : '';
-export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl]?.default ?? NoImage);
+export const externalLink = (title: string, url?: string, img?: string) => {
+  console.log(linkImages[img ?? ''])
+  return url ? <a href={`${url}`} title={`${title}`} target={"_blank"} rel='noreferrer' ><img src={linkImages[img ?? '']} alt='img' /></a> : '';
+}
+export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? NoImage);
 
 export const DirectDownloadLink = (songId: number, downloadable?: boolean) => downloadable && <button className="direct-dl-btn" onClick={() => { }}><img src={DirectDownloadImage} alt="direct" /></button>
 export const SpotifyLink = (url?: string) => externalLink('Spotify', url, 'spotify.png')
