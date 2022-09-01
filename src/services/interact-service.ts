@@ -13,14 +13,9 @@ const sendContact = new Rx.Subject<ContactMessage>();
 const download = new Rx.Subject<number>();
 
 /*
+Things I still need to figure out:
 
-Two things I still need to figure out:
-
-1) How / when to clear session storage, or if it can do so automatically?
-  (I think this actually doesn't matter - if the client-side clientId is invalid, the server will request the client to do captcha)
-
-2) How to re-fire the contact/send request after captcha verification
-
+1) How to re-fire the contact/send request after captcha verification
 */
 
 export const shouldShowFollowPopupKey = 'shouldShowFollowPopup'

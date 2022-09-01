@@ -28,7 +28,7 @@ export const AlbumPage = () => {
 
   return (
     <Page title={`Kraedt - ${album.title}`}>
-      <h2><a href="/music">See More Music</a></h2>
+      <h2><Link to="/music">See More Music</Link></h2>
       <table id="album-table" className="song-page">
         <tbody>
           <tr><td><h3>Album / EP</h3></td></tr>

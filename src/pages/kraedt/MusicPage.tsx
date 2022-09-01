@@ -43,8 +43,8 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
                   <Link to={`song/${songPageName}`}><img className="image-prop" src={getMusicItemImage(song)} alt={song.title} /></Link>
 
                   <div className="mobile-song-info">
-                    <h2><Link to={`song/${songPageName}`}>{song.title}</Link>{licenseIcon}</h2>
-                    <p>{song.artist}</p>
+                    <h2><Link to={`song/${songPageName}`}>{song.title}</Link>&nbsp;{licenseIcon}</h2>
+                    <div>{song.artist}</div>
                   </div>
                 </td>
                 <td className="song-info">

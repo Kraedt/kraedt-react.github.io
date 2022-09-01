@@ -35,12 +35,12 @@ export const AlbumsPage = () => {
             return (
               <tr key={album.id}>
                 <td>
-                  <Link to={`music/album/${albumPageName}`}><img className="image-prop" src={getMusicItemImage(album)} alt='img' /></Link>
+                  <Link to={`/music/album/${albumPageName}`}><img className="image-prop" src={getMusicItemImage(album)} alt='img' /></Link>
                   <div className="mobile-song-info">
-                    <h2><Link to={`music/album/${albumPageName}`}>${album.title}</Link></h2>
+                    <h2><Link to={`/music/album/${albumPageName}`}>{album.title}</Link></h2>
                   </div>
                 </td>
-                <td className="song-info"><h4><a href={`music/album/${albumPageName}`}>{album.title}</a></h4></td>
+                <td className="song-info"><h4><Link to={`/music/album/${albumPageName}`}>{album.title}</Link></h4></td>
               </tr>
             )
           })}
