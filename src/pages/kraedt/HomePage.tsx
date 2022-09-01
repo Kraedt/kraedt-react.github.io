@@ -44,13 +44,15 @@ export const HomePage = () => {
 
         <div className={styles.spotifyBlurb + ' text-center'}>
           <h3>A good chunk of my music is now on Spotify!</h3>
-          {/*% include spotify-follow.jekyll %*/}
-
-          <br />
-          <br />
-          <h3>Latest Release:</h3>
-          {//<iframe src="{{site.latest-spotify}}" width="290" height="380" frameBorder="0" allowTransparency={true} allow="encrypted-media"></iframe>
-          }
+          <iframe
+            style={{ borderRadius: '12px' }}
+            title="spotify"
+            src="https://open.spotify.com/embed/artist/0YbhxZi9PSVTmB4UMkM5Jw?utm_source=generator"
+            width="80%"
+            height="400"
+            frameBorder="0"
+            allowFullScreen={false}
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
       </div >
     </Page >

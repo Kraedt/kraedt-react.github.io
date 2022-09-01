@@ -129,7 +129,6 @@ export const DirectDownloadImage = linkImages["direct.png"];
 export const YoutubeLinkImage = linkImages["youtube.png"];
 
 export const externalLink = (title: string, url?: string, img?: string) => {
-  console.log(linkImages[img ?? ''])
   return url ? <a href={`${url}`} title={`${title}`} target={"_blank"} rel='noreferrer' ><img src={linkImages[img ?? '']} alt='img' /></a> : '';
 }
 export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? NoImage);

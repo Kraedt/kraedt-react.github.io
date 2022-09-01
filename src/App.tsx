@@ -23,6 +23,7 @@ import { Contact } from './pages/kraedt/Contact';
 import InteractService from './services/interact-service';
 import { CaptchaPopup } from './components/CaptchaPopup';
 import { ToastPanel } from './layout/ToastPanel';
+import { FollowPopup } from './pages/kraedt/FollowPopup';
 
 type PageProps = { page: ReactElement }
 
@@ -63,15 +64,21 @@ const App = () => {
   const interactService = useService(InteractService);
 
   const songs = useObservable(musicService.Songs);
-  const albums = useObservable(musicService.Songs);
+  const albums = useObservable(musicService.Albums);
   const showMusicError = songs?.length === 0 && albums?.length === 0;
 
-  const showCaptchaPop = useObservable(interactService.ShowCaptchaPopup);
+  const modalType = useObservable(interactService.ShowModal) ?? 'none';
+
+  const modal = {
+    captcha: <CaptchaPopup />,
+    follow: <FollowPopup />,
+    none: undefined
+  }
 
   return (
     <>
       <ToastPanel />
-      {showCaptchaPop && <CaptchaPopup />}
+      {modal[modalType]}
       <BrowserRouter>
         <Routes>
           <Route>
