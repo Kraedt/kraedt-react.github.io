@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
+import InteractService from "../../services/interact-service";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
 import { AmazonLink, BeatportLink, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink, SpotifyLink } from "../../types/types";
@@ -10,6 +11,7 @@ import { Page404 } from "./Page404";
 export const AlbumPage = () => {
   const { albumPageName } = useParams();
   const musicService = useService(MusicService);
+  const interactService = useService(InteractService);
   const albums = useObservable(musicService.Albums);
   const allSongs = useObservable(musicService.Songs);
 
@@ -53,7 +55,7 @@ export const AlbumPage = () => {
               <tr key={s.id}>
                 <td>
                   <h3><Link to={`/music/song/${getMusicPageName(s)}`} className="inline-a">{s.title}</Link>&nbsp;{getLicenseIcon(s.licenseId)}</h3>
-                  <button className="btn btn-lg btn-warning" onClick={() => { }}>DOWNLOAD</button>
+                  <button className="btn btn-lg btn-warning" onClick={() => interactService.Intents.Download.next(s.id)}>DOWNLOAD</button>
                 </td>
               </tr>
             ))

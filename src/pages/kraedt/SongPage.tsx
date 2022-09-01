@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
+import InteractService from "../../services/interact-service";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
 import { AmazonLink, BeatportLink, getLicense, getMusicItemImage, getMusicPageName, getSongIdentifier, ItunesLink, YoutubeLinkImage } from "../../types/types"
@@ -11,6 +12,7 @@ import { Page404 } from "./Page404";
 export const SongPage = () => {
   const { songPageName } = useParams();
   const musicService = useService(MusicService);
+  const interactService = useService(InteractService);
   const songs = useObservable(musicService.Songs);
   const allAlbums = useObservable(musicService.Albums);
   const song = songs?.find(s => getSongIdentifier(s) === songPageName)!
@@ -70,7 +72,7 @@ export const SongPage = () => {
           {song.downloadable && (
             <tr>
               <td>
-                <button className="btn btn-lg btn-warning">DOWNLOAD</button>
+                <button className="btn btn-lg btn-warning" onClick={() => interactService.Intents.Download.next(song.id)}>DOWNLOAD</button>
                 <br />
               </td>
             </tr>
