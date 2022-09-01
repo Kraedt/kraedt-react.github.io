@@ -3,7 +3,7 @@ import * as Rxo from 'rxjs/operators';
 import { Service } from './service-resolver';
 import { ajaxPost, ajaxPostJson, mapCaptchaFailure } from '../rxjs-functions';
 import { ContactMessage } from '../types/types';
-import { getClientId } from '../functions';
+import { getClientId, isNullOrWhitespace } from '../functions';
 
 export type ModalType = 'none' | 'captcha' | 'follow';
 
@@ -14,7 +14,6 @@ const download = new Rx.Subject<number>();
 
 /*
 Things I still need to figure out:
-
 1) How to re-fire the contact/send request after captcha verification
 */
 
@@ -25,6 +24,7 @@ export default class InteractService implements Service {
   ContactResponse: Rx.Observable<boolean> = sendContact.pipe(
     ajaxPostJson('contact/send'),
     mapCaptchaFailure(() => showModal.next('captcha')),
+    Rxo.map(_ => isNullOrWhitespace(_?.response?.error) ?? true)
   )
 
   constructor() {
