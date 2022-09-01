@@ -3,12 +3,14 @@ import * as Rxo from 'rxjs/operators';
 import { Service } from './service-resolver';
 import { ajaxPost, ajaxPostJson, mapCaptchaFailure } from '../rxjs-functions';
 import { ContactMessage } from '../types/types';
+import { getClientId } from '../functions';
 
 export type ModalType = 'none' | 'captcha' | 'follow';
 
 const showModal = new Rx.BehaviorSubject<ModalType>('none');
 const captchaVerify = new Rx.Subject<{ clientId: string, captchaResponse: string }>();
 const sendContact = new Rx.Subject<ContactMessage>();
+const download = new Rx.Subject<number>();
 
 /*
 
@@ -40,11 +42,18 @@ export default class InteractService implements Service {
       showModal.next('follow');
 
     this.ContactResponse.subscribe();
+
     captchaVerify.pipe(
       ajaxPost('captcha/verify'),
       Rxo.tap(() => {
         showModal.next('none')
       }),
+    ).subscribe();
+
+    download.pipe(
+      Rxo.map(_ => ({ clientId: getClientId(), id: _ })),
+      ajaxPost('download/request'),
+      mapCaptchaFailure(() => showModal.next('captcha'))
     ).subscribe();
   }
 
@@ -52,5 +61,6 @@ export default class InteractService implements Service {
     ShowModal: showModal,
     CaptchaVerify: captchaVerify,
     SendContact: sendContact,
+    Download: download
   }
 }

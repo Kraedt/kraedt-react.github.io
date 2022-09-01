@@ -169,6 +169,9 @@ p {
 .audio-links {
   display: inline-block;
   width: 280px;
+  a {
+    padding: 4px;
+  }
 }
 
 .btn-download {

@@ -133,7 +133,6 @@ export const externalLink = (title: string, url?: string, img?: string) => {
 }
 export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? NoImage);
 
-export const DirectDownloadLink = (songId: number, downloadable?: boolean) => downloadable && <button className="direct-dl-btn" onClick={() => { }}><img src={DirectDownloadImage} alt="direct" /></button>
 export const SpotifyLink = (url?: string) => externalLink('Spotify', url, 'spotify.png')
 export const ItunesLink = (url?: string) => externalLink('iTunes', url, 'itunes.png')
 export const BeatportLink = (url?: string) => externalLink('Beatport', url, 'beatport.png')

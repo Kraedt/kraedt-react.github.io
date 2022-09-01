@@ -2,18 +2,23 @@ import { Link, } from "react-router-dom";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, DirectDownloadLink, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink } from "../../types/types";
+import { AmazonLink, BeatportLink, DirectDownloadImage, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink } from "../../types/types";
 import { Page } from "../Page";
 import * as ld from 'lodash';
 import { GoToTopButton } from "../../layout/GoToTopButton";
+import InteractService from "../../services/interact-service";
 
 export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
   const musicService = useService(MusicService);
+  const interactService = useService(InteractService);
+
   const allSongs = ld.reverse(useObservable(musicService.Songs) || []);
 
   const songs = safeOnly
     ? allSongs?.filter(x => getLicense(x.licenseId).level === 1)
     : allSongs;
+
+  const DirectDownloadLink = (songId: number, downloadable?: boolean) => downloadable && <button className="direct-dl-btn" onClick={() => interactService.Intents.Download.next(songId)}><img src={DirectDownloadImage} alt="direct-download" /></button>
 
   return (
     <Page title="Kraedt - Music">
