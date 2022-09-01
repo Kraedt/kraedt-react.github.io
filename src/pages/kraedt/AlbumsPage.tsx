@@ -5,10 +5,12 @@ import MusicService from "../../services/music-service"
 import { useService } from "../../services/service-resolver"
 import { getMusicItemImage, getMusicPageName } from "../../types/types"
 import { Page } from "../Page"
+import ld from 'lodash';
 
 export const AlbumsPage = () => {
   const musicService = useService(MusicService);
-  const albums = useObservable(musicService.Albums);
+  const albums = ld.sortBy(useObservable(musicService.Albums) || [], a => a.id);
+  ld.reverse(albums);
 
   return (
     <Page title='Kraedt - Albums'>

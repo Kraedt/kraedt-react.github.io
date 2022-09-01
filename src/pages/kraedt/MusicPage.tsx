@@ -4,7 +4,7 @@ import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
 import { AmazonLink, BeatportLink, DirectDownloadImage, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink } from "../../types/types";
 import { Page } from "../Page";
-import * as ld from 'lodash';
+import ld from 'lodash';
 import { GoToTopButton } from "../../layout/GoToTopButton";
 import InteractService from "../../services/interact-service";
 
@@ -12,7 +12,8 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
   const musicService = useService(MusicService);
   const interactService = useService(InteractService);
 
-  const allSongs = ld.reverse(useObservable(musicService.Songs) || []);
+  const allSongs = ld.sortBy(useObservable(musicService.Songs) || [], s => s.id);
+  ld.reverse(allSongs);
 
   const songs = safeOnly
     ? allSongs?.filter(x => getLicense(x.licenseId).level === 1)

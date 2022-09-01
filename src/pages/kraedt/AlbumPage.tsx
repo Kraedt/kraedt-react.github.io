@@ -41,7 +41,7 @@ export const AlbumPage = () => {
             </td>
           </tr>
           <tr>
-            <td>
+            <td className='audio-links'>
               {album.buyable && <h3 className="darken-text">Buy:</h3>}
               {ItunesLink(album.itunesUrl)}
               {BeatportLink(album.beatportUrl)}
