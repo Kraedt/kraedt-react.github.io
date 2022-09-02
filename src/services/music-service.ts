@@ -8,7 +8,19 @@ const reloadSongs = new Rx.Subject();
 const reloadAlbums = new Rx.Subject();
 const reloadSpotlight = new Rx.Subject();
 
+let instance: Service;
+
 export default class MusicService implements Service {
+  TypeName: string;
+
+  constructor() {
+    this.TypeName = 'MusicService';
+
+    if (!!instance) // todo: maybe find a workaround for this bs in the future?
+      return;
+    instance = this;
+  }
+
   Songs: Rx.Observable<Song[]> = Rx.EMPTY.pipe(
     Rxo.startWith(undefined),
     Rx.mergeWith(reloadSongs),

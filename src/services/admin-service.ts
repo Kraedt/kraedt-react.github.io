@@ -21,7 +21,11 @@ const editSpotlightIntent = new Rx.Subject<string>();
 
 const adminHeaders = () => ({ clientId: getClientId() })
 
+let instance: Service;
+
 export default class AdminService implements Service {
+  TypeName: string;
+
   musicService?: MusicService;
   Authorization: Rx.Observable<boolean> = authorize.pipe(
     Rxo.startWith(undefined),
@@ -31,6 +35,12 @@ export default class AdminService implements Service {
   );
 
   constructor() {
+    this.TypeName = 'AdminService';
+
+    if (!!instance)
+      return;
+    instance = this;
+
     addSongIntent.pipe(
       ajaxPostJson('reactAdmin/addSong', adminHeaders()),
       Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))

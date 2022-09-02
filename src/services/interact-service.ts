@@ -19,7 +19,11 @@ Things I still need to figure out:
 
 export const shouldShowFollowPopupKey = 'shouldShowFollowPopup'
 
+let instance: Service;
+
 export default class InteractService implements Service {
+  TypeName: string;
+
   ShowModal: Rx.Observable<ModalType> = showModal;
   ContactResponse: Rx.Observable<boolean> = sendContact.pipe(
     ajaxPostJson('contact/send'),
@@ -28,6 +32,12 @@ export default class InteractService implements Service {
   )
 
   constructor() {
+    this.TypeName = 'InteractService';
+
+    if (!!instance)
+      return;
+    instance = this;
+
     var location = window.location.href;
     var split = location.split('/');
     var currentPage = split[3];

@@ -8,7 +8,19 @@ export const ErrorsIntent = new Rx.Subject<string>();
 
 export type Notification = { message: string, expireTime: Date }
 
+let instance: Service;
+
 export default class ToastService implements Service {
+  TypeName: string;
+
+  constructor() {
+    this.TypeName = 'ToastService';
+
+    if (!!instance)
+      return;
+    instance = this;
+  }
+
   Errors = ErrorsIntent.asObservable().pipe(
     Rxo.map(x => ({
       message: x,

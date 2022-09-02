@@ -5,6 +5,7 @@ import InteractService from "./interact-service";
 
 export interface Service {
   Intents: any;
+  TypeName: string;
 }
 
 export default class ServiceResolverImpl {
@@ -18,8 +19,11 @@ export default class ServiceResolverImpl {
   }
 }
 
+export type ServiceIdentifier = 'MusicService' | 'AdminService' | 'ToastService' | 'InteractService'
+
 export const useService = <T extends Service>(ctor: { new(): T }) => {
-  return Object.entries(ServiceResolver).filter(o => o[0] === ctor.name)[0][1] as unknown as T;
+  console.log(Object.entries(ServiceResolver), (new ctor()).TypeName, '3');
+  return Object.entries(ServiceResolver).filter(o => o[0] === (new ctor()).TypeName)[0][1] as unknown as T;
 };
 
 export const ServiceResolver = new ServiceResolverImpl();
