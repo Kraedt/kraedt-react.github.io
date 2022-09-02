@@ -276,7 +276,7 @@ export const Dashboard = () => {
   const authOk = useObservable(adminService.Authorization);
 
   if (authOk === undefined)
-    return null;
+    return <p>Authorizing...</p>;
 
   if (authOk === false)
     return <Navigate to={'/'} replace />;
