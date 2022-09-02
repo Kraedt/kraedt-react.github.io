@@ -4,6 +4,10 @@ import { Service } from './service-resolver';
 import { ajaxPost, ajaxPostJson } from '../rxjs-functions';
 import { Album, Song } from '../types/types';
 import MusicService from './music-service';
+import { getClientId } from '../functions';
+
+const adminAuthKeyKey = 'adminAuthKey';
+const authorize = new Rx.Subject();
 
 const addSongIntent = new Rx.Subject<Song>();
 const editSongIntent = new Rx.Subject<Song>();
@@ -15,41 +19,49 @@ const deleteAlbumIntent = new Rx.Subject<number>();
 
 const editSpotlightIntent = new Rx.Subject<string>();
 
+const adminHeaders = () => ({ clientId: getClientId() })
+
 export default class AdminService implements Service {
   musicService?: MusicService;
+  Authorization: Rx.Observable<boolean> = authorize.pipe(
+    Rxo.startWith(undefined),
+    Rxo.map(() => ({ userKey: localStorage.getItem(adminAuthKeyKey) })),
+    ajaxPost('reactAdmin/authorize', adminHeaders()),
+    Rxo.map((r: any) => (r?.response?.authOk ?? false) === true),
+  );
 
   constructor() {
     addSongIntent.pipe(
-      ajaxPostJson('reactAdmin/addSong'),
+      ajaxPostJson('reactAdmin/addSong', adminHeaders()),
       Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
     ).subscribe();
     editSongIntent.pipe(
-      ajaxPostJson('reactAdmin/editSong'),
+      ajaxPostJson('reactAdmin/editSong', adminHeaders()),
       Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
     ).subscribe();
     deleteSongIntent.pipe(
       Rxo.map(_ => ({ songId: _ })),
-      ajaxPost('reactAdmin/deleteSong'),
+      ajaxPost('reactAdmin/deleteSong', adminHeaders()),
       Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
     ).subscribe();
 
     addAlbumIntent.pipe(
-      ajaxPostJson('reactAdmin/addAlbum'),
+      ajaxPostJson('reactAdmin/addAlbum', adminHeaders()),
       Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
     ).subscribe();
     editAlbumIntent.pipe(
-      ajaxPostJson('reactAdmin/editAlbum'),
+      ajaxPostJson('reactAdmin/editAlbum', adminHeaders()),
       Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
     ).subscribe();
     deleteAlbumIntent.pipe(
       Rxo.map(_ => ({ albumId: _ })),
-      ajaxPost('reactAdmin/deleteAlbum'),
+      ajaxPost('reactAdmin/deleteAlbum', adminHeaders()),
       Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
     ).subscribe();
 
     editSpotlightIntent.pipe(
       Rxo.map(_ => ({ spotlight: _ })),
-      ajaxPost('reactAdmin/editSpotlight'),
+      ajaxPost('reactAdmin/editSpotlight', adminHeaders()),
       Rxo.tap(() => this.musicService?.Intents.ReloadSpotlight.next({}))
     ).subscribe();
   }

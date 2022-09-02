@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Album, getLicenseToolTip, Song, Spotlight } from '../../types/types';
 import AdminService from '../../services/admin-service';
 import { ToastPanel } from '../../layout/ToastPanel';
+import { Navigate } from 'react-router-dom';
 
 interface ControlProps<T> {
   label: string;
@@ -271,6 +272,14 @@ export const Dashboard = () => {
   const albums = useObservable(musicService.Albums) || [];
   const spotlight = useObservable(musicService.Spotlight);
   const [viewMode, setViewMode] = useState<ViewMode>('songs');
+
+  const authOk = useObservable(adminService.Authorization);
+
+  if (authOk === undefined)
+    return null;
+
+  if (authOk === false)
+    return <Navigate to={'/'} replace />;
 
   const renderView = (viewMode: ViewMode) => {
     switch (viewMode) {

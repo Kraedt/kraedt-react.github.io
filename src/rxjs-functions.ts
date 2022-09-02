@@ -47,21 +47,21 @@ export const mapCaptchaFailure = (onCaptchaFailure: () => void) => <T>(obs: Rx.O
   }),
 )
 
-export const ajaxGet = <T>(uri: string) => (obs: Rx.Observable<T>) => obs.pipe(
-  Rxo.mergeMap(_ => ajax<T>({ method: "GET", url: apiUri(uri, _), crossDomain: true })),
+export const ajaxGet = <T>(uri: string, headers?: any) => (obs: Rx.Observable<T>) => obs.pipe(
+  Rxo.mergeMap(_ => ajax<T>({ method: "GET", url: apiUri(uri, _), crossDomain: true, headers: headers })),
   catchAndToastErrorResponse(),
   Rxo.pluck('response'),
   catchAndLogAjaxError(),
 )
 
-export const ajaxPost = (uri: string) => <T>(obs: Rx.Observable<T>) => obs.pipe(
-  Rxo.mergeMap(_ => ajax<T>({ method: "POST", url: apiUri(uri, _), crossDomain: true })),
+export const ajaxPost = (uri: string, headers?: any) => <T>(obs: Rx.Observable<T>) => obs.pipe(
+  Rxo.mergeMap(_ => ajax<T>({ method: "POST", url: apiUri(uri, _), crossDomain: true, headers: headers })),
   catchAndLogAjaxError(),
   catchAndToastErrorResponse()
 )
 
-export const ajaxPostJson = (uri: string) => <T>(obs: Rx.Observable<T>) => obs.pipe(
-  Rxo.mergeMap(_ => ajax<T>({ method: "POST", url: apiUri(uri), body: _, headers: { "content-type": "application/json" }, crossDomain: true })),
+export const ajaxPostJson = (uri: string, headers?: any) => <T>(obs: Rx.Observable<T>) => obs.pipe(
+  Rxo.mergeMap(_ => ajax<T>({ method: "POST", url: apiUri(uri), body: _, headers: { ...headers, "content-type": "application/json" }, crossDomain: true })),
   catchAndLogAjaxError(),
   catchAndToastErrorResponse()
 )
