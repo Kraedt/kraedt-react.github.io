@@ -50,8 +50,8 @@ export const mapCaptchaFailure = (onCaptchaFailure: () => void) => <T>(obs: Rx.O
 export const ajaxGet = <T>(uri: string, headers?: any) => (obs: Rx.Observable<T>) => obs.pipe(
   Rxo.mergeMap(_ => ajax<T>({ method: "GET", url: apiUri(uri, _), crossDomain: true, headers: headers })),
   catchAndToastErrorResponse(),
-  Rxo.pluck('response'),
-  catchAndLogAjaxError(),
+  Rxo.map(_ => _.response),
+  catchAndLogAjaxError()
 )
 
 export const ajaxPost = (uri: string, headers?: any) => <T>(obs: Rx.Observable<T>) => obs.pipe(

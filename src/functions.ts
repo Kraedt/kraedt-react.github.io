@@ -1,7 +1,8 @@
 import * as math from 'mathjs';
 import * as datefns from 'date-fns';
 
-const baseApiUri = 'https://localhost:5001/';
+const baseApiUri = 'https://54.167.152.119/';
+//const baseApiUri = 'https://localhost:5001/';
 
 export const intlNumberFormat = (value: number) => new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(value);
 export const intlAmountFormat = (value: number) => {

@@ -1,0 +1,7 @@
+* can't npm run build and publish
+
+ Failed to compile.  [eslint] Plugin "react" was conflicted between "package.json » eslint-config-react-app » B:\development\kraedt-react.github.io\node_modules\eslint-config-react-app\base.js" and "BaseConfig » B:\Development\kraedt-react.github.io\node_modules\eslint-config-react-app\base.js".
+
+* need to figure out cors issues (maybe not an issue if i can get the damn thing to publish)
+
+* need to set up ftp server so i can start uploading mp3 files and stuff

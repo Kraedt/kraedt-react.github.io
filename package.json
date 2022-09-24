@@ -2,7 +2,7 @@
   "name": "src",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kraedt.com/kraedt-react.github.io/",
+  "homepage": "https://kraedt.com/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
