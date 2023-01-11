@@ -1,10 +1,15 @@
 import * as Rx from 'rxjs';
 import * as Rxo from 'rxjs/operators';
 import { Service } from './service-resolver';
-import { ajaxGet } from '../rxjs-functions';
 import { Album, ArtistData, Song, Spotlight } from '../types/types';
 
-export const kraedtData: ArtistData = {
+const blankData: ArtistData = {
+  spotlight: { songIds: "[]" },
+  songs: [],
+  albums: []
+}
+
+const kraedtData: ArtistData = {
   spotlight: { songIds: "[52,51]" },
   songs: [
     {
@@ -884,6 +889,7 @@ let instance: Service;
 
 export default class MusicService implements Service {
   TypeName: string;
+  Data = blankData;
 
   constructor() {
     this.TypeName = 'MusicService';
@@ -891,6 +897,8 @@ export default class MusicService implements Service {
     if (!!instance) // todo: maybe find a workaround for this bs in the future?
       return;
     instance = this;
+    const t = kraedtData;
+    console.log(typeof t); // to shut it up for now
   }
 
   async FetchData(jsonFileUri: string) {
@@ -927,19 +935,19 @@ export default class MusicService implements Service {
   }
 
   Songs: Rx.Observable<Song[]> = Rx.EMPTY.pipe(
-    Rxo.startWith(kraedtData.songs),
+    Rxo.startWith(this.Data.songs),
     //Rx.mergeWith(reloadSongs),
     //ajaxGet('meta/songs'),
   )
 
   Albums: Rx.Observable<Album[]> = Rx.EMPTY.pipe(
-    Rxo.startWith(undefined),
+    Rxo.startWith(this.Data.albums),
     //Rx.mergeWith(reloadAlbums),
-    ajaxGet('meta/albums'),
+    //ajaxGet('meta/albums'),
   )
 
   Spotlight: Rx.Observable<Spotlight> = Rx.EMPTY.pipe(
-    Rxo.startWith(kraedtData.spotlight),
+    Rxo.startWith(this.Data.spotlight),
     //Rx.mergeWith(reloadSpotlight),
     //ajaxGet('meta/spotlight'),
   )
