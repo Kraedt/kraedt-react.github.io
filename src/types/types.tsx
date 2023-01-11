@@ -32,6 +32,12 @@ export interface Album {
   spotifyUrl?: string;
 }
 
+export interface ArtistData {
+  songs: Song[],
+  albums: Album[]
+  spotlight: Spotlight
+}
+
 export interface Spotlight {
   songIds: string;
 }

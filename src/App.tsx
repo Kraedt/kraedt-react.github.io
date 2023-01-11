@@ -10,9 +10,8 @@ import { Page404 } from './pages/kraedt/Page404';
 import { Home as SbbHome } from './pages/sonicbreakbeat/HomePage';
 import { Page404 as SbbPage404 } from './pages/sonicbreakbeat/Page404';
 import { OldSongRedirect } from './pages/kraedt/OldSongRedirect';
-import { Dashboard } from './pages/admin/Dashboard';
+//import { Dashboard } from './pages/admin/Dashboard';
 import { useService } from './services/service-resolver';
-import MusicService from './services/music-service';
 import { useObservable } from './rxjs-functions';
 import { Page } from './pages/Page';
 import { AlbumsPage } from './pages/kraedt/AlbumsPage';
@@ -24,18 +23,21 @@ import InteractService from './services/interact-service';
 import { CaptchaPopup } from './components/CaptchaPopup';
 import { ToastPanel } from './layout/ToastPanel';
 import { FollowPopup } from './pages/kraedt/FollowPopup';
+import MusicService from './services/music-service';
 
 type PageProps = { page: ReactElement }
 
-const Kraedt = ({ page }: PageProps) => (
-  <>
-    <Header />
-    <main className="body-content">
-      {page}
-    </main>
-    <Footer />
-  </>
-)
+const Kraedt = ({ page }: PageProps) => {
+  return (
+    <>
+      <Header />
+      <main className="body-content">
+        {page}
+      </main>
+      <Footer />
+    </>
+  )
+}
 
 const SonicBreakbeat = ({ page }: PageProps) => (
   <>
@@ -47,11 +49,11 @@ const SonicBreakbeat = ({ page }: PageProps) => (
   </>
 )
 
-const Admin = ({ page }: PageProps) => (
-  <>
-    {page}
-  </>
-)
+//const Admin = ({ page }: PageProps) => (
+//  <>
+//    {page}
+//  </>
+//)
 
 const MusicError = () => (
   <Page title="Kraedt - Error :(">
@@ -62,6 +64,9 @@ const MusicError = () => (
 const App = () => {
   const musicService = useService(MusicService);
   const interactService = useService(InteractService);
+
+  //const [data, setData] = useState<string>();
+  //musicService.FetchData("");
 
   const songs = useObservable(musicService.Songs);
   const albums = useObservable(musicService.Albums);
@@ -101,9 +106,9 @@ const App = () => {
             <Route path="/sonicbreakbeat/music/*" element={<SonicBreakbeat page={<SbbPage404 />} />} />
             <Route path="/sonicbreakbeat/*" element={<Navigate to='/sonicbreakbeat/' />} />
           </Route>
-          <Route>
+          {/*<Route>
             <Route path="/admin" element={<Admin page={<Dashboard />} />} />
-          </Route>
+          </Route>*/}
           <Route path="*" element={<Navigate to='/' />} />
         </Routes>
       </BrowserRouter >
