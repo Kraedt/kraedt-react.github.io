@@ -1,7 +1,13 @@
-* can't npm run build and publish
+~~* need to figure out cors issues (maybe not an issue if i can get the damn thing to publish)~~
+~~* need to set up ftp server so i can start uploading mp3 files and stuff~~
 
- Failed to compile.  [eslint] Plugin "react" was conflicted between "package.json » eslint-config-react-app » B:\development\kraedt-react.github.io\node_modules\eslint-config-react-app\base.js" and "BaseConfig » B:\Development\kraedt-react.github.io\node_modules\eslint-config-react-app\base.js".
+current todos:
+* delete everything twitter-related
+* finish updating hard-coded data (songs, albums, spotlight)
+* upload all song files and set download urls (can my site do a direct download without opening a new tab?)
+* ensure everything is working, remove welcome message, then I can deploy finally
 
-* need to figure out cors issues (maybe not an issue if i can get the damn thing to publish)
-
-* need to set up ftp server so i can start uploading mp3 files and stuff
+later todos (improvements):
+* move hard-coded data to json file on drive, fetch data
+* maybe make some style improvements / css refactoring
+* continue implementing alternate website roots (for sbb, etc.)
