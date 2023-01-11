@@ -5,7 +5,7 @@ import { useObservable } from "../../rxjs-functions";
 import InteractService from "../../services/interact-service";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, getLicense, getMusicItemImage, getMusicPageName, getSongIdentifier, ItunesLink, YoutubeLinkImage } from "../../types/types"
+import { AmazonLink, BeatportLink, getLicense, getMusicItemImage, getMusicPageName, ItunesLink, YoutubeLinkImage } from "../../types/types"
 import { Page } from "../Page";
 import { Page404 } from "./Page404";
 
@@ -15,7 +15,7 @@ export const SongPage = () => {
   const interactService = useService(InteractService);
   const songs = useObservable(musicService.Songs);
   const allAlbums = useObservable(musicService.Albums);
-  const song = songs?.find(s => getSongIdentifier(s) === songPageName)!
+  const song = songs?.find(s => getMusicPageName(s) === songPageName)!
   const [ytEnabled, setYtEnabled] = useState(false);
 
   if (!songs)

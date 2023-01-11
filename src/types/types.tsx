@@ -48,8 +48,7 @@ export interface ContactMessage {
   message: string;
 }
 
-export const getSongIdentifier = (song?: Song) => song?.title?.toLowerCase();
-export const getMusicPageName = (item?: Song | Album) => item?.title.toLowerCase().replaceAll(' ', '-');
+export const getMusicPageName = (item?: Song | Album) => item?.title.toLowerCase().replaceAll(' ', '-').replaceAll('(', '').replaceAll(')', '');
 
 const licenses = [
   {
