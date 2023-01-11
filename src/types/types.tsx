@@ -136,7 +136,10 @@ export const YoutubeLinkImage = linkImages["youtube.png"];
 export const externalLink = (title: string, url?: string, img?: string) => {
   return url ? <a href={`${url}`} title={`${title}`} target={"_blank"} rel='noreferrer' ><img src={linkImages[img ?? '']} alt='img' /></a> : '';
 }
-export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? NoImage);
+
+const convertDriveUrlToId = (rawUrl: string) => rawUrl.substring(rawUrl.search("id="), rawUrl.search("&")).slice(3);
+export const getDriveImage = (url: string) => `https://drive.google.com/uc?export=view&id=${url.startsWith("http") ? convertDriveUrlToId(url) : url}`
+export const getMusicItemImage = (item: any) => isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? (getDriveImage(item.imageUrl) ?? NoImage));
 
 export const SpotifyLink = (url?: string) => externalLink('Spotify', url, 'spotify.png')
 export const ItunesLink = (url?: string) => externalLink('iTunes', url, 'itunes.png')
