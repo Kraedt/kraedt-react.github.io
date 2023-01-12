@@ -2,13 +2,6 @@ import * as Rx from 'rxjs';
 import * as Rxo from 'rxjs/operators';
 import { Service } from './service-resolver';
 import { Album, ArtistData, Song, Spotlight } from '../types/types';
-import { kraedtData } from '../data';
-
-const blankData: ArtistData = {
-  spotlight: { songIds: "[]" },
-  songs: [],
-  albums: []
-}
 
 const reloadSongs = new Rx.Subject();
 const reloadAlbums = new Rx.Subject();
@@ -18,7 +11,7 @@ let instance: Service;
 
 export default class MusicService implements Service {
   TypeName: string;
-  Data = kraedtData;
+  Data: ArtistData = { spotlight: { songIds: '' }, songs: [], albums: [] };
 
   constructor() {
     this.TypeName = 'MusicService';
@@ -26,41 +19,42 @@ export default class MusicService implements Service {
     if (!!instance) // todo: maybe find a workaround for this bs in the future?
       return;
     instance = this;
-    const t = kraedtData;
-    console.log(typeof t); // to shut it up for now
+
+    const uri = "https://us-central1-kraedtwebsite.cloudfunctions.net/fetchdata?datakey=kraedt";
+    this.FetchData(uri);
   }
 
-  async FetchData(jsonFileUri: string) {
-    jsonFileUri = 'https://www.googleapis.com/drive/v3/files/1UgSv7bkPNAbWP5yokSTd7FHlTyPivorL?alt=media';
-
+  async FetchData(uri: string) {
     var setHeaders = new Headers();
-    //setHeaders.append('Authorization', 'Bearer ' + authToken.access_token);
-    setHeaders.append('Content-Type', 'json');
+    setHeaders.append('Content-Type', 'application/json');
 
     var setOptions = {
       method: 'GET',
       headers: setHeaders,
-      crossDomain: true
     };
-    return await fetch(jsonFileUri, setOptions)
+    const result = await fetch(uri, setOptions)
       .then(response => {
         if (response.ok) {
           var reader = response!.body!.getReader();
           var decoder = new TextDecoder();
-          reader.read().then(function (result) {
+          return reader.read().then(function (result) {
             var data = {}
             data = decoder.decode(result.value, { stream: !result.done });
-            console.log(data);
-            return data;
+            return data as ArtistData;
           });
         }
         else {
           console.log(response);
           console.log("Response wast not ok");
+          return null;
         }
       }).catch(error => {
         console.log("There is an error " + error.message);
+        return null;
       });
+
+    if (result !== null)
+      this.Data = result;
   }
 
   Songs: Rx.Observable<Song[]> = Rx.EMPTY.pipe(
