@@ -43,36 +43,36 @@ export default class AdminService implements Service {
 
     addSongIntent.pipe(
       ajaxPostJson('reactAdmin/addSong', adminHeaders()),
-      Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
+      //Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
     ).subscribe();
     editSongIntent.pipe(
       ajaxPostJson('reactAdmin/editSong', adminHeaders()),
-      Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
+      //Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
     ).subscribe();
     deleteSongIntent.pipe(
       Rxo.map(_ => ({ songId: _ })),
       ajaxPost('reactAdmin/deleteSong', adminHeaders()),
-      Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
+      //Rxo.tap(() => this.musicService?.Intents.ReloadSongs.next({}))
     ).subscribe();
 
     addAlbumIntent.pipe(
       ajaxPostJson('reactAdmin/addAlbum', adminHeaders()),
-      Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
+      //Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
     ).subscribe();
     editAlbumIntent.pipe(
       ajaxPostJson('reactAdmin/editAlbum', adminHeaders()),
-      Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
+      //Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
     ).subscribe();
     deleteAlbumIntent.pipe(
       Rxo.map(_ => ({ albumId: _ })),
       ajaxPost('reactAdmin/deleteAlbum', adminHeaders()),
-      Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
+      //Rxo.tap(() => this.musicService?.Intents.ReloadAlbums.next({}))
     ).subscribe();
 
     editSpotlightIntent.pipe(
       Rxo.map(_ => ({ spotlight: _ })),
       ajaxPost('reactAdmin/editSpotlight', adminHeaders()),
-      Rxo.tap(() => this.musicService?.Intents.ReloadSpotlight.next({}))
+      //Rxo.tap(() => this.musicService?.Intents.ReloadSpotlight.next({}))
     ).subscribe();
   }
 

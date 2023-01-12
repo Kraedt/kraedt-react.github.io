@@ -3,15 +3,12 @@ import * as Rxo from 'rxjs/operators';
 import { Service } from './service-resolver';
 import { Album, ArtistData, Song, Spotlight } from '../types/types';
 
-const reloadSongs = new Rx.Subject();
-const reloadAlbums = new Rx.Subject();
-const reloadSpotlight = new Rx.Subject();
-
 let instance: Service;
+
+const dataIntent = new Rx.Subject<ArtistData>();
 
 export default class MusicService implements Service {
   TypeName: string;
-  Data: ArtistData = { spotlight: { songIds: '' }, songs: [], albums: [] };
 
   constructor() {
     this.TypeName = 'MusicService';
@@ -33,51 +30,31 @@ export default class MusicService implements Service {
       headers: setHeaders,
     };
     const result = await fetch(uri, setOptions)
-      .then(response => {
-        if (response.ok) {
-          var reader = response!.body!.getReader();
-          var decoder = new TextDecoder();
-          return reader.read().then(function (result) {
-            var data = {}
-            data = decoder.decode(result.value, { stream: !result.done });
-            return data as ArtistData;
-          });
-        }
-        else {
-          console.log(response);
-          console.log("Response wast not ok");
-          return null;
-        }
-      }).catch(error => {
+      .then(response => response.json())
+      .catch(error => {
         console.log("There is an error " + error.message);
         return null;
       });
 
     if (result !== null)
-      this.Data = result;
+      dataIntent.next(result);
   }
 
-  Songs: Rx.Observable<Song[]> = Rx.EMPTY.pipe(
-    Rxo.startWith(this.Data.songs),
-    //Rx.mergeWith(reloadSongs),
-    //ajaxGet('meta/songs'),
+  Songs: Rx.Observable<Song[]> = dataIntent.pipe(
+    Rxo.map(x => x.songs),
+    Rxo.shareReplay()
   )
 
-  Albums: Rx.Observable<Album[]> = Rx.EMPTY.pipe(
-    Rxo.startWith(this.Data.albums),
-    //Rx.mergeWith(reloadAlbums),
-    //ajaxGet('meta/albums'),
+  Albums: Rx.Observable<Album[]> = dataIntent.pipe(
+    Rx.map(x => x.albums),
+    Rxo.shareReplay()
   )
 
-  Spotlight: Rx.Observable<Spotlight> = Rx.EMPTY.pipe(
-    Rxo.startWith(this.Data.spotlight),
-    //Rx.mergeWith(reloadSpotlight),
-    //ajaxGet('meta/spotlight'),
+  Spotlight: Rx.Observable<Spotlight> = dataIntent.pipe(
+    Rx.map(x => x.spotlight),
+    Rxo.shareReplay()
   )
 
   Intents = {
-    ReloadSongs: reloadSongs,
-    ReloadAlbums: reloadAlbums,
-    ReloadSpotlight: reloadSpotlight
   }
 }
