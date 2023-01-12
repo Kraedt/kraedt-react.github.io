@@ -32,14 +32,14 @@ export const FollowPopup = () => {
                 <a className={styles.followBtn} href="http://soundcloud.com/kraedt" target="_blank" rel="noreferrer"><img alt='soundcloud' src={soundcloudFollowImg} /></a>
               </td>
             </tr>
-            <tr>
+            {/*<tr>
               <td><h3>Twitter:</h3></td>
               <td>
                 <a href="https://twitter.com/kraedt?ref_src=twsrc%5Etfw"
                   className="twitter-follow-button"
                   data-show-count="true">Follow @kraedt</a>
               </td>
-            </tr>
+  </tr>*/}
           </tbody>
         </table>
         <br />

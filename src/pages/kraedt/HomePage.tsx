@@ -16,8 +16,6 @@ export const HomePage = () => {
 
   return (
     <Page title="Kraedt - Home">
-      <h2 className="text-center">I'm back! Miss me?</h2>
-      <p className="text-center">I've been working on rewriting this website from scratch, making it more fluid and also less complicated. Songs and downloads may be missing, so in the meantime, please listen on Spotify or YouTube while I'm working on things!</p>
       <div className={styles.bioContainer}>
         <div className={styles.bioText}>
           <p>
