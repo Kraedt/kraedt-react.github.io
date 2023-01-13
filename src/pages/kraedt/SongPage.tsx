@@ -2,17 +2,15 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
-import InteractService from "../../services/interact-service";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, getLicense, getMusicItemImage, getMusicPageName, ItunesLink, YoutubeLinkImage } from "../../types/types"
+import { AmazonLink, BeatportLink, getDriveDirectDownload, getLicense, getMusicItemImage, getMusicPageName, ItunesLink, SpotifyLink, YoutubeLinkImage } from "../../types/types"
 import { Page } from "../Page";
 import { Page404 } from "./Page404";
 
 export const SongPage = () => {
   const { songPageName } = useParams();
   const musicService = useService(MusicService);
-  const interactService = useService(InteractService);
   const songs = useObservable(musicService.Songs);
   const allAlbums = useObservable(musicService.Albums);
   const song = songs?.find(s => getMusicPageName(s) === songPageName)!
@@ -24,7 +22,7 @@ export const SongPage = () => {
   if (!isNullOrWhitespace(songPageName) && song === undefined)
     return <Page404 />;
 
-  const matchingAlbum = allAlbums?.find(a => JSON.parse(a.songs).includes(song.id));
+  const matchingAlbum = allAlbums?.find(a => JSON.parse(a.songIds).includes(song.id));
   const license = getLicense(song.licenseId);
 
   return (
@@ -34,13 +32,14 @@ export const SongPage = () => {
         <tbody>
           <tr>
             <td>
-              <img src={getMusicItemImage(song)} alt={song.title} />
+              <img src={getMusicItemImage(song)} alt={song.title} width={300} height={300} />
             </td>
           </tr>
           <tr>
             <td>
               <h2>{song.title}</h2>
               <h3>{song.artist}</h3>
+              <h3>{song.year}</h3>
             </td>
           </tr>
           <tr>
@@ -52,6 +51,7 @@ export const SongPage = () => {
               {(song.spotifyUrl || song.youtubeId) && (
                 <>
                   <h3 className="darken-text">Stream:</h3>
+                  {SpotifyLink(song.spotifyUrl)}
                   <button className="icon-button" onClick={() => { setYtEnabled(!ytEnabled) }}><img src={YoutubeLinkImage} alt='youtube' /></button>
                 </>
               )}
@@ -69,10 +69,10 @@ export const SongPage = () => {
               <br />
             </td>
           </tr>
-          {song.downloadable && (
+          {song.downloadable && song.downloadUrl && (
             <tr>
               <td>
-                <button className="btn btn-lg btn-warning" onClick={() => interactService.Intents.Download.next(song.id)}>DOWNLOAD</button>
+                <a className="btn btn-lg btn-download" href={getDriveDirectDownload(song.downloadUrl)}>DOWNLOAD</a>
                 <br />
               </td>
             </tr>

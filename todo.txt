@@ -1,12 +1,6 @@
-~~* need to figure out cors issues (maybe not an issue if i can get the damn thing to publish)~~
-~~* need to set up ftp server so i can start uploading mp3 files and stuff~~
-
 current todos:
-* finish updating hard-coded data (songs, albums, spotlight)
-* upload all song files and set download urls (can my site do a direct download without opening a new tab?)
-* ensure everything is working, remove welcome message, then I can deploy finally
+* ensure old links work (Home/Song/1)
 
 later todos (improvements):
-* move hard-coded data to json file on drive, fetch data
 * maybe make some style improvements / css refactoring
 * continue implementing alternate website roots (for sbb, etc.)

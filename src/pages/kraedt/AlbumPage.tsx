@@ -1,17 +1,15 @@
 import { Link, useParams } from "react-router-dom";
 import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
-import InteractService from "../../services/interact-service";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink, SpotifyLink } from "../../types/types";
+import { AmazonLink, BeatportLink, getDriveDirectDownload, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink, SpotifyLink } from "../../types/types";
 import { Page } from "../Page"
 import { Page404 } from "./Page404";
 
 export const AlbumPage = () => {
   const { albumPageName } = useParams();
   const musicService = useService(MusicService);
-  const interactService = useService(InteractService);
   const albums = useObservable(musicService.Albums);
   const allSongs = useObservable(musicService.Songs);
 
@@ -19,7 +17,7 @@ export const AlbumPage = () => {
     return null;
 
   const album = albums?.find(a => getMusicPageName(a) === albumPageName)!
-  const albumSongIds = JSON.parse(album.songs) as number[];
+  const albumSongIds = JSON.parse(album.songIds) as number[];
 
   if (!isNullOrWhitespace(albumPageName) && album === undefined)
     return <Page404 />;
@@ -33,11 +31,12 @@ export const AlbumPage = () => {
         <tbody>
           <tr><td><h3>Album / EP</h3></td></tr>
           <tr>
-            <td><img src={getMusicItemImage(album)} alt='album' /></td>
+            <td><img src={getMusicItemImage(album)} alt='album' width={300} height={300} /></td>
           </tr>
           <tr>
             <td>
               <h2>{album.title}</h2>
+              <h3>{album.year}</h3>
             </td>
           </tr>
           <tr>
@@ -51,11 +50,11 @@ export const AlbumPage = () => {
             </td>
           </tr>
           {
-            songs?.map(s => (
+            songs?.map(s => s.downloadable && !!s.downloadUrl && (
               <tr key={s.id}>
                 <td>
                   <h3><Link to={`/music/song/${getMusicPageName(s)}`} className="inline-a">{s.title}</Link>&nbsp;{getLicenseIcon(s.licenseId)}</h3>
-                  <button className="btn btn-lg btn-warning" onClick={() => interactService.Intents.Download.next(s.id)}>DOWNLOAD</button>
+                  <a className="btn btn-lg btn-download" href={getDriveDirectDownload(s.downloadUrl)}>DOWNLOAD</a>
                 </td>
               </tr>
             ))

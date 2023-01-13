@@ -2,15 +2,13 @@ import { Link, } from "react-router-dom";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, DirectDownloadImage, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink } from "../../types/types";
+import { AmazonLink, BeatportLink, DirectDownloadLink, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink, SpotifyLink } from "../../types/types";
 import { Page } from "../Page";
 import ld from 'lodash';
 import { GoToTopButton } from "../../layout/GoToTopButton";
-import InteractService from "../../services/interact-service";
 
 export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
   const musicService = useService(MusicService);
-  const interactService = useService(InteractService);
 
   const allSongs = ld.sortBy(useObservable(musicService.Songs) || [], s => s.id);
   ld.reverse(allSongs);
@@ -19,7 +17,6 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
     ? allSongs?.filter(x => getLicense(x.licenseId).level === 1)
     : allSongs;
 
-  const DirectDownloadLink = (songId: number, downloadable?: boolean) => downloadable && <button className="direct-dl-btn" onClick={() => interactService.Intents.Download.next(songId)}><img src={DirectDownloadImage} alt="direct-download" /></button>
 
   return (
     <Page title="Kraedt - Music">
@@ -38,7 +35,7 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
             const songPageName = getMusicPageName(song);
             const licenseIcon = getLicenseIcon(song.licenseId);
             return (
-              <tr key={song.id}>
+              <tr key={`song-${song.id}`}>
                 <td>
                   <Link to={`song/${songPageName}`}><img className="image-prop" src={getMusicItemImage(song)} alt={song.title} /></Link>
 
@@ -51,10 +48,12 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
                   <Link to={`song/${songPageName}`}>{song.title}</Link>&nbsp;{licenseIcon}
                 </td>
                 <td className="song-info">{song.artist}</td>
+                <td className="song-info">{song.year}</td>
                 <td className="song-info">{song.genre}</td>
                 <td>
                   <div className="audio-links">
-                    {DirectDownloadLink(song.id, song.downloadable)}
+                    {DirectDownloadLink(song.downloadUrl, song.downloadable)}
+                    {SpotifyLink(song.spotifyUrl)}
                     {ItunesLink(song.itunesUrl)}
                     {BeatportLink(song.beatportUrl)}
                     {AmazonLink(song.amazonUrl)}

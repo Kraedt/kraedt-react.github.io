@@ -152,7 +152,7 @@ const SongsList = ({ songs }: { songs: Song[] }) => {
 const defaultAlbum: Album = {
   id: 0,
   title: '',
-  songs: ''
+  songIds: ''
 }
 
 const AddEditAlbum = ({ editAlbum, onCancel, onSubmit }: { onSubmit: (album: Album) => void, editAlbum?: Album, onCancel?: () => void }) => {
@@ -160,7 +160,7 @@ const AddEditAlbum = ({ editAlbum, onCancel, onSubmit }: { onSubmit: (album: Alb
   const edit = editAlbum !== undefined;
   const {
     title,
-    songs,
+    songIds,
     imageUrl,
     buyable,
     downloadable,
@@ -179,7 +179,7 @@ const AddEditAlbum = ({ editAlbum, onCancel, onSubmit }: { onSubmit: (album: Alb
       <TextBasedControl label='Title' value={title} onChange={(v) => { setState({ ...state, title: v }) }} />
       <TextBasedControl label='Image Url' value={imageUrl} onChange={(v) => { setState({ ...state, imageUrl: v }) }} />
       <span title='Json array ([] syntax)'>
-        <TextBasedControl label='Song IDs' value={songs} onChange={(v) => { setState({ ...state, songs: v }) }} />
+        <TextBasedControl label='Song IDs' value={songIds} onChange={(v) => { setState({ ...state, songIds: v }) }} />
       </span>
       <CheckboxControl label='Buyable' type='checkbox' value={buyable} onChange={(v) => { setState({ ...state, buyable: v }) }} />
       <br />
@@ -226,7 +226,7 @@ const AlbumsList = ({ albums }: { albums: Album[] }) => {
             <tr key={album.id}>
               <td>{album.id}</td>
               <td>{album.title}</td>
-              <td>{album.songs}</td>
+              <td>{album.songIds}</td>
               <td>{album.downloadable && 'x'}</td>
               <td>{album.buyable && 'x'}</td>
               <td>{album.imageUrl}</td>

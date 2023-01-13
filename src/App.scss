@@ -213,13 +213,12 @@ p {
   font-family: Leon, sans-serif;
   font-variant: all-small-caps;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 30px;
+  padding: 10px;
 }
 
 .btn-download:hover {
-  background: #333;
-  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
-  border-color: #ff9a01;
+  background: #ffad31;
 }
 
 .btn-download h1 {

@@ -16,13 +16,14 @@ export interface Song {
   beatportUrl?: string;
   amazonUrl?: string;
   spotifyUrl?: string;
+  year?: number;
   licenseId: number;
 }
 
 export interface Album {
   id: number;
   title: string;
-  songs: string;
+  songIds: string;
   imageUrl?: string;
   buyable?: boolean;
   downloadable?: boolean;
@@ -30,6 +31,7 @@ export interface Album {
   beatportUrl?: string;
   amazonUrl?: string;
   spotifyUrl?: string;
+  year?: number;
 }
 
 export interface ArtistData {
@@ -48,7 +50,7 @@ export interface ContactMessage {
   message: string;
 }
 
-export const getMusicPageName = (item?: Song | Album) => item?.title.toLowerCase().replaceAll(' ', '-').replaceAll('(', '').replaceAll(')', '');
+export const getMusicPageName = (item?: Song | Album) => item?.title.toLowerCase().replaceAll(' ', '-').replaceAll('(', '').replaceAll(')', '').replaceAll("/", "");
 
 const licenses = [
   {
@@ -138,10 +140,13 @@ export const externalLink = (title: string, url?: string, img?: string) => {
 }
 
 const convertDriveUrlToId = (rawUrl: string) => rawUrl.substring(rawUrl.search("id="), rawUrl.search("&")).slice(3);
-export const getDriveImage = (url: string) => `https://drive.google.com/uc?export=view&id=${url.startsWith("http") ? convertDriveUrlToId(url) : url}`
-export const getMusicItemImage = (item: any) => item.imageUrl?.startsWith("http") ? getDriveImage(item.imageUrl) : (isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? getDriveImage(item.imageUrl)));
+export const getDriveFile = (url: string) => `https://drive.google.com/uc?export=view&id=${url.startsWith("http") ? convertDriveUrlToId(url) : url}`;
+export const getDriveDirectDownload = (url: string) => `https://drive.google.com/uc?export=download&id=${url.startsWith("http") ? convertDriveUrlToId(url) : url}`;
+export const getMusicItemImage = (item: any) => item.imageUrl?.startsWith("http") ? getDriveFile(item.imageUrl) : (isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? getDriveFile(item.imageUrl)));
 
 export const SpotifyLink = (url?: string) => externalLink('Spotify', url, 'spotify.png')
 export const ItunesLink = (url?: string) => externalLink('iTunes', url, 'itunes.png')
 export const BeatportLink = (url?: string) => externalLink('Beatport', url, 'beatport.png')
 export const AmazonLink = (url?: string) => externalLink('Amazon', url, 'amazon.png')
+
+export const DirectDownloadLink = (url?: string, downloadable?: boolean) => downloadable && !!url && <a className="direct-dl-btn" href={getDriveDirectDownload(url)}><img src={DirectDownloadImage} alt="direct-download" /></a>
