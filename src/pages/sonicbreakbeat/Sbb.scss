@@ -1,0 +1,41 @@
+@import "./variables.scss";
+
+.sbb {
+  background-color: hsl(235, 25%, 9%);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.body-sbb {
+  a {
+    color: $linkColor;
+    &:visited {
+      color: $linkColor;
+    }
+    &:hover,
+    &.focus {
+      color: $linkHoverColor;
+    }
+  }
+
+  @mixin icon-button {
+    background: none;
+    border: none;
+    color: $linkColor;
+    &:hover {
+      color: $linkHoverColor;
+    }
+  }
+
+  .icon-button {
+    @include icon-button();
+  }
+
+  .corner-controls {
+    button {
+      @include icon-button();
+    }
+  }
+}

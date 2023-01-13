@@ -1,13 +1,13 @@
 import { Link, useParams } from "react-router-dom";
-import { isNullOrWhitespace } from "../../functions";
-import { useObservable } from "../../rxjs-functions";
-import MusicService from "../../services/music-service";
-import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, getDriveDirectDownload, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink, SpotifyLink } from "../../types/types";
-import { Page } from "../Page"
-import { Page404 } from "./Page404";
+import { isNullOrWhitespace } from "../functions";
+import { useObservable } from "../rxjs-functions";
+import MusicService from "../services/music-service";
+import { useService } from "../services/service-resolver";
+import { Alias, AmazonLink, BeatportLink, getDriveDirectDownload, getLicenseIcon, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, SpotifyLink } from "../types/types";
+import { Page } from "../pages/Page"
+import { Page404 } from "../pages/kraedt/Page404";
 
-export const AlbumPage = () => {
+export const AlbumPage = ({ alias }: { alias: Alias }) => {
   const { albumPageName } = useParams();
   const musicService = useService(MusicService);
   const albums = useObservable(musicService.Albums);
@@ -26,7 +26,7 @@ export const AlbumPage = () => {
 
   return (
     <Page title={`Kraedt - ${album.title}`}>
-      <h2><Link to="/music">See More Music</Link></h2>
+      <h2><Link to={`${getPathPrefix(alias)}/music`}>See More Music</Link></h2>
       <table id="album-table" className="song-page">
         <tbody>
           <tr><td><h3>Album / EP</h3></td></tr>
@@ -53,7 +53,7 @@ export const AlbumPage = () => {
             songs?.map(s => s.downloadable && !!s.downloadUrl && (
               <tr key={s.id}>
                 <td>
-                  <h3><Link to={`/music/song/${getMusicPageName(s)}`} className="inline-a">{s.title}</Link>&nbsp;{getLicenseIcon(s.licenseId)}</h3>
+                  <h3><Link to={`${getPathPrefix(alias)}/music/song/${getMusicPageName(s)}`} className="inline-a">{s.title}</Link>&nbsp;{getLicenseIcon(s.licenseId)}</h3>
                   <a className="btn btn-lg btn-download" href={getDriveDirectDownload(s.downloadUrl)}>DOWNLOAD</a>
                 </td>
               </tr>

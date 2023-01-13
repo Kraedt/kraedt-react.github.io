@@ -50,6 +50,15 @@ export interface ContactMessage {
   message: string;
 }
 
+export enum Alias {
+  Kraedt,
+  Sbb
+}
+
+export const getAliasName = (a: Alias) => ["Kraedt", "Sonic Breakbeat"][a];
+export const getAliasKey = (a: Alias) => ["kraedt", "sonicbreakbeat"][a];
+export const getPathPrefix = (a: Alias) => ["", "/sonicbreakbeat"][a];
+
 export const getMusicPageName = (item?: Song | Album) => item?.title.toLowerCase().replaceAll(' ', '-').replaceAll('(', '').replaceAll(')', '').replaceAll("/", "");
 
 const licenses = [

@@ -1,52 +1,58 @@
 import './App.scss'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Header } from './pages/kraedt/Header';
+import { Header as SbbHeader } from './pages/sonicbreakbeat/Header';
 import { Footer } from './pages/kraedt/Footer';
+import { Footer as SbbFooter } from './pages/sonicbreakbeat/Footer';
 import { HomePage } from './pages/kraedt/HomePage';
-import { MusicPage } from './pages/kraedt/MusicPage';
-import { ReactElement } from 'react';
+import { MusicPage } from './components/MusicPage';
+import { ReactElement, useEffect } from 'react';
 import { SongPage } from './pages/kraedt/SongPage';
 import { Page404 } from './pages/kraedt/Page404';
-import { Home as SbbHome } from './pages/sonicbreakbeat/HomePage';
+import { HomePage as SbbHome } from './pages/sonicbreakbeat/HomePage';
 import { Page404 as SbbPage404 } from './pages/sonicbreakbeat/Page404';
 import { OldSongRedirect } from './pages/kraedt/OldSongRedirect';
 //import { Dashboard } from './pages/admin/Dashboard';
 import { useService } from './services/service-resolver';
 import { useObservable } from './rxjs-functions';
 import { Page } from './pages/Page';
-import { AlbumsPage } from './pages/kraedt/AlbumsPage';
-import { AlbumPage } from './pages/kraedt/AlbumPage';
+import { AlbumsPage } from './components/AlbumsPage';
+import { AlbumPage } from './components/AlbumPage';
 import { Club1506Interview } from './pages/kraedt/Club1506Interview';
 import { Merch } from './pages/kraedt/Merch';
 import { Contact } from './pages/kraedt/Contact';
+import { Contact as SbbContact } from './pages/sonicbreakbeat/Contact';
 import InteractService from './services/interact-service';
 import { CaptchaPopup } from './components/CaptchaPopup';
 import { ToastPanel } from './layout/ToastPanel';
 import { FollowPopup } from './pages/kraedt/FollowPopup';
 import MusicService from './services/music-service';
+import { Alias } from './types/types';
 
 type PageProps = { page: ReactElement }
 
 const Kraedt = ({ page }: PageProps) => {
   return (
-    <>
+    <div className="body-kraedt">
+      <div className="kraedt" />
       <Header />
       <main className="body-content">
         {page}
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 
 const SonicBreakbeat = ({ page }: PageProps) => (
-  <>
-    <Header />
+  <div className="body-sbb">
+    <div className="sbb" />
+    <SbbHeader />
     <main className="body-content">
       {page}
     </main>
-    <Footer />
-  </>
+    <SbbFooter />
+  </div>
 )
 
 //const Admin = ({ page }: PageProps) => (
@@ -65,8 +71,13 @@ const App = () => {
   const musicService = useService(MusicService);
   const interactService = useService(InteractService);
 
-  //const [data, setData] = useState<string>();
-  //musicService.FetchData("");
+  useEffect(() => {
+    let alias = Alias.Kraedt;
+    const n = window.location.pathname;
+    if (n.startsWith('/sonicbreakbeat'))
+      alias = Alias.Sbb;
+    musicService.Initialize(alias)
+  }, [musicService]);
 
   const songs = useObservable(musicService.Songs);
   const albums = useObservable(musicService.Albums);
@@ -91,21 +102,24 @@ const App = () => {
             <Route path="/club1506-interview" element={<Kraedt page={<Club1506Interview />} />} />
             <Route path="/merch" element={<Kraedt page={<Merch />} />} />
             <Route path="/contact" element={<Kraedt page={<Contact />} />} />
-            <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={false} />} />} />
-            <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage safeOnly={true} />} />} />
-            <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage />} />} />
+            <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Kraedt} safeOnly={false} />} />} />
+            <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Kraedt} safeOnly={true} />} />} />
+            <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage alias={Alias.Kraedt} />} />} />
             <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
-            <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage />} />} />
-            <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage />} />} />
-            <Route path="/music/albums/:albumPageName" element={<Kraedt page={<AlbumPage />} />} />
+            <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.Kraedt} />} />} />
+            <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage alias={Alias.Kraedt} />} />} />
+            <Route path="/music/albums/:albumPageName" element={<Kraedt page={<AlbumPage alias={Alias.Kraedt} />} />} />
             <Route path="/music*" element={<Kraedt page={<Page404 />} />} />
           </Route>
           <Route>
             <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />
-            {//<Route path="/sonicbreakbeat/music" element={<SbbMusic />} />
-            }
+            <Route path="/sonicbreakbeat/music" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Sbb} safeOnly={false} />} />} />
+            <Route path="/sonicbreakbeat/music-creator-friendly" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Sbb} safeOnly={true} />} />} />
             <Route path="/sonicbreakbeat/music/*" element={<SonicBreakbeat page={<SbbPage404 />} />} />
-            <Route path="/sonicbreakbeat/*" element={<Navigate to='/sonicbreakbeat/' />} />
+            <Route path="/sonicbreakbeat/music/song/:songPageName" element={<SonicBreakbeat page={<SongPage alias={Alias.Sbb} />} />} />
+            <Route path="/sonicbreakbeat/albums" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.Sbb} />} />} />
+            <Route path="/sonicbreakbeat/music/album/:albumPageName" element={<SonicBreakbeat page={<AlbumPage alias={Alias.Sbb} />} />} />
+            <Route path="/sonicbreakbeat/contact" element={<SonicBreakbeat page={<SbbContact />} />} />
           </Route>
           {/*<Route>
             <Route path="/admin" element={<Admin page={<Dashboard />} />} />

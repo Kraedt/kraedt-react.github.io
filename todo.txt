@@ -2,3 +2,6 @@ current todos:
 * (bug) youtube player doesn't show up on mobile
 * maybe make some style improvements / css refactoring
 * continue implementing alternate website roots (for sbb, etc.)
+
+other todos:
+refactor duplicate header, homepage, footer, contact, 404 (although styling might be a challenge?)

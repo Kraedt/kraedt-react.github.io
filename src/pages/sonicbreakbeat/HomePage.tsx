@@ -1,98 +1,35 @@
 import { Page } from '../Page';
 import styles from './HomePage.module.scss'
+import './Sbb.scss';
 
-export const Home = () => (
-  <Page title="Sonic Breakbeat">
-    <div className={styles.bioContainer}>
-      <div className={styles.bioText}>
-        <p>
-          Sonic breakbeat bio
-        </p>
+export const HomePage = () => {
+  //const musicService = useService(MusicService);
+  //const songs = useObservable(musicService.Songs);
+  //const spotlight = JSON.parse(useObservable(musicService.Spotlight)?.songIds || '[]') as number[];
+  //const spotlightSongs = spotlight.map(x => songs?.find(s => s.id === x)).filter(x => !!x) as Song[];
 
-        <h3 className="text-center">Track Spotlight:</h3>
-        <div id="spotlightCarousel" className="carousel slide album-carousel" data-ride="carousel">
-          {/* Indicators */}
-          <ol className="carousel-indicators">
-            {/* 
-            {% assign counter = 0 %}
-            {% assign active = " active" %}
-            {% for t1 in site.data.track-spotlight %}
-            {% assign s = t1 | split:"/" | last %}
-            {% for song in site.pages %}
-            {% if t1 contains "@album" and song.layout != "album" %}
-            {% continue %}
-            {% endif %}
-            {% assign t2 = song.url | split:"/" | last | replace:".html","" %}
-            {% if s == t2 %}
-            {% if counter > 0 %}
-            {% assign active = "" %}
-            {% endif %}
-            */}
-
-            <li data-target="#spotlightCarousel" data-slide-to="{{counter}}" className="{{active}}"></li>
-
-            {/*
-            {% assign counter = counter | plus: 1 %}
-            {% endif %}
-            {% endfor %}
-            {% endfor %}
-            */}
-          </ol>
-
-          {/* Wrapper for slides */}
-          <div className="carousel-inner">
-            {/*
-            {% assign counter = 0 %}
-            {% assign active = " active" %}
-            {% for t1 in site.data.track-spotlight %}
-            {% assign s = t1 | split:"/" | last %}
-            {% for song in site.pages %}
-            {% if t1 contains "@album" and song.layout != "album" %}
-            {% continue %}
-            {% endif %}
-            {% assign t2 = song.url | split:"/" | last | replace:".html","" %}
-            {% if s == t2 %}
-            {% if counter > 0 %}
-            {% assign active = "" %}
-            {% endif %}
-          */}
-
-            <div className="item{{active}}">
-              <a href="{{song.url}}"><img src="/assets/images/songs/{{song.image}}" alt="{{song.title}}" /></a>
-            </div>
-
-            {/*
-            {% assign counter = counter | plus: 1 %}
-            {% endif %}
-            {% endfor %}
-            {% endfor %}
-          */}
-          </div>
-
-          {/* Left and right controls */}
-          <a className="left carousel-control" href="#spotlightCarousel" data-slide="prev">
-            <span className="glyphicon glyphicon-chevron-left"></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a className="right carousel-control" href="#spotlightCarousel" data-slide="next">
-            <span className="glyphicon glyphicon-chevron-right"></span>
-            <span className="sr-only">Next</span>
-          </a>
+  return (
+    <Page title="Sonic Breakbeat - Home">
+      <div className={styles.bioContainer}>
+        <div className={styles.bioText}>
+          <p>
+            Sonic Breakbeat is an ex-brony musician from Wisconsin, USA who produces Progressive House, Drum n' Bass and other genres of Electronic Dance Music.
+            His previous works include remixes of other brony musicians, original music using vocal clips from My Little Pony: Friendship is Magic and original music that is instrumental.
+          </p>
+          <p>
+            With a revival of the alias, Sonic Breakbeat's newer works feature a mix of familiar and newer styles, combined with higher production quality and themes detached from MLP:FiM.
+          </p>
+          <p>
+            His name "Sonic Breakbeat" is portmanteau of "Sonic Rainboom", an stunt that Rainbow Dash from My Little Pony: Friendship is Magic is able to pull, and "Breakbeat", a word describing a broken drum break within songs of Jungle or Drum n' Bass genre, but more widely known as a musical genre.
+          </p>
         </div>
-      </div>
-
-      <div className={styles.verticalDivider}></div>
-
-      <div className={styles.spotifyBlurb + ' text-center'}>
-        <h3>A good chunk of my music is now on Spotify!</h3>
-        {/*% include spotify-follow.jekyll %*/}
-
-        <br />
-        <br />
-        <h3>Latest Release:</h3>
-        {//<iframe src="{{site.latest-spotify}}" width="290" height="380" frameBorder="0" allowTransparency={true} allow="encrypted-media"></iframe>
-        }
-      </div>
-    </div>
-  </Page>
-);
+        <div className={styles.verticalDivider}></div>
+        <div className={styles.bioText}>
+          <p>
+            Welcome to the new website! This acts as an archive for now, but maybe there will be new Sonic Breakbeat music in the future? 👀
+          </p>
+        </div>
+      </div >
+    </Page>
+  )
+};

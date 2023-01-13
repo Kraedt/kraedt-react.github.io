@@ -4,11 +4,15 @@ import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, getDriveDirectDownload, getLicense, getMusicItemImage, getMusicPageName, ItunesLink, SpotifyLink, YoutubeLinkImage } from "../../types/types"
+import { Alias, AmazonLink, BeatportLink, getDriveDirectDownload, getLicense, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, SpotifyLink, YoutubeLinkImage } from "../../types/types"
 import { Page } from "../Page";
 import { Page404 } from "./Page404";
 
-export const SongPage = () => {
+interface Props {
+  alias: Alias;
+}
+
+export const SongPage = ({ alias }: Props) => {
   const { songPageName } = useParams();
   const musicService = useService(MusicService);
   const songs = useObservable(musicService.Songs);
@@ -27,7 +31,7 @@ export const SongPage = () => {
 
   return (
     <Page title={`${song.artist} - ${song.title}`}>
-      <h2 className="see-more-music"><Link to="/music">See More Music</Link></h2>
+      <h2 className="see-more-music"><Link to={`${getPathPrefix(alias)}/music`}>See More Music</Link></h2>
       <table className="song-page">
         <tbody>
           <tr>
@@ -80,7 +84,7 @@ export const SongPage = () => {
           {matchingAlbum && (
             <tr>
               <td>
-                <h3 className="darken-text">Included in: <Link to={`/music/album/${getMusicPageName(matchingAlbum)}`}>{matchingAlbum.title}</Link></h3>
+                <h3 className="darken-text">Included in: <Link to={`${getPathPrefix(alias)}/music/album/${getMusicPageName(matchingAlbum)}`}>{matchingAlbum.title}</Link></h3>
               </td>
             </tr>
           )}

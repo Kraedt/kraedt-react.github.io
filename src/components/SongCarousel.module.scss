@@ -1,0 +1,13 @@
+.trackSpotlight {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  cursor: pointer;
+  * {
+    max-height: initial;
+    padding: 0;
+  }
+  a {
+    position: initial;
+  }
+}

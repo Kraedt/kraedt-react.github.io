@@ -43,9 +43,9 @@ li {
     -webkit-filter: brightness(100) grayscale(100%);
 
     &:hover {
-      $b: 100%;
+      $b: 140%;
       $s: 1;
-      $h: 0;
+      $h: 175deg;
       filter: brightness($b) grayscale(0) saturate($s) hue-rotate($h);
       -webkit-filter: brightness($b) grayscale(0) saturate($s) hue-rotate($h);
     }
@@ -107,13 +107,6 @@ li {
     white-space: pre;
     content: "  -  " attr(title);
   }
-  .banner {
-    background: none;
-    height: 18vh;
-  }
-  .logo {
-    background: #1c1c1c;
-  }
   .logo img {
     max-width: 80%;
   }
@@ -121,7 +114,7 @@ li {
 
 .banner {
   position: relative;
-  background: url("/assets/images/background.jpg") black no-repeat;
+  background: url("/assets/images/sbb-background.png") black no-repeat;
   background-size: cover;
   background-position: center center;
   width: 100%;
@@ -158,7 +151,7 @@ li {
   height: 100%;
 
   img {
-    max-height: 20vh;
+    max-height: 35vh;
     max-width: 100%;
     vertical-align: middle;
     width: auto;

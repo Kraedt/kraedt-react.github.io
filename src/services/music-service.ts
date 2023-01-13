@@ -1,7 +1,7 @@
 import * as Rx from 'rxjs';
 import * as Rxo from 'rxjs/operators';
 import { Service } from './service-resolver';
-import { Album, ArtistData, Song, Spotlight } from '../types/types';
+import { Album, Alias, ArtistData, getAliasKey, Song, Spotlight } from '../types/types';
 
 let instance: Service;
 
@@ -16,8 +16,10 @@ export default class MusicService implements Service {
     if (!!instance) // todo: maybe find a workaround for this bs in the future?
       return;
     instance = this;
+  }
 
-    const uri = "https://us-central1-kraedtwebsite.cloudfunctions.net/fetchdata?datakey=kraedt";
+  async Initialize(alias: Alias) {
+    const uri = `https://us-central1-kraedtwebsite.cloudfunctions.net/fetchdata?datakey=${getAliasKey(alias)}`;
     this.FetchData(uri);
   }
 

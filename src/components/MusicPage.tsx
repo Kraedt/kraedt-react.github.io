@@ -1,13 +1,18 @@
 import { Link, } from "react-router-dom";
-import { useObservable } from "../../rxjs-functions";
-import MusicService from "../../services/music-service";
-import { useService } from "../../services/service-resolver";
-import { AmazonLink, BeatportLink, DirectDownloadLink, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, ItunesLink, SpotifyLink } from "../../types/types";
-import { Page } from "../Page";
+import { useObservable } from "../rxjs-functions";
+import MusicService from "../services/music-service";
+import { useService } from "../services/service-resolver";
+import { Alias, AmazonLink, BeatportLink, DirectDownloadLink, getAliasName, getLicense, getLicenseIcon, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, SpotifyLink } from "../types/types";
+import { Page } from "../pages/Page";
 import ld from 'lodash';
-import { GoToTopButton } from "../../layout/GoToTopButton";
+import { GoToTopButton } from "../layout/GoToTopButton";
 
-export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
+interface Props {
+  alias: Alias;
+  safeOnly?: boolean;
+}
+
+export const MusicPage = ({ alias, safeOnly }: Props) => {
   const musicService = useService(MusicService);
 
   const allSongs = ld.sortBy(useObservable(musicService.Songs) || [], s => s.id);
@@ -17,15 +22,14 @@ export const MusicPage = ({ safeOnly }: { safeOnly?: boolean }) => {
     ? allSongs?.filter(x => getLicense(x.licenseId).level === 1)
     : allSongs;
 
-
   return (
-    <Page title="Kraedt - Music">
+    <Page title={`${getAliasName(alias)} - Music`}>
       <h2>Music</h2>
       <div className="w-100">
-        <Link to="/albums" >See all albums</Link>
+        <Link to={`${getPathPrefix(alias)}/albums`}>See all albums</Link>
         {safeOnly
-          ? <Link className="float-right fa-lg" to="/music">Show all music</Link>
-          : <Link className="float-right fa-lg" to="/music-creator-friendly">Show only Content-Creator-Friendly music</Link>}
+          ? <Link className="float-right fa-lg" to={`${getPathPrefix(alias)}/music`}>Show all music</Link>
+          : <Link className="float-right fa-lg" to={`${getPathPrefix(alias)}/music-creator-friendly`}>Show only Content-Creator-Friendly music</Link>}
         <br />
       </div>
       <GoToTopButton />
