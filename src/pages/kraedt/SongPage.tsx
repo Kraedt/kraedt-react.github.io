@@ -56,7 +56,7 @@ export const SongPage = ({ alias }: Props) => {
                 <>
                   <h3 className="darken-text">Stream:</h3>
                   {SpotifyLink(song.spotifyUrl)}
-                  <button className="icon-button" onClick={() => { setYtEnabled(!ytEnabled) }}><img src={YoutubeLinkImage} alt='youtube' /></button>
+                  {song.youtubeId && <button className="icon-button" onClick={() => { setYtEnabled(!ytEnabled) }}><img src={YoutubeLinkImage} alt='youtube' /></button>}
                 </>
               )}
             </td>
