@@ -1,8 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.2665274f.css",
-    "main.js": "/static/js/main.50de5e4b.js",
-    "static/js/787.0bfccc2a.chunk.js": "/static/js/787.0bfccc2a.chunk.js",
+    "main.css": "/static/css/main.5307e54e.css",
+    "main.js": "/static/js/main.ff20fac2.js",
+    "static/js/787.9f0f961a.chunk.js": "/static/js/787.9f0f961a.chunk.js",
+    "static/media/sbb-background.png": "/static/media/sbb-background.83634b72fab1861c65ae.png",
+    "static/media/sbb-logo.png": "/static/media/sbb-logo.9faf5501b3db0e25c2de.png",
     "static/media/background.jpg": "/static/media/background.fc314915502198801285.jpg",
     "static/media/Leon-Regular_TRIAL.ttf": "/static/media/Leon-Regular_TRIAL.fae3e79283946fec5fd7.ttf",
     "static/media/Montserrat-Regular.ttf": "/static/media/Montserrat-Regular.7c8ccfe4b8a1b8ea2327.ttf",
@@ -18,15 +20,14 @@
     "static/media/spotify_icon.png": "/static/media/spotify_icon.e81f16a88f4f3f1a90a4.png",
     "static/media/beatport_icon.png": "/static/media/beatport_icon.60f1c8c5c17d638be012.png",
     "static/media/direct.png": "/static/media/direct.ccaa17a8d384b74dd234.png",
-    "static/media/soundcloud_icon.png": "/static/media/soundcloud_icon.1b926be4cf277a9cfcbb.png",
     "static/media/youtube_icon.png": "/static/media/youtube_icon.8c31cf28d7acb41fac97.png",
     "index.html": "/index.html",
-    "main.2665274f.css.map": "/static/css/main.2665274f.css.map",
-    "main.50de5e4b.js.map": "/static/js/main.50de5e4b.js.map",
-    "787.0bfccc2a.chunk.js.map": "/static/js/787.0bfccc2a.chunk.js.map"
+    "main.5307e54e.css.map": "/static/css/main.5307e54e.css.map",
+    "main.ff20fac2.js.map": "/static/js/main.ff20fac2.js.map",
+    "787.9f0f961a.chunk.js.map": "/static/js/787.9f0f961a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2665274f.css",
-    "static/js/main.50de5e4b.js"
+    "static/css/main.5307e54e.css",
+    "static/js/main.ff20fac2.js"
   ]
 }
