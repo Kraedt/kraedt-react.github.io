@@ -97,6 +97,7 @@ const App = () => {
             <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
             <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage />} />} />
             <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage />} />} />
+            <Route path="/music/albums/:albumPageName" element={<Kraedt page={<AlbumPage />} />} />
             <Route path="/music*" element={<Kraedt page={<Page404 />} />} />
           </Route>
           <Route>

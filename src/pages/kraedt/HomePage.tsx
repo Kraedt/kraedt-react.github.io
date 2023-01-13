@@ -3,7 +3,7 @@ import Carousel from '../../components/Carousel';
 import { useObservable } from '../../rxjs-functions';
 import MusicService from '../../services/music-service';
 import { useService } from '../../services/service-resolver';
-import { getMusicItemImage } from '../../types/types';
+import { getMusicItemImage, getMusicPageName } from '../../types/types';
 import { Page } from '../Page';
 import styles from './HomePage.module.scss'
 
@@ -29,7 +29,7 @@ export const HomePage = () => {
 
           <h3 className="text-center">Track Spotlight:</h3>
           <div className={styles.trackSpotlight}>
-            <Carousel onClickItem={idx => nav(`/music/song/${songs?.find(s => s.id === spotlight[idx])?.title.toLowerCase()}`)}>
+            <Carousel onClickItem={idx => nav(`/music/song/${getMusicPageName(songs?.find(s => s.id === spotlight[idx]))}`)}>
               {spotlightSongs.map(s => (
                 <div key={s?.id}>
                   <img src={!!s ? getMusicItemImage(s) : ''} alt={s?.title} />

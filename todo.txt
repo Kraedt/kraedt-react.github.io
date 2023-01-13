@@ -1,6 +1,4 @@
 current todos:
-* ensure old links work (Home/Song/1)
-
-later todos (improvements):
+* (bug) youtube player doesn't show up on mobile
 * maybe make some style improvements / css refactoring
 * continue implementing alternate website roots (for sbb, etc.)
