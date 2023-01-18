@@ -11,7 +11,7 @@ import { SongPage } from './pages/kraedt/SongPage';
 import { Page404 } from './pages/kraedt/Page404';
 import { HomePage as SbbHome } from './pages/sonicbreakbeat/HomePage';
 import { Page404 as SbbPage404 } from './pages/sonicbreakbeat/Page404';
-import { OldSongRedirect } from './pages/kraedt/OldSongRedirect';
+import { FunctionalRedirect } from './pages/kraedt/FunctionalRedirect';
 //import { Dashboard } from './pages/admin/Dashboard';
 import { useService } from './services/service-resolver';
 import { useObservable } from './rxjs-functions';
@@ -27,7 +27,7 @@ import { CaptchaPopup } from './components/CaptchaPopup';
 import { ToastPanel } from './layout/ToastPanel';
 import { FollowPopup } from './pages/kraedt/FollowPopup';
 import MusicService from './services/music-service';
-import { Alias } from './types/types';
+import { Alias, getMusicPageName, Song } from './types/types';
 
 type PageProps = { page: ReactElement }
 
@@ -105,7 +105,8 @@ const App = () => {
             <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Kraedt} safeOnly={false} />} />} />
             <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Kraedt} safeOnly={true} />} />} />
             <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage alias={Alias.Kraedt} />} />} />
-            <Route path="/home/song/:oldId" element={<Kraedt page={<OldSongRedirect />} />} />
+            <Route path="/home/song/:key" element={<Kraedt page={<FunctionalRedirect fn={(key) => `/music/song/${getMusicPageName(songs?.find((s: Song) => s?.id === Number(key)))}`} doRedirect={() => songs !== undefined} />} />} />
+            <Route path="/music/song/:key.html" element={<Kraedt page={<FunctionalRedirect fn={(key) => `/music/song/${key}`} />} />} />
             <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.Kraedt} />} />} />
             <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage alias={Alias.Kraedt} />} />} />
             <Route path="/music/albums/:albumPageName" element={<Kraedt page={<AlbumPage alias={Alias.Kraedt} />} />} />
