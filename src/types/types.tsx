@@ -151,12 +151,13 @@ export const externalLink = (title: string, url?: string, img?: string) => {
 const convertDriveUrlToId = (rawUrl: string) => rawUrl.substring(rawUrl.search("id="), rawUrl.search("&")).slice(3);
 export const getDriveFile = (url: string) => `https://drive.google.com/uc?export=view&id=${url.startsWith("http") ? convertDriveUrlToId(url) : url}`;
 export const getExternalImage = (url: string) => {
-  if (url.split(':')[1].startsWith("//drive.google.com"))
+  const split = url?.split(':') ?? [];
+  if (split.length >= 2 && split[1].startsWith("//drive.google.com"))
     return getDriveFile(url);
   else return url;
 }
 export const getDriveDirectDownload = (url: string) => `https://drive.google.com/uc?export=download&id=${url.startsWith("http") ? convertDriveUrlToId(url) : url}`;
-export const getMusicItemImage = (item: any) => item.imageUrl?.startsWith("http") ? getExternalImage(item.imageUrl) : (isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? getExternalImage(item.imageUrl)));
+export const getMusicItemImage = (item: any) => item.imageUrl?.startsWith("http") ? getExternalImage(item.imageUrl) : (isNullOrWhitespace(item.imageUrl) ? NoImage : (songImages[item.imageUrl] ?? getDriveFile(item.imageUrl)));
 
 export const SpotifyLink = (url?: string) => externalLink('Spotify', url, 'spotify.png')
 export const ItunesLink = (url?: string) => externalLink('iTunes', url, 'itunes.png')
