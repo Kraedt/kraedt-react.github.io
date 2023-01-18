@@ -107,6 +107,7 @@ const App = () => {
             <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage alias={Alias.Kraedt} />} />} />
             <Route path="/home/song/:key" element={<Kraedt page={<FunctionalRedirect fn={(key) => `/music/song/${getMusicPageName(songs?.find((s: Song) => s?.id === Number(key)))}`} doRedirect={() => songs !== undefined} />} />} />
             <Route path="/music/song/:key.html" element={<Kraedt page={<FunctionalRedirect fn={(key) => `/music/song/${key}`} />} />} />
+            <Route path="/music/album/:key.html" element={<Kraedt page={<FunctionalRedirect fn={(key) => `/music/album/${key}`} />} />} />
             <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.Kraedt} />} />} />
             <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage alias={Alias.Kraedt} />} />} />
             <Route path="/music/albums/:albumPageName" element={<Kraedt page={<AlbumPage alias={Alias.Kraedt} />} />} />
