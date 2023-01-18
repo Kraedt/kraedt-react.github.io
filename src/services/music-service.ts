@@ -48,12 +48,12 @@ export default class MusicService implements Service {
   )
 
   Albums: Rx.Observable<Album[]> = dataIntent.pipe(
-    Rx.map(x => x.albums),
+    Rxo.map(x => x.albums),
     Rxo.shareReplay()
   )
 
   Spotlight: Rx.Observable<Spotlight> = dataIntent.pipe(
-    Rx.map(x => x.spotlight),
+    Rxo.map(x => x.spotlight),
     Rxo.shareReplay()
   )
 
