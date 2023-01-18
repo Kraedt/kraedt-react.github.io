@@ -1,5 +1,4 @@
 current todos:
-* (bug) fix song routing if url ends in .html
 * maybe make some style improvements / css refactoring
 * continue implementing alternate website roots (for sbb, etc.)
 
