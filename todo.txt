@@ -4,3 +4,4 @@ current todos:
 
 other todos:
 * refactor duplicate header, homepage, footer, contact, 404 (although styling might be a challenge?)
+* deprecate / remove support for loading images from google drive (it's way too slow)

@@ -81,6 +81,7 @@ const App = () => {
 
   const songs = useObservable(musicService.Songs);
   const albums = useObservable(musicService.Albums);
+  useObservable(musicService.Spotlight); // keep hot
   const showMusicError = songs?.length === 0 && albums?.length === 0;
 
   const modalType = useObservable(interactService.ShowModal) ?? 'none';
