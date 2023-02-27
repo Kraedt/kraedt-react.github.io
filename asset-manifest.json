@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e7584401.css",
-    "main.js": "/static/js/main.3ef78aa2.js",
+    "main.js": "/static/js/main.38d05305.js",
     "static/js/787.9f0f961a.chunk.js": "/static/js/787.9f0f961a.chunk.js",
     "static/media/sbb-background.png": "/static/media/sbb-background.83634b72fab1861c65ae.png",
     "static/media/sbb-logo.png": "/static/media/sbb-logo.9faf5501b3db0e25c2de.png",
@@ -23,11 +23,11 @@
     "static/media/youtube_icon.png": "/static/media/youtube_icon.8c31cf28d7acb41fac97.png",
     "index.html": "/index.html",
     "main.e7584401.css.map": "/static/css/main.e7584401.css.map",
-    "main.3ef78aa2.js.map": "/static/js/main.3ef78aa2.js.map",
+    "main.38d05305.js.map": "/static/js/main.38d05305.js.map",
     "787.9f0f961a.chunk.js.map": "/static/js/787.9f0f961a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e7584401.css",
-    "static/js/main.3ef78aa2.js"
+    "static/js/main.38d05305.js"
   ]
 }
