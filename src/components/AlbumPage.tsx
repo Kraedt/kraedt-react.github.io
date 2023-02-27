@@ -3,7 +3,7 @@ import { isNullOrWhitespace } from "../functions";
 import { useObservable } from "../rxjs-functions";
 import MusicService from "../services/music-service";
 import { useService } from "../services/service-resolver";
-import { Alias, AmazonLink, BeatportLink, getDriveDirectDownload, getLicenseIcon, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, SpotifyLink } from "../types/types";
+import { Alias, AmazonLink, BeatportLink, getAliasName, getDriveDirectDownload, getLicenseIcon, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, SpotifyLink } from "../types/types";
 import { Page } from "../pages/Page"
 import { Page404 } from "../pages/kraedt/Page404";
 
@@ -25,7 +25,7 @@ export const AlbumPage = ({ alias }: { alias: Alias }) => {
   const songs = allSongs?.filter(s => albumSongIds.includes(s.id));
 
   return (
-    <Page title={`Kraedt - ${album.title}`}>
+    <Page title={`${getAliasName(alias)} - ${album.title}`}>
       <h2><Link to={`${getPathPrefix(alias)}/music`}>See More Music</Link></h2>
       <table id="album-table" className="song-page">
         <tbody>
