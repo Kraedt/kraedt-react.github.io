@@ -16,12 +16,18 @@ export const AlbumPage = ({ alias }: { alias: Alias }) => {
   if (!albums)
     return null;
 
-  const album = albums?.find(a => getMusicPageName(a) === albumPageName)!
-  const albumSongIds = JSON.parse(album.songIds) as number[];
-
-  if (!isNullOrWhitespace(albumPageName) && album === undefined)
+  let error = false;
+  let album = undefined
+  try {
+    album = albums?.find(a => getMusicPageName(a) === albumPageName)
+  }
+  catch {
+    error = true
+  }
+  if ((!isNullOrWhitespace(albumPageName) && album === undefined) || album === undefined || error)
     return <Page404 />;
 
+  const albumSongIds = JSON.parse(album.songIds) as number[];
   const songs = allSongs?.filter(s => albumSongIds.includes(s.id));
 
   return (

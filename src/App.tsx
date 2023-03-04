@@ -118,7 +118,6 @@ const App = () => {
             <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />
             <Route path="/sonicbreakbeat/music" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Sbb} safeOnly={false} />} />} />
             <Route path="/sonicbreakbeat/music-creator-friendly" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Sbb} safeOnly={true} />} />} />
-            <Route path="/sonicbreakbeat/music/*" element={<SonicBreakbeat page={<SbbPage404 />} />} />
             <Route path="/sonicbreakbeat/music/song/:songPageName" element={<SonicBreakbeat page={<SongPage alias={Alias.Sbb} />} />} />
             <Route path="/sonicbreakbeat/albums" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.Sbb} />} />} />
             <Route path="/sonicbreakbeat/music/album/:albumPageName" element={<SonicBreakbeat page={<AlbumPage alias={Alias.Sbb} />} />} />

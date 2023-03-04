@@ -38,4 +38,11 @@
       @include icon-button();
     }
   }
+  .btn-download {
+    background: $linkColor;
+    &:hover {
+      background: $linkHoverColor;
+    }
+    color: white !important;
+  }
 }

@@ -1,6 +1,7 @@
 import styles from './Header.module.scss';
 import soundcloudIcon from '../../assets/images/soundcloud_icon.png';
 import youtubeIcon from '../../assets/images/youtube_icon.png';
+import spotifyIcon from '../../assets/images/spotify_icon.png';
 import sbbLogo from '../../assets/images/sbb-logo.png';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
@@ -31,6 +32,7 @@ export const Header = () => {
     <li className={styles.br} />
     <ListLinkIcon url="http://soundcloud.com/sonic-breakbeat" img={soundcloudIcon} title="Soundcloud" alt="soundcloud" />
     <ListLinkIcon url="https://www.youtube.com/channel/UCTka0pW1wYjz0bNtQLKrnzQ" img={youtubeIcon} title="YouTube" alt="youtube" />
+    <ListLinkIcon url="https://open.spotify.com/artist/0m9IWmce1vXWxxnJmkUpDc" img={spotifyIcon} title="Spotify" alt="spotify" />
   </>
 
   return (

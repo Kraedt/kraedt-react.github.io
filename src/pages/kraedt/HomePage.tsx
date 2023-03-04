@@ -3,7 +3,7 @@ import { SongCarousel } from '../../components/SongCarousel';
 import { useObservable } from '../../rxjs-functions';
 import MusicService from '../../services/music-service';
 import { useService } from '../../services/service-resolver';
-import { Song } from '../../types/types';
+import { Alias, Song } from '../../types/types';
 import { Page } from '../Page';
 import styles from './HomePage.module.scss'
 import './Kraedt.scss';
@@ -27,13 +27,13 @@ export const HomePage = () => {
 
           <h3 className="text-center">Check out this <Link to="/club1506-interview">interview I did with Club1506</Link>!</h3>
 
-          <SongCarousel allSongs={songs} carouselSongs={spotlightSongs} />
+          <SongCarousel alias={Alias.Kraedt} allSongs={songs} carouselSongs={spotlightSongs} />
         </div>
 
         <div className={styles.verticalDivider}></div>
 
         <div className={styles.spotifyBlurb + ' text-center'}>
-          <h3>A good chunk of my music is now on Spotify!</h3>
+          <h3>Follow me on Spotify!</h3>
           <iframe
             style={{ borderRadius: '12px' }}
             title="spotify"

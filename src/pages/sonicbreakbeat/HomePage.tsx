@@ -1,12 +1,17 @@
+import { SongCarousel } from '../../components/SongCarousel';
+import { useObservable } from '../../rxjs-functions';
+import MusicService from '../../services/music-service';
+import { useService } from '../../services/service-resolver';
+import { Alias, Song } from '../../types/types';
 import { Page } from '../Page';
 import styles from './HomePage.module.scss'
 import './Sbb.scss';
 
 export const HomePage = () => {
-  //const musicService = useService(MusicService);
-  //const songs = useObservable(musicService.Songs);
-  //const spotlight = JSON.parse(useObservable(musicService.Spotlight)?.songIds || '[]') as number[];
-  //const spotlightSongs = spotlight.map(x => songs?.find(s => s.id === x)).filter(x => !!x) as Song[];
+  const musicService = useService(MusicService);
+  const songs = useObservable(musicService.Songs);
+  const spotlight = JSON.parse(useObservable(musicService.Spotlight)?.songIds || '[]') as number[];
+  const spotlightSongs = spotlight.map(x => songs?.find(s => s.id === x)).filter(x => !!x) as Song[];
 
   return (
     <Page title="Sonic Breakbeat - Home">
@@ -22,12 +27,20 @@ export const HomePage = () => {
           <p>
             His name "Sonic Breakbeat" is portmanteau of "Sonic Rainboom", an stunt that Rainbow Dash from My Little Pony: Friendship is Magic is able to pull, and "Breakbeat", a word describing a broken drum break within songs of Jungle or Drum n' Bass genre, but more widely known as a musical genre.
           </p>
+          <SongCarousel alias={Alias.Sbb} allSongs={songs} carouselSongs={spotlightSongs} />
         </div>
         <div className={styles.verticalDivider}></div>
-        <div className={styles.bioText}>
-          <p>
-            Welcome to the new website! This acts as an archive for now, but maybe there will be new Sonic Breakbeat music in the future? 👀
-          </p>
+        <div className={styles.spotifyBlurb + ' text-center'}>
+          <h3>Follow me on Spotify!</h3>
+          <iframe
+            style={{ borderRadius: '12px' }}
+            title="spotify"
+            src="https://open.spotify.com/embed/artist/0m9IWmce1vXWxxnJmkUpDc?utm_source=generator&theme=0"
+            width="80%"
+            height="400"
+            frameBorder="0"
+            allowFullScreen={false}
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
       </div >
     </Page>

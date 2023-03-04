@@ -1,6 +1,6 @@
-@import "../../styles/variables";
+@import "./variables.scss";
 
-footer {
+.footer {
   position: fixed;
   height: 40px;
   width: 100%;
@@ -10,21 +10,17 @@ footer {
   font-style: italic;
   text-align: center;
   color: white;
-  background: #292929;
+  background-color: $navBgColor;
   z-index: 1;
   span {
     position: relative;
     top: 5px;
   }
-}
-
-footer a:hover,
-footer a:focus {
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-}
-
-@media screen and (max-width: 1382px) {
-  footer {
+  &a:hover,
+  &a:focus {
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  }
+  @media screen and (max-width: 1382px) {
     display: none;
   }
 }
