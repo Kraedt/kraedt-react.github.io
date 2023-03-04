@@ -10,7 +10,6 @@ import { ReactElement, useEffect } from 'react';
 import { SongPage } from './pages/kraedt/SongPage';
 import { Page404 } from './pages/kraedt/Page404';
 import { HomePage as SbbHome } from './pages/sonicbreakbeat/HomePage';
-import { Page404 as SbbPage404 } from './pages/sonicbreakbeat/Page404';
 import { FunctionalRedirect } from './pages/kraedt/FunctionalRedirect';
 //import { Dashboard } from './pages/admin/Dashboard';
 import { useService } from './services/service-resolver';
