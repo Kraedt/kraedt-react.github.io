@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { SongCarousel } from '../../components/SongCarousel';
 import { useObservable } from '../../rxjs-functions';
 import MusicService from '../../services/music-service';
@@ -27,6 +28,7 @@ export const HomePage = () => {
           <p>
             His name "Sonic Breakbeat" is portmanteau of "Sonic Rainboom", an stunt that Rainbow Dash from My Little Pony: Friendship is Magic is able to pull, and "Breakbeat", a word describing a broken drum break within songs of Jungle or Drum n' Bass genre, but more widely known as a musical genre.
           </p>
+          <Link to='explanation'>What happened to Sonic Breakbeat?</Link>
           <SongCarousel alias={Alias.Sbb} allSongs={songs} carouselSongs={spotlightSongs} />
         </div>
         <div className={styles.verticalDivider}></div>

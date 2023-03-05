@@ -27,6 +27,7 @@ import { ToastPanel } from './layout/ToastPanel';
 import { FollowPopup } from './pages/kraedt/FollowPopup';
 import MusicService from './services/music-service';
 import { Alias, getMusicPageName, Song } from './types/types';
+import { DeathExplanation } from './pages/sonicbreakbeat/DeathExplanation';
 
 type PageProps = { page: ReactElement }
 
@@ -121,6 +122,7 @@ const App = () => {
             <Route path="/sonicbreakbeat/albums" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.Sbb} />} />} />
             <Route path="/sonicbreakbeat/music/album/:albumPageName" element={<SonicBreakbeat page={<AlbumPage alias={Alias.Sbb} />} />} />
             <Route path="/sonicbreakbeat/contact" element={<SonicBreakbeat page={<SbbContact />} />} />
+            <Route path="/sonicbreakbeat/explanation" element={<SonicBreakbeat page={<DeathExplanation />} />} />
           </Route>
           {/*<Route>
             <Route path="/admin" element={<Admin page={<Dashboard />} />} />
