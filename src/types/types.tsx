@@ -57,7 +57,7 @@ export enum Alias {
 }
 
 export const getAliasName = (a: Alias) => ["Kraedt", "Sonic Breakbeat", "Karl Kofass"][a];
-export const getAliasKey = (a: Alias) => ["kraedt", "sonicbreakbeat", "karl-kofass"][a];
+export const getAliasKey = (a: Alias) => ["kraedt", "sonicbreakbeat", "karlkofass"][a];
 export const getPathPrefix = (a: Alias) => ["", "/sonicbreakbeat", "/karl-kofass"][a];
 export const getAliasFromPathname = (pathname: string) => {
   let alias = Alias.Kraedt;
