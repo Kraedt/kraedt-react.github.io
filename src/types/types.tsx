@@ -52,7 +52,8 @@ export interface ContactMessage {
 
 export enum Alias {
   Kraedt,
-  Sbb
+  Sbb,
+  KarlKofass
 }
 
 export const getAliasName = (a: Alias) => ["Kraedt", "Sonic Breakbeat"][a];

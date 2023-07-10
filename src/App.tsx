@@ -30,30 +30,57 @@ import { Alias, getMusicPageName, Song } from './types/types';
 import { DeathExplanation } from './pages/sonicbreakbeat/DeathExplanation';
 
 type PageProps = { page: ReactElement }
+type PageManProps = { alias: Alias, page: ReactElement }
+interface PageManFields {
+  bodyClass: string;
+  mainClass: string;
+  headerComponent: ReactElement;
+  footerComponent: ReactElement;
+}
 
-const Kraedt = ({ page }: PageProps) => {
+const getPageManFieldsFromAlias = (alias: Alias) : PageManFields => {
+  switch (alias) {
+    case Alias.Kraedt:
+      return {
+        bodyClass: "body-kraedt",
+        mainClass: "kraedt",
+        headerComponent: <Header />,
+        footerComponent: <Footer />
+      }
+    case Alias.Sbb:
+      return {
+        bodyClass: "body-sbb",
+        mainClass: "sbb",
+        headerComponent: <SbbHeader />,
+        footerComponent: <SbbFooter />
+      }
+    case Alias.KarlKofass:
+      return {
+        bodyClass: "body-sbb",
+        mainClass: "sbb",
+        headerComponent: <SbbHeader />,
+        footerComponent: <SbbFooter />
+      }
+    default: throw "Invalid alias";
+  }
+}
+
+const PageMan = ({ alias, page } : PageManProps) => {
+  const {bodyClass, mainClass, headerComponent, footerComponent} = getPageManFieldsFromAlias(alias);
   return (
-    <div className="body-kraedt">
-      <div className="kraedt" />
-      <Header />
+    <div className={bodyClass}>
+      <div className={mainClass} />
+      {headerComponent}
       <main className="body-content">
         {page}
       </main>
-      <Footer />
+      {footerComponent}
     </div>
   )
 }
-
-const SonicBreakbeat = ({ page }: PageProps) => (
-  <div className="body-sbb">
-    <div className="sbb" />
-    <SbbHeader />
-    <main className="body-content">
-      {page}
-    </main>
-    <SbbFooter />
-  </div>
-)
+const Kraedt = ({ page }: PageProps) => <PageMan alias={Alias.Kraedt} page={page} />
+const SonicBreakbeat = ({ page }: PageProps) => <PageMan alias={Alias.Sbb} page={page} />
+const KarlKofass = ({page}: PageProps) => <PageMan alias={Alias.KarlKofass} page={page} />
 
 //const Admin = ({ page }: PageProps) => (
 //  <>
@@ -62,7 +89,7 @@ const SonicBreakbeat = ({ page }: PageProps) => (
 //)
 
 const MusicError = () => (
-  <Page title="Kraedt - Error :(">
+  <Page title="Kraedt - Error :("> {/*todo: genericize this*/}
     <h2 className="text-center">There was a problem retreiving data. Try coming back later.</h2>
   </Page>
 )
@@ -76,6 +103,8 @@ const App = () => {
     const n = window.location.pathname;
     if (n.startsWith('/sonicbreakbeat'))
       alias = Alias.Sbb;
+    else if (n.startsWith('/karl-kofass'))
+      alias = Alias.KarlKofass;
     musicService.Initialize(alias)
   }, [musicService]);
 
@@ -123,6 +152,15 @@ const App = () => {
             <Route path="/sonicbreakbeat/music/album/:albumPageName" element={<SonicBreakbeat page={<AlbumPage alias={Alias.Sbb} />} />} />
             <Route path="/sonicbreakbeat/contact" element={<SonicBreakbeat page={<SbbContact />} />} />
             <Route path="/sonicbreakbeat/explanation" element={<SonicBreakbeat page={<DeathExplanation />} />} />
+          </Route>
+          <Route>
+            <Route path="/karl-kofass" element={<KarlKofass page={<SbbHome />} />} />
+            <Route path="/karl-kofass/music" element={<KarlKofass page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.KarlKofass} safeOnly={false} />} />} />
+            <Route path="/karl-kofass/music-creator-friendly" element={<KarlKofass page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.KarlKofass} safeOnly={true} />} />} />
+            <Route path="/karl-kofass/music/song/:songPageName" element={<KarlKofass page={<SongPage alias={Alias.KarlKofass} />} />} />
+            <Route path="/karl-kofass/albums" element={<KarlKofass page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.KarlKofass} />} />} />
+            <Route path="/karl-kofass/music/album/:albumPageName" element={<KarlKofass page={<AlbumPage alias={Alias.KarlKofass} />} />} />
+            <Route path="/karl-kofass/contact" element={<KarlKofass page={<SbbContact />} />} />
           </Route>
           {/*<Route>
             <Route path="/admin" element={<Admin page={<Dashboard />} />} />
