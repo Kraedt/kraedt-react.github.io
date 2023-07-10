@@ -26,10 +26,9 @@ import { CaptchaPopup } from './components/CaptchaPopup';
 import { ToastPanel } from './layout/ToastPanel';
 import { FollowPopup } from './pages/kraedt/FollowPopup';
 import MusicService from './services/music-service';
-import { Alias, getMusicPageName, Song } from './types/types';
+import { Alias, getAliasFromPathname, getAliasName, getMusicPageName, Song } from './types/types';
 import { DeathExplanation } from './pages/sonicbreakbeat/DeathExplanation';
 
-type PageProps = { page: ReactElement }
 type PageManProps = { alias: Alias, page: ReactElement }
 interface PageManFields {
   bodyClass: string;
@@ -78,9 +77,6 @@ const PageMan = ({ alias, page } : PageManProps) => {
     </div>
   )
 }
-const Kraedt = ({ page }: PageProps) => <PageMan alias={Alias.Kraedt} page={page} />
-const SonicBreakbeat = ({ page }: PageProps) => <PageMan alias={Alias.Sbb} page={page} />
-const KarlKofass = ({page}: PageProps) => <PageMan alias={Alias.KarlKofass} page={page} />
 
 //const Admin = ({ page }: PageProps) => (
 //  <>
@@ -88,8 +84,8 @@ const KarlKofass = ({page}: PageProps) => <PageMan alias={Alias.KarlKofass} page
 //  </>
 //)
 
-const MusicError = () => (
-  <Page title="Kraedt - Error :("> {/*todo: genericize this*/}
+const MusicError = ({alias}: {alias: Alias}) => (
+  <Page title={`${getAliasName(alias)} - Error :(`}>
     <h2 className="text-center">There was a problem retreiving data. Try coming back later.</h2>
   </Page>
 )
@@ -99,13 +95,7 @@ const App = () => {
   const interactService = useService(InteractService);
 
   useEffect(() => {
-    let alias = Alias.Kraedt;
-    const n = window.location.pathname;
-    if (n.startsWith('/sonicbreakbeat'))
-      alias = Alias.Sbb;
-    else if (n.startsWith('/karl-kofass'))
-      alias = Alias.KarlKofass;
-    musicService.Initialize(alias)
+    musicService.Initialize(getAliasFromPathname(window.location.pathname))
   }, [musicService]);
 
   const songs = useObservable(musicService.Songs);
@@ -115,11 +105,14 @@ const App = () => {
 
   const modalType = useObservable(interactService.ShowModal) ?? 'none';
 
+  // todo: follow popup does not work for any alias other than kraedt
   const modal = {
     captcha: <CaptchaPopup />,
     follow: <FollowPopup />,
     none: undefined
   }
+
+  let routeAlias: Alias;
 
   return (
     <>
@@ -128,39 +121,42 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route>
-            <Route path="/" element={<Kraedt page={<HomePage />} />} />
-            <Route path="/club1506-interview" element={<Kraedt page={<Club1506Interview />} />} />
-            <Route path="/merch" element={<Kraedt page={<Merch />} />} />
-            <Route path="/contact" element={<Kraedt page={<Contact />} />} />
-            <Route path="/music" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Kraedt} safeOnly={false} />} />} />
-            <Route path="/music-creator-friendly" element={<Kraedt page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Kraedt} safeOnly={true} />} />} />
-            <Route path="/music/song/:songPageName" element={<Kraedt page={<SongPage alias={Alias.Kraedt} />} />} />
-            <Route path="/home/song/:key" element={<Kraedt page={<FunctionalRedirect fn={(key) => `/music/song/${getMusicPageName(songs?.find((s: Song) => s?.id === Number(key)))}`} doRedirect={() => songs !== undefined} />} />} />
-            <Route path="/music/song/:key.html" element={<Kraedt page={<FunctionalRedirect fn={(key) => `/music/song/${key}`} />} />} />
-            <Route path="/music/album/:key.html" element={<Kraedt page={<FunctionalRedirect fn={(key) => `/music/album/${key}`} />} />} />
-            <Route path="/albums" element={<Kraedt page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.Kraedt} />} />} />
-            <Route path="/music/album/:albumPageName" element={<Kraedt page={<AlbumPage alias={Alias.Kraedt} />} />} />
-            <Route path="/music/albums/:albumPageName" element={<Kraedt page={<AlbumPage alias={Alias.Kraedt} />} />} />
-            <Route path="/music*" element={<Kraedt page={<Page404 />} />} />
+            {routeAlias = Alias.Kraedt}
+            <Route path="/" element={<PageMan alias={routeAlias} page={<HomePage />} />} />
+            <Route path="/club1506-interview" element={<PageMan alias={routeAlias} page={<Club1506Interview />} />} />
+            <Route path="/merch" element={<PageMan alias={routeAlias} page={<Merch />} />} />
+            <Route path="/contact" element={<PageMan alias={routeAlias} page={<Contact />} />} />
+            <Route path="/music" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={false} />} />} />
+            <Route path="/music-creator-friendly" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={true} />} />} />
+            <Route path="/music/song/:songPageName" element={<PageMan alias={routeAlias} page={<SongPage alias={routeAlias} />} />} />
+            <Route path="/home/song/:key" element={<PageMan alias={routeAlias} page={<FunctionalRedirect fn={(key) => `/music/song/${getMusicPageName(songs?.find((s: Song) => s?.id === Number(key)))}`} doRedirect={() => songs !== undefined} />} />} />
+            <Route path="/music/song/:key.html" element={<PageMan alias={routeAlias} page={<FunctionalRedirect fn={(key) => `/music/song/${key}`} />} />} />
+            <Route path="/music/album/:key.html" element={<PageMan alias={routeAlias} page={<FunctionalRedirect fn={(key) => `/music/album/${key}`} />} />} />
+            <Route path="/albums" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <AlbumsPage alias={routeAlias} />} />} />
+            <Route path="/music/album/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
+            <Route path="/music/albums/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
+            <Route path="/music*" element={<PageMan alias={routeAlias} page={<Page404 />} />} />
           </Route>
           <Route>
-            <Route path="/sonicbreakbeat" element={<SonicBreakbeat page={<SbbHome />} />} />
-            <Route path="/sonicbreakbeat/music" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Sbb} safeOnly={false} />} />} />
-            <Route path="/sonicbreakbeat/music-creator-friendly" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.Sbb} safeOnly={true} />} />} />
-            <Route path="/sonicbreakbeat/music/song/:songPageName" element={<SonicBreakbeat page={<SongPage alias={Alias.Sbb} />} />} />
-            <Route path="/sonicbreakbeat/albums" element={<SonicBreakbeat page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.Sbb} />} />} />
-            <Route path="/sonicbreakbeat/music/album/:albumPageName" element={<SonicBreakbeat page={<AlbumPage alias={Alias.Sbb} />} />} />
-            <Route path="/sonicbreakbeat/contact" element={<SonicBreakbeat page={<SbbContact />} />} />
-            <Route path="/sonicbreakbeat/explanation" element={<SonicBreakbeat page={<DeathExplanation />} />} />
+            {routeAlias = Alias.Sbb}
+            <Route path="/sonicbreakbeat" element={<PageMan alias={routeAlias} page={<SbbHome />} />} />
+            <Route path="/sonicbreakbeat/music" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={false} />} />} />
+            <Route path="/sonicbreakbeat/music-creator-friendly" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={true} />} />} />
+            <Route path="/sonicbreakbeat/music/song/:songPageName" element={<PageMan alias={routeAlias} page={<SongPage alias={routeAlias} />} />} />
+            <Route path="/sonicbreakbeat/albums" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <AlbumsPage alias={routeAlias} />} />} />
+            <Route path="/sonicbreakbeat/music/album/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
+            <Route path="/sonicbreakbeat/contact" element={<PageMan alias={routeAlias} page={<SbbContact />} />} />
+            <Route path="/sonicbreakbeat/explanation" element={<PageMan alias={routeAlias} page={<DeathExplanation />} />} />
           </Route>
           <Route>
-            <Route path="/karl-kofass" element={<KarlKofass page={<SbbHome />} />} />
-            <Route path="/karl-kofass/music" element={<KarlKofass page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.KarlKofass} safeOnly={false} />} />} />
-            <Route path="/karl-kofass/music-creator-friendly" element={<KarlKofass page={showMusicError ? <MusicError /> : <MusicPage alias={Alias.KarlKofass} safeOnly={true} />} />} />
-            <Route path="/karl-kofass/music/song/:songPageName" element={<KarlKofass page={<SongPage alias={Alias.KarlKofass} />} />} />
-            <Route path="/karl-kofass/albums" element={<KarlKofass page={showMusicError ? <MusicError /> : <AlbumsPage alias={Alias.KarlKofass} />} />} />
-            <Route path="/karl-kofass/music/album/:albumPageName" element={<KarlKofass page={<AlbumPage alias={Alias.KarlKofass} />} />} />
-            <Route path="/karl-kofass/contact" element={<KarlKofass page={<SbbContact />} />} />
+            {routeAlias = Alias.KarlKofass}
+            <Route path="/karl-kofass" element={<PageMan alias={routeAlias} page={<SbbHome />} />} />
+            <Route path="/karl-kofass/music" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={false} />} />} />
+            <Route path="/karl-kofass/music-creator-friendly" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={true} />} />} />
+            <Route path="/karl-kofass/music/song/:songPageName" element={<PageMan alias={routeAlias} page={<SongPage alias={routeAlias} />} />} />
+            <Route path="/karl-kofass/albums" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <AlbumsPage alias={routeAlias} />} />} />
+            <Route path="/karl-kofass/music/album/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
+            <Route path="/karl-kofass/contact" element={<PageMan alias={routeAlias} page={<SbbContact />} />} />
           </Route>
           {/*<Route>
             <Route path="/admin" element={<Admin page={<Dashboard />} />} />

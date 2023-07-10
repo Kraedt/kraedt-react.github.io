@@ -56,9 +56,18 @@ export enum Alias {
   KarlKofass
 }
 
-export const getAliasName = (a: Alias) => ["Kraedt", "Sonic Breakbeat"][a];
-export const getAliasKey = (a: Alias) => ["kraedt", "sonicbreakbeat"][a];
-export const getPathPrefix = (a: Alias) => ["", "/sonicbreakbeat"][a];
+export const getAliasName = (a: Alias) => ["Kraedt", "Sonic Breakbeat", "Karl Kofass"][a];
+export const getAliasKey = (a: Alias) => ["kraedt", "sonicbreakbeat", "karl-kofass"][a];
+export const getPathPrefix = (a: Alias) => ["", "/sonicbreakbeat", "/karl-kofass"][a];
+export const getAliasFromPathname = (pathname: string) => {
+  let alias = Alias.Kraedt;
+  if (pathname.startsWith('/sonicbreakbeat'))
+    alias = Alias.Sbb;
+  else if (pathname.startsWith('/karl-kofass'))
+    alias = Alias.KarlKofass;
+
+  return alias;
+}
 
 export const getMusicPageName = (item?: Song | Album) => item?.title.toLowerCase().replaceAll(' ', '-').replaceAll('(', '').replaceAll(')', '').replaceAll("/", "");
 
