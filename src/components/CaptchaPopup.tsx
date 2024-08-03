@@ -11,12 +11,9 @@ export const CaptchaPopup = () => {
   const interactService = useService(InteractService);
   const toastService = useService(ToastService);
 
-  const devSecret = "6LfUd4gUAAAAAPSaalhetzFMPD-rflobF69-FxDS";
-  const prodSecret = "6LePdYgUAAAAAHtrf48MGpVTLTUERCj1h6296ynv";
-
   var key = document.location.hostname === "localhost" || document.location.hostname === "127.0.0.1"
-    ? devSecret
-    : prodSecret;
+    ? ""
+    : process.env.RECAPTCHA_KEY_PROD ?? "";
 
   /*
   
