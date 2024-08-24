@@ -6,7 +6,7 @@ export const Club1506Interview = () => {
     <div className={styles.interviewContainer}>
       <h2>Club1506.com Interview with Kraedt:</h2>
       <p>
-        Kraedt [pronounced crate] hails from Wisconsin in the United States, and has been surrounded by music his entire life. He played trumpet for his school’s band and later on learned how to play the guitar. Around the age of 16 he started getting into music production. In 2010 he played around with electronic music production, but got serious with it late 2011 early 2012. He is a talented producer who created many upbeat and energetic songs like Zero Gravity and Levitate. Club1506.com featured some of his work on our showcase; however we are not the only ones to notice his talents. A game called Disco Dodgeball, developed by Erik Asmussen and published by 82 Apps, features three of Kraedt’s songs.  Kraedt is certainly on his way to the top. He took some time to do an interview with us and we invite to read further, so you can know the story behind the music featured on this website.
+        Kraedt [pronounced crate] hails from Wisconsin in the United States, and has been surrounded by music her entire life. She played trumpet for her school’s band and later on learned how to play the guitar. Around the age of 16 she started getting into music production. In 2010 she played around with electronic music production, but got serious with it late 2011 early 2012. She is a talented producer who created many upbeat and energetic songs like Zero Gravity and Levitate. Club1506.com featured some of her work on our showcase; however we are not the only ones to notice her talents. A game called Disco Dodgeball, developed by Erik Asmussen and published by 82 Apps, features three of Kraedt’s songs.  Kraedt is certainly on her way to the top. She took some time to do an interview with us and we invite to read further, so you can know the story behind the music featured on this website.
       </p>
       <h3>
         Thank you, Kraedt, for taking the time to do an interview us. What inspired you to start creating music?
@@ -42,7 +42,7 @@ export const Club1506Interview = () => {
         Once again thank you for taking the time to answer all of these questions, Kraedt.
       </h3>
       <h3>
-        Thank you for visiting Kraedt's website! Please feel free to explore his <Link to='/music'>latest works of digital art</Link>.
+        Thank you for visiting Kraedt's website! Please feel free to explore her <Link to='/music'>latest works of digital art</Link>.
       </h3>
     </div>
   )

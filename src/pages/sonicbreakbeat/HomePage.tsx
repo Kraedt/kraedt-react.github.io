@@ -20,13 +20,13 @@ export const HomePage = () => {
         <div className={styles.bioText}>
           <p>
             Sonic Breakbeat is an ex-brony musician from Wisconsin, USA who produces Progressive House, Drum n' Bass and other genres of Electronic Dance Music.
-            His previous works include remixes of other brony musicians, original music using vocal clips from My Little Pony: Friendship is Magic and original music that is instrumental.
+            Her previous works include remixes of other brony musicians, original music using vocal clips from My Little Pony: Friendship is Magic and original music that is instrumental.
           </p>
           <p>
             With a revival of the alias, Sonic Breakbeat's newer works feature a mix of familiar and newer styles, combined with higher production quality and themes detached from MLP:FiM.
           </p>
           <p>
-            His name "Sonic Breakbeat" is portmanteau of "Sonic Rainboom", an stunt that Rainbow Dash from My Little Pony: Friendship is Magic is able to pull, and "Breakbeat", a word describing a broken drum break within songs of Jungle or Drum n' Bass genre, but more widely known as a musical genre.
+            Her name "Sonic Breakbeat" is portmanteau of "Sonic Rainboom", an stunt that Rainbow Dash from My Little Pony: Friendship is Magic is able to pull, and "Breakbeat", a word describing a broken drum break within songs of Jungle or Drum n' Bass genre, but more widely known as a musical genre.
           </p>
           <Link to='explanation'>What happened to Sonic Breakbeat?</Link>
           <SongCarousel alias={Alias.Sbb} allSongs={songs} carouselSongs={spotlightSongs} />

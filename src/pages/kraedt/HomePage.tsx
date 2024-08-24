@@ -19,7 +19,7 @@ export const HomePage = () => {
       <div className={styles.bioContainer}>
         <div className={styles.bioText}>
           <p>
-            Kraedt (pronounced 'crate') is an electronic music producer from Wisconsin, USA. Since late 2010, he has put together
+            Kraedt (pronounced 'crate') is an electronic music producer from Wisconsin, USA. Since late 2010, she has put together
             a fair number of original tracks and remixes spanning various genres and styles yet maintaining a unique and energetic
             sound. Kraedt's music has been released on a handful of labels, self-released, and some even released under content-creator
             friendly licenses.
