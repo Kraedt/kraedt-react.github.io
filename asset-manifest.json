@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.773481e8.css",
-    "main.js": "/static/js/main.813e1ab5.js",
-    "static/js/787.9f0f961a.chunk.js": "/static/js/787.9f0f961a.chunk.js",
+    "main.css": "/static/css/main.3baf3853.css",
+    "main.js": "/static/js/main.fb8d209a.js",
+    "static/js/453.9c701c37.chunk.js": "/static/js/453.9c701c37.chunk.js",
     "static/media/sbb-background.png": "/static/media/sbb-background.83634b72fab1861c65ae.png",
     "static/media/sbb-logo.png": "/static/media/sbb-logo.9faf5501b3db0e25c2de.png",
     "static/media/background.jpg": "/static/media/background.fc314915502198801285.jpg",
@@ -22,12 +22,12 @@
     "static/media/direct.png": "/static/media/direct.ccaa17a8d384b74dd234.png",
     "static/media/youtube_icon.png": "/static/media/youtube_icon.8c31cf28d7acb41fac97.png",
     "index.html": "/index.html",
-    "main.773481e8.css.map": "/static/css/main.773481e8.css.map",
-    "main.813e1ab5.js.map": "/static/js/main.813e1ab5.js.map",
-    "787.9f0f961a.chunk.js.map": "/static/js/787.9f0f961a.chunk.js.map"
+    "main.3baf3853.css.map": "/static/css/main.3baf3853.css.map",
+    "main.fb8d209a.js.map": "/static/js/main.fb8d209a.js.map",
+    "453.9c701c37.chunk.js.map": "/static/js/453.9c701c37.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.773481e8.css",
-    "static/js/main.813e1ab5.js"
+    "static/css/main.3baf3853.css",
+    "static/js/main.fb8d209a.js"
   ]
 }
