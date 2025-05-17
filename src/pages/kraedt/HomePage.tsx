@@ -19,10 +19,9 @@ export const HomePage = () => {
       <div className={styles.bioContainer}>
         <div className={styles.bioText}>
           <p>
-            Kraedt (pronounced 'crate') is an electronic music producer from Wisconsin, USA. Since late 2010, she has put together
-            a fair number of original tracks and remixes spanning various genres and styles yet maintaining a unique and energetic
-            sound. Kraedt's music has been released on a handful of labels, self-released, and some even released under content-creator
-            friendly licenses.
+            Valorie Schwartz, better known by her stage name Kraedt (pronounced "crate"), is an electronic music producer hailing from Wisconsin, USA. 
+            Since 2010, Kraedt has crafted a diverse catalog of original tracks and remixes, blending a variety of genres while maintaining a distinct, 
+            energetic sound. Her music has been released through various labels, independently, and many tracks have been made available under content-creator-friendly licenses.
           </p>
 
           <h3 className="text-center">Check out this <Link to="/club1506-interview">interview I did with Club1506</Link>!</h3>
