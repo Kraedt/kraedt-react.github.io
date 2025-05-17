@@ -289,3 +289,12 @@ li {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.icon-button {
+  color: orange !important;
+  background: none;
+  border: none;
+  &:hover {
+    color: hsl(from orange h s 120%)
+  }
+}
