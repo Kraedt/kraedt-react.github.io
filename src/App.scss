@@ -10,6 +10,15 @@
   src: url("/assets/fonts/Montserrat-Regular.ttf");
 }
 
+@font-face {
+  font-family: Lato;
+  src: url("/assets/fonts/Lato-Regular.ttf");
+}
+
+.font-lato {
+  font-family: Lato !important;
+}
+
 .mobile-song-info {
   display: none;
 }
@@ -62,12 +71,12 @@ html {
 body {
   background-color: #000;
   color: white;
-  font-family: Montserrat, sans-serif;
+  font-family: Lato;
   margin: 0;
 }
 
 button {
-  font-family: Montserrat, sans-serif;
+  font-family: Lato;
 }
 
 table {
@@ -128,7 +137,7 @@ a:focus {
 }
 
 p {
-  font-size: 0.75vmax;
+  font-size: 0.8vmax;
 }
 
 .darken-text {

@@ -1,25 +1,23 @@
 import './App.scss'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Header } from './pages/kraedt/Header';
+import { KraedtHeader } from './pages/kraedt/KraedtHeader';
 import { Header as SbbHeader } from './pages/sonicbreakbeat/Header';
 import { Footer } from './pages/kraedt/Footer';
 import { Footer as SbbFooter } from './pages/sonicbreakbeat/Footer';
-import { HomePage } from './pages/kraedt/HomePage';
+import { VessraHome } from './pages/vessra/VessraHome';
 import { MusicPage } from './components/MusicPage';
 import { ReactElement, useEffect } from 'react';
 import { SongPage } from './pages/kraedt/SongPage';
 import { Page404 } from './pages/kraedt/Page404';
 import { HomePage as SbbHome } from './pages/sonicbreakbeat/HomePage';
 import { FunctionalRedirect } from './pages/kraedt/FunctionalRedirect';
-//import { Dashboard } from './pages/admin/Dashboard';
 import { useService } from './services/service-resolver';
 import { useObservable } from './rxjs-functions';
 import { Page } from './pages/Page';
 import { AlbumsPage } from './components/AlbumsPage';
 import { AlbumPage } from './components/AlbumPage';
-import { Club1506Interview } from './pages/kraedt/Club1506Interview';
 import { Merch } from './pages/kraedt/Merch';
-import { Contact } from './pages/kraedt/Contact';
+import { KraedtContact } from './pages/kraedt/KraedtContact';
 import { Contact as SbbContact } from './pages/sonicbreakbeat/Contact';
 import InteractService from './services/interact-service';
 import { CaptchaPopup } from './components/CaptchaPopup';
@@ -28,6 +26,10 @@ import { FollowPopup } from './pages/kraedt/FollowPopup';
 import MusicService from './services/music-service';
 import { Alias, getAliasFromPathname, getAliasName, getMusicPageName, Song } from './types/types';
 import { DeathExplanation } from './pages/sonicbreakbeat/DeathExplanation';
+import { VessraHeader } from './pages/vessra/VessraHeader';
+import { VessraFooter } from './pages/vessra/VessraFooter';
+import { KraedtHome } from './pages/kraedt/KraedtHome';
+import { VessraContact } from './pages/vessra/VessraContact';
 
 type PageManProps = { alias: Alias, page: ReactElement }
 interface PageManFields {
@@ -43,7 +45,7 @@ const getPageManFieldsFromAlias = (alias: Alias) : PageManFields => {
       return {
         bodyClass: "body-kraedt",
         mainClass: "kraedt",
-        headerComponent: <Header />,
+        headerComponent: <KraedtHeader />,
         footerComponent: <Footer />
       }
     case Alias.Sbb:
@@ -59,6 +61,13 @@ const getPageManFieldsFromAlias = (alias: Alias) : PageManFields => {
         mainClass: "sbb",
         headerComponent: <SbbHeader />,
         footerComponent: <SbbFooter />
+      }
+    case Alias.Vessra:
+      return {
+        bodyClass: "body-vessra",
+        mainClass: "sbb",
+        headerComponent: <VessraHeader />,
+        footerComponent: <VessraFooter />
       }
     default: throw "Invalid alias";
   }
@@ -121,20 +130,13 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route>
-            {routeAlias = Alias.Kraedt}
-            <Route path="/" element={<PageMan alias={routeAlias} page={<HomePage />} />} />
-            <Route path="/club1506-interview" element={<PageMan alias={routeAlias} page={<Club1506Interview />} />} />
+            {routeAlias = Alias.Vessra}
+            <Route path="/" element={<PageMan alias={routeAlias} page={<VessraHome />} />} />
             <Route path="/merch" element={<PageMan alias={routeAlias} page={<Merch />} />} />
-            <Route path="/contact" element={<PageMan alias={routeAlias} page={<Contact />} />} />
+            <Route path="/contact" element={<PageMan alias={routeAlias} page={<VessraContact />} />} />
             <Route path="/music" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={false} />} />} />
             <Route path="/music-creator-friendly" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={true} />} />} />
-            <Route path="/music/song/:songPageName" element={<PageMan alias={routeAlias} page={<SongPage alias={routeAlias} />} />} />
-            <Route path="/home/song/:key" element={<PageMan alias={routeAlias} page={<FunctionalRedirect fn={(key) => `/music/song/${getMusicPageName(songs?.find((s: Song) => s?.id === Number(key)))}`} doRedirect={() => songs !== undefined} />} />} />
-            <Route path="/music/song/:key.html" element={<PageMan alias={routeAlias} page={<FunctionalRedirect fn={(key) => `/music/song/${key}`} />} />} />
-            <Route path="/music/album/:key.html" element={<PageMan alias={routeAlias} page={<FunctionalRedirect fn={(key) => `/music/album/${key}`} />} />} />
             <Route path="/albums" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <AlbumsPage alias={routeAlias} />} />} />
-            <Route path="/music/album/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
-            <Route path="/music/albums/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
             <Route path="/music*" element={<PageMan alias={routeAlias} page={<Page404 />} />} />
           </Route>
           <Route>
@@ -157,6 +159,15 @@ const App = () => {
             <Route path="/karl-kofass/albums" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <AlbumsPage alias={routeAlias} />} />} />
             <Route path="/karl-kofass/music/album/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
             <Route path="/karl-kofass/contact" element={<PageMan alias={routeAlias} page={<SbbContact />} />} />
+          </Route>
+          <Route>
+            {routeAlias = Alias.Kraedt}
+            <Route path="/kraedt" element={<PageMan alias={routeAlias} page={<KraedtHome />} />} />
+            <Route path="/kraedt/music" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={false} />} />} />
+            <Route path="/kraedt/music-creator-friendly" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={true} />} />} />
+            <Route path="/kraedt/music/song/:songPageName" element={<PageMan alias={routeAlias} page={<SongPage alias={routeAlias} />} />} />
+            <Route path="/kraedt/albums" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <AlbumsPage alias={routeAlias} />} />} />
+            <Route path="/kraedt/music/album/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
           </Route>
           {/*<Route>
             <Route path="/admin" element={<Admin page={<Dashboard />} />} />

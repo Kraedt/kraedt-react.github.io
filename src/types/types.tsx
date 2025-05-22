@@ -53,18 +53,21 @@ export interface ContactMessage {
 export enum Alias {
   Kraedt,
   Sbb,
-  KarlKofass
+  KarlKofass,
+  Vessra
 }
 
-export const getAliasName = (a: Alias) => ["Kraedt", "Sonic Breakbeat", "Karl Kofass"][a];
-export const getAliasKey = (a: Alias) => ["kraedt", "sonicbreakbeat", "karlkofass"][a];
-export const getPathPrefix = (a: Alias) => ["", "/sonicbreakbeat", "/karl-kofass"][a];
+export const getAliasName = (a: Alias) => ["Kraedt", "Sonic Breakbeat", "Karl Kofass", "Vessra"][a];
+export const getAliasKey = (a: Alias) => ["kraedt", "sonicbreakbeat", "karlkofass", "vessra"][a];
+export const getPathPrefix = (a: Alias) => ["/kraedt", "/sonicbreakbeat", "/karl-kofass", ""][a];
 export const getAliasFromPathname = (pathname: string) => {
-  let alias = Alias.Kraedt;
+  let alias = Alias.Vessra;
   if (pathname.startsWith('/sonicbreakbeat'))
     alias = Alias.Sbb;
   else if (pathname.startsWith('/karl-kofass'))
     alias = Alias.KarlKofass;
+  else if (pathname.startsWith('/kraedt'))
+    alias = Alias.Kraedt;
 
   return alias;
 }

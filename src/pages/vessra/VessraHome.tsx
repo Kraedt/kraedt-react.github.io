@@ -5,33 +5,34 @@ import MusicService from '../../services/music-service';
 import { useService } from '../../services/service-resolver';
 import { Alias, Song } from '../../types/types';
 import { Page } from '../Page';
-import styles from './HomePage.module.scss'
-import './Kraedt.scss';
+import styles from './VessraHome.module.scss'
+import './Vessra.scss';
+import logo from '../../assets/images/vessra-logo.png';
 
-export const HomePage = () => {
+export const VessraHome = () => {
   const musicService = useService(MusicService);
   const songs = useObservable(musicService.Songs);
   const spotlight = JSON.parse(useObservable(musicService.Spotlight)?.songIds || '[]') as number[];
   const spotlightSongs = spotlight.map(x => songs?.find(s => s.id === x)).filter(x => !!x) as Song[];
 
   return (
-    <Page title="Kraedt - Home">
+    <Page title="Vessra - Home">
+      <div className={styles.background}></div>
       <div className={styles.bioContainer}>
-        <div className={styles.bioText}>
+        <img className={styles.bioLogo} src={logo} alt='Vessra Logo'/>
+        <div className={styles.bioText + ' text-center'}>
           <p>
-            Valorie Schwartz, better known by her stage name Kraedt (pronounced "crate"), is an electronic music producer hailing from Wisconsin, USA. 
-            Since 2010, Kraedt has crafted a diverse catalog of original tracks and remixes, blending a variety of genres while maintaining a distinct, 
-            energetic sound. Her music has been released through various labels, independently, and many tracks have been made available under content-creator-friendly licenses.
+            Vessra is a vocal-driven electronic artist blending atmospheric textures with emotive rhythm. Drawing from over a decade of experience, 
+            she weaves elements of house, drum and bass, and introspective pop into a sound that feels both ethereal and grounded. With a focus on melody, 
+            emotion, and voice, Vessra creates music that resonates beyond the dancefloor - intimate, immersive, and unmistakably her own.
           </p>
 
-          <h3 className="text-center">Check out this <Link to="/club1506-interview">interview I did with Club1506</Link>!</h3>
-
-          <SongCarousel alias={Alias.Kraedt} allSongs={songs} carouselSongs={spotlightSongs} />
+          {/*<SongCarousel alias={Alias.Vessra} allSongs={songs} carouselSongs={spotlightSongs} />*/}
         </div>
 
-        <div className={styles.verticalDivider}></div>
-
         <div className={styles.spotifyBlurb + ' text-center'}>
+          <h3>Spotify coming soon!</h3>
+          {/*
           <h3>Follow me on Spotify!</h3>
           <iframe
             style={{ borderRadius: '12px' }}
@@ -42,6 +43,7 @@ export const HomePage = () => {
             frameBorder="0"
             allowFullScreen={false}
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            */}
         </div>
       </div >
     </Page >

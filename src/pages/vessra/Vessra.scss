@@ -1,0 +1,38 @@
+@import "./variables.scss";
+
+.vessra {
+}
+
+.body-vessra {
+  a {
+    color: $linkColor;
+    &:visited {
+      color: $linkColor;
+    }
+    &:hover,
+    &.focus {
+      color: $linkHoverColor;
+    }
+  }
+  @mixin icon-button {
+    background: none;
+    border: none;
+    color: $linkColor;
+    &:hover {
+      color: $linkHoverColor;
+    }
+  }
+  .icon-button {
+    @include icon-button();
+  }
+  .corner-controls button {
+    @include icon-button();
+  }
+  .btn-download {
+    background: $linkColor;
+    &:hover {
+      background: $linkHoverColor;
+    }
+    color: white !important;
+  }
+}

@@ -1,0 +1,19 @@
+@import "./variables.scss";
+
+.footer {
+  height: 32px;
+  font-size: 1em;
+  text-align: center;
+  color: white;
+  span {
+    position: relative;
+    top: 5px;
+  }
+  &a:hover,
+  &a:focus {
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  }
+  @media screen and (max-width: 1382px) {
+    display: none;
+  }
+}
