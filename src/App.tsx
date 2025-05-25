@@ -1,5 +1,5 @@
 import './App.scss'
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { KraedtHeader } from './pages/kraedt/KraedtHeader';
 import { Header as SbbHeader } from './pages/sonicbreakbeat/Header';
 import { Footer } from './pages/kraedt/Footer';
@@ -124,6 +124,29 @@ const App = () => {
   }
 
   let routeAlias: Alias;
+
+  function setFavicon(iconName: string) {
+    const link = document.querySelector("link[rel='icon']") || document.createElement('link') as any;
+    link.type = 'image/x-icon';
+    link.rel = 'icon';
+    link.href = `/${iconName}`;
+    document.head.appendChild(link);
+    return <></>;
+  }
+
+  useEffect(() => {
+    const alias = getAliasFromPathname(window.location.pathname);
+
+    switch (alias) {
+      case Alias.Kraedt:
+        setFavicon('kraedt-favicon.ico');
+        break;
+      case Alias.Sbb:
+        setFavicon('sbb-favicon.ico');
+        break;
+    }
+
+  }, [window.location]);
 
   return (
     <>
