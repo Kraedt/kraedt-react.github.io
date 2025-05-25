@@ -1,14 +1,24 @@
 import { Link } from 'react-router-dom';
-import { Alias, getAliasName, getPathPrefix } from '../../types/types';
-import { Page } from '../Page';
 import styles from './Page404.module.scss';
+import { Page } from '../pages/Page';
+import { Alias, getAliasName, getPathPrefix } from '../types/types';
 
 export const Page404 = () => {
   const aliasFromLocation = window.location.pathname.split('/')[1]
-  const alias = aliasFromLocation.toLowerCase() === "sonicbreakbeat" ? Alias.Sbb : Alias.Kraedt;
+
+  let alias = Alias.Vessra;
+
+  switch (aliasFromLocation) {
+    case "kraedt":
+      alias = Alias.Kraedt;
+      break;
+    case "sonicbreakbeat":
+      alias = Alias.Sbb;
+      break;
+  }
 
   return (
-    < Page title={`${getAliasName(alias)} - 404`}>
+    <Page title={`${getAliasName(alias)} - 404`}>
       <div className={styles.container}>
         <h1>404</h1>
 

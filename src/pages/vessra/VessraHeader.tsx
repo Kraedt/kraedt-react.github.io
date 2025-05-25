@@ -15,10 +15,10 @@ export const VessraHeader = () => {
   const showActive = (urlMatch: string) => url === urlMatch ? styles.active : '';
   const showActiveContains = (urlMatch: string) => url.includes(urlMatch) ? styles.active : '';
 
-  const ListLinkIcon = ({ url, img, title, alt }: { url: string, img: string, title: string, alt: string }) => (
+  const ListLinkIcon = ({ url, icon, title }: { url: string, icon: string, title: string }) => (
     <li className={styles.sm}>
       <a href={url} title={title} target="_blank" rel="noreferrer">
-        <img src={img} alt={alt} />
+        <i className={'fa '+icon}/>
       </a>
     </li>
   )
@@ -31,10 +31,11 @@ export const VessraHeader = () => {
     <ListLink url="/" className={showActive('/')} text="HOME" />
     <ListLink url="/music" className={showActiveContains('/music')} text="MUSIC" />
     {/*<ListLink url="/merch" className={showActive('/merch')} text="MERCH" />*/}
+    <ListLink url="/about" className={showActive('/about')} text="ABOUT" />
     <ListLink url="/contact" className={showActive('/contact')} text="CONTACT" />
     <li className={styles.br} />
-    <ListLinkIcon url="http://soundcloud.com/kraedt" img={soundcloudIcon} title="Soundcloud" alt="soundcloud" />
-    <ListLinkIcon url="http://youtube.com/kraedt" img={youtubeIcon} title="YouTube" alt="youtube" />
+    <ListLinkIcon url="http://soundcloud.com/vessra" icon='fa-soundcloud' title="Soundcloud" />
+    <ListLinkIcon url="http://youtube.com/@Vessra" icon='fa-youtube' title="YouTube" />
     {/*<ListLinkIcon url="https://open.spotify.com/artist/0YbhxZi9PSVTmB4UMkM5Jw" img={spotifyIcon} title="Spotify" alt="spotify" />*/}
     {/*<ListLinkIcon url="https://beatport.com/artist/kraedt/429462" img={beatportIcon} title="Beatport" alt="beatport" />*/}
     {/*<ListLinkIcon url="http://twitter.com/kraedt" img={twitterIcon} title="Twitter" alt="twitter" />*/}

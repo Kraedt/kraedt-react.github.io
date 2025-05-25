@@ -22,9 +22,11 @@ export const VessraHome = () => {
         <img className={styles.bioLogo} src={logo} alt='Vessra Logo'/>
         <div className={styles.bioText + ' text-center'}>
           <p>
-            Vessra is a vocal-driven electronic artist blending atmospheric textures with emotive rhythm. Drawing from over a decade of experience, 
-            she weaves elements of house, drum and bass, and introspective pop into a sound that feels both ethereal and grounded. With a focus on melody, 
-            emotion, and voice, Vessra creates music that resonates beyond the dancefloor - intimate, immersive, and unmistakably her own.
+            Vessra is an electronic music artist and producer from Wisconsin, USA. Active since 2010 under earlier aliases like Kraedt, she has crafted a 
+            wide range of original tracks and remixes spanning genres like house, drum and bass, and melodic electronica - all while maintaining a 
+            distinctive, energetic, and emotionally resonant sound. As Vessra, she focuses on blending expressive vocals with dynamic production, 
+            creating music that is both hard-hitting and deeply personal. She also aims to release music that is not only artistically expressive, 
+            but also usable in creative content through content-creator-friendly licenses.
           </p>
 
           {/*<SongCarousel alias={Alias.Vessra} allSongs={songs} carouselSongs={spotlightSongs} />*/}

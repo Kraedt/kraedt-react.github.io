@@ -17,6 +17,7 @@ export interface Song {
   amazonUrl?: string;
   spotifyUrl?: string;
   year?: number;
+  releaseDate?: string;
   licenseId: number;
 }
 
@@ -32,6 +33,7 @@ export interface Album {
   amazonUrl?: string;
   spotifyUrl?: string;
   year?: number;
+  releaseDate?: string;
 }
 
 export interface ArtistData {

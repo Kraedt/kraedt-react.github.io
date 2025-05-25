@@ -36,3 +36,33 @@
     color: white !important;
   }
 }
+
+.direct-dl-btn {
+  img {
+    display: none !important;
+  }
+  background: #333;
+  height: 40px;
+  width: 40px;
+  top: -20px;
+  right: 4px;
+  &::after {
+    display: block;
+    margin-top: 9px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f019";
+    color: white;
+  }
+  position: relative;
+  display: inline-block;
+  border: white 2px solid;
+  border-radius: 6px;
+  &:hover {
+    &::after {
+      color: $linkColor;
+    }
+    border-color: $linkColor;
+    background: #444;
+  }
+}

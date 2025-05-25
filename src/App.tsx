@@ -8,7 +8,7 @@ import { VessraHome } from './pages/vessra/VessraHome';
 import { MusicPage } from './components/MusicPage';
 import { ReactElement, useEffect } from 'react';
 import { SongPage } from './pages/kraedt/SongPage';
-import { Page404 } from './pages/kraedt/Page404';
+import { SongPage as VessraSongPage } from './pages/vessra/SongPage';
 import { HomePage as SbbHome } from './pages/sonicbreakbeat/HomePage';
 import { FunctionalRedirect } from './pages/kraedt/FunctionalRedirect';
 import { useService } from './services/service-resolver';
@@ -30,6 +30,8 @@ import { VessraHeader } from './pages/vessra/VessraHeader';
 import { VessraFooter } from './pages/vessra/VessraFooter';
 import { KraedtHome } from './pages/kraedt/KraedtHome';
 import { VessraContact } from './pages/vessra/VessraContact';
+import { VessraAbout } from './pages/vessra/VessraAbout';
+import { Page404 } from './components/Page404';
 
 type PageManProps = { alias: Alias, page: ReactElement }
 interface PageManFields {
@@ -134,9 +136,12 @@ const App = () => {
             <Route path="/" element={<PageMan alias={routeAlias} page={<VessraHome />} />} />
             <Route path="/merch" element={<PageMan alias={routeAlias} page={<Merch />} />} />
             <Route path="/contact" element={<PageMan alias={routeAlias} page={<VessraContact />} />} />
+            <Route path="/about" element={<PageMan alias={routeAlias} page={<VessraAbout />} />} />
             <Route path="/music" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={false} />} />} />
             <Route path="/music-creator-friendly" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <MusicPage alias={routeAlias} safeOnly={true} />} />} />
             <Route path="/albums" element={<PageMan alias={routeAlias} page={showMusicError ? <MusicError alias={routeAlias} /> : <AlbumsPage alias={routeAlias} />} />} />
+            <Route path="/music/song/:songPageName" element={<PageMan alias={routeAlias} page={<VessraSongPage alias={routeAlias} />} />} />
+            <Route path="/music/album/:albumPageName" element={<PageMan alias={routeAlias} page={<AlbumPage alias={routeAlias} />} />} />
             <Route path="/music*" element={<PageMan alias={routeAlias} page={<Page404 />} />} />
           </Route>
           <Route>

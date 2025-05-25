@@ -1,3 +1,5 @@
+$linkColor: #FFB8D1; // todo: this is not alias-specific
+
 .followPopup {
   table {
     margin: auto auto;
@@ -10,6 +12,7 @@
   }
   button {
     font-size: 1.5rem;
+    color: $linkColor !important;
   }
 }
 
@@ -19,5 +22,5 @@
 }
 
 a {
-  color: orange;
+  color: $linkColor;
 }

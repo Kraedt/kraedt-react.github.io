@@ -6,7 +6,7 @@ import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
 import { Alias, AmazonLink, BeatportLink, getDriveDirectDownload, getLicense, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, SpotifyLink, YoutubeLinkImage } from "../../types/types"
 import { Page } from "../Page";
-import { Page404 } from "./Page404";
+import { Page404 } from "../../components/Page404";
 
 interface Props {
   alias: Alias;

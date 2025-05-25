@@ -17,7 +17,8 @@ export const FollowPopup = () => {
             <tr>
               <td><h3>Spotify:</h3></td>
               <td>
-                <a href='https://open.spotify.com/artist/0YbhxZi9PSVTmB4UMkM5Jw?si=W1wUzB3RT2CJiL9xniFgOg'>Follow on Spotify</a>
+                {/*<a href='https://open.spotify.com/artist/0YbhxZi9PSVTmB4UMkM5Jw?si=W1wUzB3RT2CJiL9xniFgOg'>Follow on Spotify</a>*/}
+                <p>Spotify is coming soon!</p>
               </td>
             </tr>
             <tr>
@@ -29,7 +30,7 @@ export const FollowPopup = () => {
             <tr>
               <td><h3>Soundcloud:</h3></td>
               <td>
-                <a className={styles.followBtn} href="http://soundcloud.com/kraedt" target="_blank" rel="noreferrer"><img alt='soundcloud' src={soundcloudFollowImg} /></a>
+                <a className={styles.followBtn} href="http://soundcloud.com/vessra" target="_blank" rel="noreferrer"><img alt='soundcloud' src={soundcloudFollowImg} /></a>
               </td>
             </tr>
             {/*<tr>

@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { isNullOrWhitespace } from "../../functions";
 import { useObservable } from "../../rxjs-functions";
 import MusicService from "../../services/music-service";
 import { useService } from "../../services/service-resolver";
-import { Alias, AmazonLink, BeatportLink, getDriveDirectDownload, getLicense, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, SpotifyLink, YoutubeLinkImage } from "../../types/types"
+import { Alias, AmazonLink, BeatportLink, getDriveDirectDownload, getLicense, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, Song, SpotifyLink, YoutubeLinkImage } from "../../types/types"
 import { Page } from "../Page";
-import { Page404 } from "./Page404";
+import { Page404 } from "../../components/Page404";
 
 interface Props {
   alias: Alias;
@@ -15,19 +15,45 @@ interface Props {
 export const SongPage = ({ alias }: Props) => {
   const { songPageName } = useParams();
   const musicService = useService(MusicService);
-  const songs = useObservable(musicService.Songs);
+  const aliasSongs = useObservable(musicService.Songs);
   const allAlbums = useObservable(musicService.Albums);
-  const song = songs?.find(s => getMusicPageName(s) === songPageName)!
   const [ytEnabled, setYtEnabled] = useState(false);
+  const [songs, setSongs] = useState(aliasSongs);
+  const [song, setSong] = useState<Song>();
 
-  if (!songs)
-    return null;
+  useEffect(() => {
+    musicService.InlineFetchData(musicService.GetUri(Alias.Kraedt), data => {
+      setSongs(data.songs);
+      const foundSong = data.songs?.find((s:any) => getMusicPageName(s) === songPageName) ?? 
+        aliasSongs?.find((s:any) => getMusicPageName(s) === songPageName);
 
-  if (!isNullOrWhitespace(songPageName) && song === undefined)
+      setSong(foundSong);
+    });
+  }, []);
+
+  if (!songs){
+    return <h2 className='text-center'>Please wait...</h2>
+  }
+
+  if (!song || (!isNullOrWhitespace(songPageName) && song === undefined)) {
     return <Page404 />;
+  }
 
   const matchingAlbum = allAlbums?.find(a => JSON.parse(a.songIds).includes(song.id));
   const license = getLicense(song.licenseId);
+
+  function formatReleaseDate(str: string) {
+    try {
+      const date = new Date(str);
+      const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric'};
+      return date.toLocaleDateString(undefined, options);
+    }
+    catch {
+      return null;
+    }
+  }
+
+  const date = formatReleaseDate(song.releaseDate||'') || song.year;
 
   return (
     <Page title={`${song.artist} - ${song.title}`}>
@@ -43,7 +69,7 @@ export const SongPage = ({ alias }: Props) => {
             <td>
               <h2>{song.title}</h2>
               <h3>{song.artist}</h3>
-              <h3>{song.year}</h3>
+              <h3>{date || song.year}</h3>
             </td>
           </tr>
           <tr>

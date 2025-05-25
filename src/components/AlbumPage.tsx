@@ -5,7 +5,7 @@ import MusicService from "../services/music-service";
 import { useService } from "../services/service-resolver";
 import { Alias, AmazonLink, BeatportLink, getAliasName, getDriveDirectDownload, getLicenseIcon, getMusicItemImage, getMusicPageName, getPathPrefix, ItunesLink, SpotifyLink } from "../types/types";
 import { Page } from "../pages/Page"
-import { Page404 } from "../pages/kraedt/Page404";
+import { Page404 } from "./Page404";
 
 export const AlbumPage = ({ alias }: { alias: Alias }) => {
   const { albumPageName } = useParams();

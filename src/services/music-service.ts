@@ -18,9 +18,12 @@ export default class MusicService implements Service {
     instance = this;
   }
 
+  GetUri(alias: Alias) {
+    return `https://us-central1-kraedtwebsite.cloudfunctions.net/fetchdata?datakey=${getAliasKey(alias)}`;
+  }
+
   async Initialize(alias: Alias) {
-    const uri = `https://us-central1-kraedtwebsite.cloudfunctions.net/fetchdata?datakey=${getAliasKey(alias)}`;
-    this.FetchData(uri);
+    this.FetchData(this.GetUri(alias));
   }
 
   async FetchData(uri: string) {
@@ -40,6 +43,24 @@ export default class MusicService implements Service {
 
     if (result !== null)
       dataIntent.next(result);
+  }
+
+  async InlineFetchData(uri: string, callback: (data: any) => void) {
+    var setHeaders = new Headers();
+    setHeaders.append('Content-Type', 'application/json');
+
+    var setOptions = {
+      method: 'GET',
+      headers: setHeaders,
+    };
+    const result = await fetch(uri, setOptions)
+      .then(response => response.json())
+      .catch(error => {
+        console.log("There is an error " + error.message);
+        return null;
+      });
+
+    callback(result);
   }
 
   Songs: Rx.Observable<Song[]> = dataIntent.pipe(
