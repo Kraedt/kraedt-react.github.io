@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.e677d762.css",
-    "main.js": "/static/js/main.dfbbb175.js",
+    "main.css": "/static/css/main.ae5d7df0.css",
+    "main.js": "/static/js/main.ba64d882.js",
     "static/js/453.9c701c37.chunk.js": "/static/js/453.9c701c37.chunk.js",
     "static/media/sbb-background.png": "/static/media/sbb-background.83634b72fab1861c65ae.png",
+    "static/media/vessra-background.jpg": "/static/media/vessra-background.a623fd664d90e886d359.jpg",
     "static/media/sbb-logo.png": "/static/media/sbb-logo.9faf5501b3db0e25c2de.png",
     "static/media/background.jpg": "/static/media/background.fc314915502198801285.jpg",
     "static/media/Leon-Regular_TRIAL.ttf": "/static/media/Leon-Regular_TRIAL.fae3e79283946fec5fd7.ttf",
+    "static/media/vessra-logo.png": "/static/media/vessra-logo.302c474867a989670dd0.png",
     "static/media/Montserrat-Regular.ttf": "/static/media/Montserrat-Regular.7c8ccfe4b8a1b8ea2327.ttf",
+    "static/media/Lato-Regular.ttf": "/static/media/Lato-Regular.9d883d540ee2b4de8024.ttf",
     "static/media/Crate.jpg": "/static/media/Crate.dbcf6cc6ba32aef0f195.jpg",
     "static/media/norobots.jpg": "/static/media/norobots.dbdef64679d5aae0c02c.jpg",
     "static/media/logo.png": "/static/media/logo.f298e080e3f8297873ca.png",
@@ -18,16 +21,15 @@
     "static/media/amazon.png": "/static/media/amazon.ce2e330adf8686e95cc5.png",
     "static/media/spotify.png": "/static/media/spotify.65f69c8162f939cbf637.png",
     "static/media/spotify_icon.png": "/static/media/spotify_icon.e81f16a88f4f3f1a90a4.png",
-    "static/media/beatport_icon.png": "/static/media/beatport_icon.60f1c8c5c17d638be012.png",
     "static/media/direct.png": "/static/media/direct.ccaa17a8d384b74dd234.png",
     "static/media/youtube_icon.png": "/static/media/youtube_icon.8c31cf28d7acb41fac97.png",
     "index.html": "/index.html",
-    "main.e677d762.css.map": "/static/css/main.e677d762.css.map",
-    "main.dfbbb175.js.map": "/static/js/main.dfbbb175.js.map",
+    "main.ae5d7df0.css.map": "/static/css/main.ae5d7df0.css.map",
+    "main.ba64d882.js.map": "/static/js/main.ba64d882.js.map",
     "453.9c701c37.chunk.js.map": "/static/js/453.9c701c37.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e677d762.css",
-    "static/js/main.dfbbb175.js"
+    "static/css/main.ae5d7df0.css",
+    "static/js/main.ba64d882.js"
   ]
 }
