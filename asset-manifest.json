@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.ae5d7df0.css",
-    "main.js": "/static/js/main.d7cc2e0a.js",
+    "main.css": "/static/css/main.8bec077c.css",
+    "main.js": "/static/js/main.b5234277.js",
     "static/js/453.9c701c37.chunk.js": "/static/js/453.9c701c37.chunk.js",
     "static/media/sbb-background.png": "/static/media/sbb-background.83634b72fab1861c65ae.png",
     "static/media/vessra-background.jpg": "/static/media/vessra-background.a623fd664d90e886d359.jpg",
@@ -24,12 +24,12 @@
     "static/media/direct.png": "/static/media/direct.ccaa17a8d384b74dd234.png",
     "static/media/youtube_icon.png": "/static/media/youtube_icon.8c31cf28d7acb41fac97.png",
     "index.html": "/index.html",
-    "main.ae5d7df0.css.map": "/static/css/main.ae5d7df0.css.map",
-    "main.d7cc2e0a.js.map": "/static/js/main.d7cc2e0a.js.map",
+    "main.8bec077c.css.map": "/static/css/main.8bec077c.css.map",
+    "main.b5234277.js.map": "/static/js/main.b5234277.js.map",
     "453.9c701c37.chunk.js.map": "/static/js/453.9c701c37.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ae5d7df0.css",
-    "static/js/main.d7cc2e0a.js"
+    "static/css/main.8bec077c.css",
+    "static/js/main.b5234277.js"
   ]
 }
