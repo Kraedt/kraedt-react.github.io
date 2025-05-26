@@ -77,9 +77,11 @@ li {
   }
   .icon {
     position: absolute;
-    top: 14px;
-    right: 22px;
+    top: 6px;
+    right: 12px;
     display: block !important;
+    color: $linkColor !important;
+    font-size: 1.5rem;
   }
   .navbar {
     display: none;
@@ -105,13 +107,10 @@ li {
   }
   .banner {
     background: none;
-    height: 18vh;
-  }
-  .logo {
-    background: #1c1c1c;
-  }
-  .logo img {
-    max-width: 80%;
+    height: 18vh !important;
+    img {
+      max-height: 60% !important;
+    }
   }
 }
 
