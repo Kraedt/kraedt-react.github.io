@@ -7,6 +7,7 @@ import beatportIcon from '../../assets/images/beatport_icon.png';
 import vessraLogo from '../../assets/images/vessra-logo.png';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import butterfly from '../../assets/images/butterfly.png';
 
 export const VessraHeader = () => {
   const url = useLocation().pathname;
@@ -23,12 +24,15 @@ export const VessraHeader = () => {
     </li>
   )
 
-  const ListLink = ({ url, className, text }: { url: string, className: string, text: string }) => (
-    <li className={styles.text}><Link to={url} className={className}>{text}</Link></li>
+  const ListLink = ({ url, className, text, img }: { url: string, className: string, text: string, img?: string }) => (
+    <li className={styles.text}>
+      {img && <img className={styles.linkImage} src={img}/>}
+      <Link to={url} className={className}>{text}</Link>
+    </li>
   )
 
   const links = <>
-    <ListLink url="/" className={showActive('/')} text="HOME" />
+    <ListLink url="/" className={showActive('/')} text="HOME" img={butterfly} />
     <ListLink url="/music" className={showActiveContains('/music')} text="MUSIC" />
     {/*<ListLink url="/merch" className={showActive('/merch')} text="MERCH" />*/}
     <ListLink url="/about" className={showActive('/about')} text="ABOUT" />

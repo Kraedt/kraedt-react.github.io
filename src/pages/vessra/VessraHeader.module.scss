@@ -16,6 +16,13 @@ li {
   padding: 0 1.5em 0 1.5em;
 }
 
+.linkImage {
+  position: absolute;
+  width: 0px;
+  right: 5px;
+  top: 50px;
+}
+
 .navbarBg {
   position: absolute;
   width: 100%;
@@ -106,7 +113,6 @@ li {
     content: "  -  " attr(title);
   }
   .banner {
-    background: none;
     height: 18vh !important;
     img {
       max-height: 60% !important;
