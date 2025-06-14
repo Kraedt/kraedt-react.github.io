@@ -22,7 +22,7 @@ export const VessraHome = () => {
         <img className={styles.bioLogo} src={logo} alt='Vessra Logo'/>
         <div className={styles.bioText + ' text-center'}>
           <p>
-            Vessra is an electronic music artist and producer from Wisconsin, USA. Since 2010 (under earlier aliases like Kraedt), she has created a 
+            Vessra is an electronic music artist and producer from Wisconsin, USA. Since 2010 (under earlier aliases like <a href="/kraedt">Kraedt</a>), she has created a 
             wide range of original tracks and remixes spanning genres like house, drum and bass, and melodic electronica - all while maintaining a 
             unique, energetic, and emotionally resonant sound. As Vessra, she focuses on blending expressive vocals with a familiar instrumental style, 
             creating music that is both hard-hitting and more personal. She also aims to release music that is not only artistically expressive, 
