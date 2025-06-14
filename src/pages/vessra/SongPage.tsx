@@ -102,8 +102,16 @@ export const SongPage = ({ alias }: Props) => {
           {song.downloadable && song.downloadUrl && (
             <tr>
               <td>
-                <a className="btn btn-lg btn-download" href={getDriveDirectDownload(song.downloadUrl)}>DOWNLOAD</a>
+                <a className="btn btn-lg btn-download" href={getDriveDirectDownload(song.downloadUrl)} title="Download the original song">DOWNLOAD</a>
                 <br />
+              </td>
+            </tr>
+          )}
+          {song.altDownloads?.map(ad =>
+            <tr>
+              <td>
+                <br/>
+                <a className="alt-download" href={getDriveDirectDownload(ad.url)} title={`Download the ${ad.name} version`}>Download {ad.name}</a>
               </td>
             </tr>
           )}

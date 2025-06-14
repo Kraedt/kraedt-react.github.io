@@ -7,6 +7,7 @@ export interface Song {
   title: string;
   artist: string;
   genre: string;
+  altDownloads?: AltDownload[];
   imageUrl?: string;
   buyable?: boolean;
   downloadable?: boolean;
@@ -19,6 +20,11 @@ export interface Song {
   year?: number;
   releaseDate?: string;
   licenseId: number;
+}
+
+export interface AltDownload {
+  name: string; // Instrumental, Extended, Remix, etc.
+  url: string; // drive url
 }
 
 export interface Album {

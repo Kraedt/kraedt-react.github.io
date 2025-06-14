@@ -214,6 +214,17 @@ p {
   vertical-align: middle;
 }
 
+.alt-download {
+  font-weight: 700;
+  font-size: 24px;
+  &::before {
+    content: '> ';
+  }
+  &::after {
+    content: ' <';
+  }
+}
+
 .modal {
   position: fixed;
   z-index: 10;

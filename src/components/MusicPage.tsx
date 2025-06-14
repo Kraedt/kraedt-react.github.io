@@ -6,7 +6,6 @@ import { Alias, AmazonLink, BeatportLink, DirectDownloadLink, getAliasName, getL
 import { Page } from "../pages/Page";
 import ld from 'lodash';
 import { GoToTopButton } from "../layout/GoToTopButton";
-import { useEffect, useState } from "react";
 
 interface Props {
   alias: Alias;
