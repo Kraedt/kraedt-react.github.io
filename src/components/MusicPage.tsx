@@ -19,11 +19,6 @@ export const MusicPage = ({ alias, safeOnly }: Props) => {
   const allSongs = ld.sortBy(useObservable(musicService.Songs) || [], s => s.id);
   ld.reverse(allSongs);
 
-  if (alias === Alias.Vessra) {
-    // temp:
-    return <h2 className='text-center'>Vessra releases are coming soon!</h2>
-  }
-
   const songs = safeOnly
     ? allSongs?.filter(x => getLicense(x.licenseId).level === 1)
     : allSongs;

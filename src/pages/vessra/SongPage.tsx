@@ -22,7 +22,7 @@ export const SongPage = ({ alias }: Props) => {
   const [song, setSong] = useState<Song>();
 
   useEffect(() => {
-    musicService.InlineFetchData(musicService.GetUri(Alias.Kraedt), data => {
+    musicService.InlineFetchData(musicService.GetUri(Alias.Vessra), data => {
       setSongs(data.songs);
       const foundSong = data.songs?.find((s:any) => getMusicPageName(s) === songPageName) ?? 
         aliasSongs?.find((s:any) => getMusicPageName(s) === songPageName);
