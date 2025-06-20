@@ -23,13 +23,13 @@ export const KraedtHome = () => {
           </p>
           <p>
             Known also for soundtrack contributions to "Robot Roller-Derby: Disco Dodgeball", "Formula Fusion", and other successful collaborations with TryHardNinja, 
-            Kraedt explored high-energy house, melodic drum and bass, and experimental soundscapes.
+            Kraedt explored high-energy house, melodic drum and bass, and genre-experimental sounds.
           </p>
           <p>
             As the music evolved, so did the artist - and going forward, all new releases will appear under a new name: Vessra.
           </p>
           <p>
-            Vessra represents a more vocal-forward, emotionally immersive chapter in the same creative journey.
+            Vessra represents a more vocal-forward chapter in the same creative journey.
           </p>
 
           <h3 className="text-center"><Link to="/">Listen to Vessra</Link></h3>
