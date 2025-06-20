@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.1e4626d8.css",
-    "main.js": "/static/js/main.c46ee93d.js",
+    "main.js": "/static/js/main.88a51af0.js",
     "static/js/453.9c701c37.chunk.js": "/static/js/453.9c701c37.chunk.js",
     "static/media/sbb-background.png": "/static/media/sbb-background.83634b72fab1861c65ae.png",
     "static/media/vessra-background.jpg": "/static/media/vessra-background.a623fd664d90e886d359.jpg",
@@ -25,11 +25,11 @@
     "static/media/youtube_icon.png": "/static/media/youtube_icon.8c31cf28d7acb41fac97.png",
     "index.html": "/index.html",
     "main.1e4626d8.css.map": "/static/css/main.1e4626d8.css.map",
-    "main.c46ee93d.js.map": "/static/js/main.c46ee93d.js.map",
+    "main.88a51af0.js.map": "/static/js/main.88a51af0.js.map",
     "453.9c701c37.chunk.js.map": "/static/js/453.9c701c37.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1e4626d8.css",
-    "static/js/main.c46ee93d.js"
+    "static/js/main.88a51af0.js"
   ]
 }
