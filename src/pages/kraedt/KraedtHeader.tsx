@@ -23,14 +23,14 @@ export const KraedtHeader = () => {
     </li>
   )
 
-  const ListLink = ({ url, className, text }: { url: string, className: string, text: string }) => (
-    <li className={styles.text}><Link to={url} className={className}>{text}</Link></li>
+  const ListLink = ({ url, className, text, reload }: { url: string, className: string, text: string, reload: boolean }) => (
+    <li className={styles.text}><Link to={url} className={className} reloadDocument={reload}>{text}</Link></li>
   )
 
   //<ListLink url="/merch" className={showActive('/merch')} text="MERCH" />
   const links = <>
-    <ListLink url="/" className={showActive('/')} text="AKA VESSRA" />
-    <ListLink url="/kraedt/music" className={showActiveContains('/music')} text="MUSIC" />
+    <ListLink url="/" className={showActive('/')} text="AKA VESSRA" reload={true}/>
+    <ListLink url="/kraedt/music" className={showActiveContains('/music')} text="MUSIC" reload={false}/>
     {/*<ListLinkIcon url="http://twitter.com/kraedt" img={twitterIcon} title="Twitter" alt="twitter" />*/}
   </>
 

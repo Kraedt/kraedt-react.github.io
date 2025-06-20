@@ -32,7 +32,7 @@ export const KraedtHome = () => {
             Vessra represents a more vocal-forward chapter in the same creative journey.
           </p>
 
-          <h3 className="text-center"><Link to="/">Listen to Vessra</Link></h3>
+          <h3 className="text-center"><Link to="/" reloadDocument>Listen to Vessra</Link></h3>
         </div>
 
         <div className={styles.verticalDivider}></div>
