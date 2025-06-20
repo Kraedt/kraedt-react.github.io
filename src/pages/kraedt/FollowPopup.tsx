@@ -2,7 +2,6 @@ import styles from './FollowPopup.module.scss';
 import { Modal } from "../../components/Modal";
 import InteractService, { shouldShowFollowPopupKey } from "../../services/interact-service"
 import { useService } from "../../services/service-resolver"
-import soundcloudFollowImg from "../../assets/images/follow-soundcloud.png";
 
 export const FollowPopup = () => {
   const interactService = useService(InteractService);
@@ -17,8 +16,7 @@ export const FollowPopup = () => {
             <tr>
               <td><h3>Spotify:</h3></td>
               <td>
-                {/*<a href='https://open.spotify.com/artist/0YbhxZi9PSVTmB4UMkM5Jw?si=W1wUzB3RT2CJiL9xniFgOg'>Follow on Spotify</a>*/}
-                <p>Spotify is coming soon!</p>
+                <a href='https://open.spotify.com/artist/0qSthKMZKXeidXq6zgKzIn?si=W1wUzB3RT2CJiL9xniFgOg' target='_blank'><i className='fa-brands fa-spotify'/> Follow on Spotify</a>
               </td>
             </tr>
             <tr>
@@ -30,17 +28,15 @@ export const FollowPopup = () => {
             <tr>
               <td><h3>Soundcloud:</h3></td>
               <td>
-                <a className={styles.followBtn} href="http://soundcloud.com/vessra" target="_blank" rel="noreferrer"><img alt='soundcloud' src={soundcloudFollowImg} /></a>
+                <a href="http://soundcloud.com/vessra" target="_blank" rel="noreferrer"><i className='fa-brands fa-soundcloud'/> Follow on Soundcloud</a>
               </td>
             </tr>
-            {/*<tr>
-              <td><h3>Twitter:</h3></td>
+            <tr>
+              <td><h3>Bluesky:</h3></td>
               <td>
-                <a href="https://twitter.com/kraedt?ref_src=twsrc%5Etfw"
-                  className="twitter-follow-button"
-                  data-show-count="true">Follow @kraedt</a>
+                <a href='https://bsky.app/profile/vessramusic.bsky.social' target="_blank"><i className='fa-brands fa-bluesky'/> Follow on Bluesky</a>
               </td>
-  </tr>*/}
+            </tr>
           </tbody>
         </table>
         <br />

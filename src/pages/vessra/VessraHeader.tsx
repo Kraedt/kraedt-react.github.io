@@ -1,9 +1,4 @@
 import styles from './VessraHeader.module.scss';
-import soundcloudIcon from '../../assets/images/soundcloud_icon.png';
-import youtubeIcon from '../../assets/images/youtube_icon.png';
-import spotifyIcon from '../../assets/images/spotify_icon.png';
-import beatportIcon from '../../assets/images/beatport_icon.png';
-//import twitterIcon from '../../assets/images/twitter_icon.png';
 import vessraLogo from '../../assets/images/vessra-logo.png';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
@@ -40,9 +35,9 @@ export const VessraHeader = () => {
     <li className={styles.br} />
     <ListLinkIcon url="http://soundcloud.com/vessra" icon='fa-soundcloud' title="Soundcloud" />
     <ListLinkIcon url="http://youtube.com/@Vessra" icon='fa-youtube' title="YouTube" />
-    {/*<ListLinkIcon url="https://open.spotify.com/artist/0YbhxZi9PSVTmB4UMkM5Jw" img={spotifyIcon} title="Spotify" alt="spotify" />*/}
+    <ListLinkIcon url="https://open.spotify.com/artist/0qSthKMZKXeidXq6zgKzIn" icon='fa-spotify' title="Spotify" />
+    <ListLinkIcon url="https://bsky.app/profile/vessramusic.bsky.social" icon='fa-brands fa-bluesky' title="Bluesky" />
     {/*<ListLinkIcon url="https://beatport.com/artist/kraedt/429462" img={beatportIcon} title="Beatport" alt="beatport" />*/}
-    {/*<ListLinkIcon url="http://twitter.com/kraedt" img={twitterIcon} title="Twitter" alt="twitter" />*/}
   </>
 
   const header = url === "/" 

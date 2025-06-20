@@ -34,18 +34,16 @@ export const VessraHome = () => {
 
         <div className={styles.spotifyBlurb + ' text-center'}>
           <h3>Spotify coming soon!</h3>
-          {/*
           <h3>Follow me on Spotify!</h3>
           <iframe
             style={{ borderRadius: '12px' }}
             title="spotify"
-            src="https://open.spotify.com/embed/artist/0YbhxZi9PSVTmB4UMkM5Jw?utm_source=generator"
-            width="80%"
+            src="https://open.spotify.com/embed/artist/0qSthKMZKXeidXq6zgKzIn?utm_source=generator"
+            width="40%"
             height="400"
             frameBorder="0"
             allowFullScreen={false}
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-            */}
         </div>
       </div >
     </Page >
