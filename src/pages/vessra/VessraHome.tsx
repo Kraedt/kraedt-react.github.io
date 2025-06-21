@@ -33,7 +33,6 @@ export const VessraHome = () => {
         </div>
 
         <div className={styles.spotifyBlurb + ' text-center'}>
-          <h3>Spotify coming soon!</h3>
           <h3>Follow me on Spotify!</h3>
           <iframe
             style={{ borderRadius: '12px' }}
